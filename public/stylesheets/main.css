@@ -1,0 +1,62 @@
+body {
+  
+}
+
+.nav .caret{
+  border-top-color: #999 !important;
+  border-bottom-color: #999;
+}
+.jake-image{
+  background: url("../images/JakeMarshall.JPG");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
+.adriano-image{
+  background: url("../images/adriano.JPG");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
+.layne-image{
+  background: url("../images/Layne.JPG");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
+.header-image{
+  background: url("../images/surfing.JPG");
+  background-size: cover;
+  height: 300px;
+}
+.img-one{
+  background: url("../images/adriano.JPG");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
+.img-two{
+  background: url("../images/Layne.JPG");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
+.img-three{
+  background: url("../images/JakeMarshall.JPG");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
+p{
+  font-size: 30px;
+}
+
+.well{
+  font-size: 1px !important;
+}
