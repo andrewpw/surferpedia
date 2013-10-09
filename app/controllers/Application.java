@@ -7,6 +7,7 @@ import views.html.Adriano;
 import views.html.Layne;
 import views.html.Jake;
 import views.html.Bethany;
+import views.html.laird;
 
 /**
  * Implements the controllers for this application.
@@ -54,6 +55,15 @@ public class Application extends Controller {
    */
   public static Result jake() {
     return ok(Jake.render("Welcome to Groms"));
+    
+  }
+  
+  /**
+   * Returns page1, a simple example of a second page to illustrate navigation.
+   * @return Laird Hamilton.
+   */
+  public static Result laird() {
+    return ok(laird.render("Laird Hamilton"));
     
   }
   

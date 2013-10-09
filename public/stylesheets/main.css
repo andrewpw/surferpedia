@@ -34,27 +34,34 @@ body {
   height: 500px;
 }
 
+.laird-image {
+  background: url("../images/LairdHamilton.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 350px;
+}
+
 .header-image{
   background: url("../images/surfing.JPG");
   background-size: cover;
   height: 350px;
 }
 .img-one{
-  background: url("../images/adriano.JPG");
+  background: url("../images/adriano.jpg");
   background-size: cover;
   background-position: center;
   height: 500px;
 }
 
 .img-two{
-  background: url("../images/Layne.JPG");
+  background: url("../images/Layne.jpg");
   background-size: cover;
   background-position: center;
   height: 500px;
 }
 
 .img-three{
-  background: url("../images/JakeMarshall.JPG");
+  background: url("../images/JakeMarshall.jpg");
   background-size: cover;
   background-position: center;
   height: 500px;
@@ -66,6 +73,14 @@ body {
   background-position: 0% 15%;
   height: 500px;
 }
+
+.img-five{
+  background: url("../images/LairdHamilton.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
 
 .pic-caption{
   font-size: 30px;

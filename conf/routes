@@ -8,6 +8,7 @@ GET     /adriano                    controllers.Application.adriano()
 GET     /layne                      controllers.Application.layne()
 GET     /jake                       controllers.Application.jake()
 GET     /bethany                    controllers.Application.bethany()
+GET     /laird                    controllers.Application.laird()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
