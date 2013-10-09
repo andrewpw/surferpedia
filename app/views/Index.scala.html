@@ -1,6 +1,7 @@
 @(message: String)
 
 @Main("Home") {
+   <div class="outer">
    <div id="carousel-example-generic" class="carousel slide">
   <!-- Indicators -->
   <ol class="carousel-indicators">
@@ -14,19 +15,19 @@
     <div class="item active">
     <div class = "img-one"></div>
       <div class="carousel-caption">
-        <p>Adriano de Souza</p>
+        <p class="pic-caption">Adriano de Souza</p>
       </div>
     </div>
     <div class="item">
     <div class = "img-two"></div>
       <div class="carousel-caption">
-        <p>Layne Beachley</p>
+        <p class="pic-caption">Layne Beachley</p>
       </div>
     </div>
     <div class="item">
     <div class = "img-three"></div>
       <div class="carousel-caption">
-        <p>Jake Marshall</p>
+        <p class="pic-caption">Jake Marshall</p>
       </div>
     </div>
   </div>
@@ -38,5 +39,6 @@
   <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
     <span class="icon-next"></span>
   </a>
+</div>
 </div>
 }

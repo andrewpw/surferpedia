@@ -30,7 +30,7 @@ body {
 .header-image{
   background: url("../images/surfing.JPG");
   background-size: cover;
-  height: 300px;
+  height: 350px;
 }
 .img-one{
   background: url("../images/adriano.JPG");
@@ -53,10 +53,18 @@ body {
   height: 500px;
 }
 
-p{
+.pic-caption{
   font-size: 30px;
 }
 
-.well{
-  font-size: 1px !important;
+.page{
+  font-size: 15px;
+}
+
+.outer{
+  padding: 10px 150px 30px 150px;
+}
+
+.inner{
+  padding: 0;
 }
