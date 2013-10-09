@@ -6,6 +6,7 @@ import views.html.Index;
 import views.html.Adriano;
 import views.html.Layne;
 import views.html.Jake;
+import views.html.Bethany;
 
 /**
  * Implements the controllers for this application.
@@ -42,8 +43,18 @@ public class Application extends Controller {
    * Returns page1, a simple example of a second page to illustrate navigation.
    * @return The Page1.
    */
+  public static Result bethany() {
+    return ok(Bethany.render("Welcome to Females"));
+    
+  }
+
+  /**
+   * Returns page1, a simple example of a second page to illustrate navigation.
+   * @return The Page1.
+   */
   public static Result jake() {
     return ok(Jake.render("Welcome to Groms"));
     
   }
+  
 }

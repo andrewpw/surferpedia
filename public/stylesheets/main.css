@@ -27,6 +27,13 @@ body {
   height: 500px;
 }
 
+.bethany-image{
+  background: url("../images/bethany-hamilton.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+}
+
 .header-image{
   background: url("../images/surfing.JPG");
   background-size: cover;
@@ -51,6 +58,14 @@ body {
   background-size: cover;
   background-position: center;
   height: 500px;
+}
+
+.img-four{
+  background: url("../images/bethany-hamilton.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 500px;
+  width: 200px;
 }
 
 .pic-caption{
