@@ -1,13 +1,14 @@
 package controllers;
 
+import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import views.formdata.SurferFormData;
+import views.formdata.SurferTypes;
 import views.html.Index;
-import views.html.Adriano;
-import views.html.Layne;
-import views.html.Jake;
-import views.html.Bethany;
-import views.html.laird;
+import views.html.ShowSurfer;
+import views.html.ManageSurfer;
+import models.SurferDB;
 
 /**
  * Implements the controllers for this application.
@@ -22,49 +23,43 @@ public class Application extends Controller {
     return ok(Index.render("Welcome to the home page."));
   }
   
-  /**
-   * Returns page1, a simple example of a second page to illustrate navigation.
-   * @return The Page1.
-   */
-  public static Result adriano() {
-    return ok(Adriano.render("Welcome to Males"));
-    
+  public static Result newSurfer(){
+    SurferFormData surferFD = new SurferFormData();
+    Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
+    return ok(ManageSurfer.render(formData, SurferTypes.getTypes()));
   }
   
-  /**
-   * Returns page1, a simple example of a second page to illustrate navigation.
-   * @return The Page1.
-   */
-  public static Result layne() {
-    return ok(Layne.render("Welcome to Females"));
-    
+  public static Result postSurfer(){
+    Form<SurferFormData> formData = Form.form(SurferFormData.class).bindFromRequest();
+    if (formData.hasErrors()) {
+      flash("error", "Please correct the form below.");
+      return badRequest(ManageSurfer.render(formData, SurferTypes.getTypes()));
+    }
+    else {
+      SurferFormData data = formData.get();
+      flash("success", String.format("Successfully added %s", data.name));
+      SurferDB.add(data.slug, data);
+      return ok(ShowSurfer.render(SurferDB.getSurfer(data.slug)));
+    }
   }
   
-  /**
-   * Returns page1, a simple example of a second page to illustrate navigation.
-   * @return The Page1.
-   */
-  public static Result bethany() {
-    return ok(Bethany.render("Welcome to Females"));
-    
-  }
-
-  /**
-   * Returns page1, a simple example of a second page to illustrate navigation.
-   * @return The Page1.
-   */
-  public static Result jake() {
-    return ok(Jake.render("Welcome to Groms"));
-    
+  public static Result deleteSurfer(String slug){
+    SurferDB.deleteSurfer(slug);
+    return ok(Index.render(""));
   }
   
-  /**
-   * Returns page1, a simple example of a second page to illustrate navigation.
-   * @return Laird Hamilton.
-   */
-  public static Result laird() {
-    return ok(laird.render("Laird Hamilton"));
-    
+  public static Result manageSurfer(String slug){
+    SurferFormData surferFD = new SurferFormData(SurferDB.getSurfer(slug));
+    Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
+    return ok(ManageSurfer.render(formData, SurferTypes.getTypes(SurferDB.getSurfer(slug).getType())));
   }
   
+  public static Result getSurfer(String slug){
+    if (SurferDB.getSurfer(slug) != null){
+      return ok(ShowSurfer.render(SurferDB.getSurfer(slug)));
+    }
+    else {
+      return ok(Index.render(""));
+    }
+  }
 }

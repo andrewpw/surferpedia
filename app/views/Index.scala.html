@@ -2,63 +2,42 @@
 
 @Main("Home") {
    <div class="outer">
-   <div id="carousel-example-generic" class="carousel slide">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
-  </ol>
+     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+     <!-- Indicators -->
+     <ol class="carousel-indicators">
+       @for(surfer <- SurferDB.getSurferList()){
+         @if(surfer.getIndex() == 1){
+           <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+         } else{
+           <li data-target="#carousel-example-generic" data-slide-to="@surfer.getIndex()"></li>
+         }
+       }
+     </ol>
 
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-    
-      <div class="item active">
-        <div class="img-one"></div>
-        <div class="carousel-caption">
-          <p class="pic-caption">Adriano de Souza</p>
-        </div>
-      </div>
-      
-      <div class="item">
-        <div class="img-two"></div>
-        <div class="carousel-caption">
-          <p class="pic-caption">Layne Beachley</p>
-        </div>
-      </div>
-      
-      <div class="item">
-        <div class="img-three"></div>
-        <div class="carousel-caption">
-          <p class="pic-caption">Jake Marshall</p>
-        </div>
-      </div>
-      
-      <div class="item">
-        <div class="img-four"></div>
-        <div class="carousel-caption">
-          <p class="pic-caption">Bethany Hamilton</p>
-        </div>
-      </div>
-            
-      <div class="item">
-        <div class="img-five"></div>
-        <div class="carousel-caption">
-          <p class="pic-caption">Laird Hamilton</p>
-        </div>
-      </div>
-      
+     <!-- Wrapper for slides -->
+     <div class="carousel-inner">
+       @for(surfer <- SurferDB.getSurferList()){
+         @if(surfer.getIndex() == 1){
+           <div class="item active">
+         } else {
+           <div class="item">
+         }
+         <div class ="img-one" style = "background-image: url('@surfer.getCarouselURL()');"></div>
+         <div class="carousel-caption">
+           <p class="pic-caption">@surfer.getName()</p>
+         </div>
+           </div>
+        }
+     </div>
+
+
+     <!-- Controls -->
+     <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+       <span class="icon-prev"></span>
+     </a>
+     <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+       <span class="icon-next"></span>
+      </a>
     </div>
-
-
-    <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-    <span class="icon-prev"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-    <span class="icon-next"></span>
-  </a>
-</div>
-</div>
+  </div>
 }

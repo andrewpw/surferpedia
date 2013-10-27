@@ -1,0 +1,71 @@
+@(surferFD: Form[views.formdata.SurferFormData], surferTypeMap: Map[String, Boolean])
+
+@import helper.form
+@import bootstrap3._
+
+@Main("Manage Surfer") {
+  
+  <div class = "container">
+  @if(flash.containsKey("success")){
+     <div class = "well">
+       <div class="alert alert-success">@flash.get("success")</div>
+     </div>
+  } @if(flash.containsKey("error")){
+     <div class = "well">
+       <div class="alert alert-error">@flash.get("error")</div>
+     </div>
+  } 
+  @form(routes.Application.postSurfer(), 'class -> "form-horizontal"){
+    @text(surferFD("name"),
+          label = "Name",
+          placeholder = "Name",
+          help = "Please enter a name")
+    @text(surferFD("hometown"),
+          label = "Hometown",
+          placeholder = "Hometown",
+          help = "Please enter a Hometown")
+    @text(surferFD("awards"),
+          label = "Awards",
+          placeholder = "Awards",
+          help = "Please enter awards")
+    @text(surferFD("carouselURL"),
+          label = "Carousel URL",
+          placeholder = "Carousel URL",
+          help = "Please enter a Carousel URL")
+    @text(surferFD("bioURL"),
+          label = "Bio URL",
+          placeholder = "Bio URL",
+          help = "Please enter a Bio URL")
+    @textarea(surferFD("bio"),
+          label = "Bio",
+          placeholder = "Bio",
+          help = "Please enter a Bio")
+    @if(surferFD("name").value == ""){
+      @text(surferFD("slug"),
+            label = "Slug",
+            placeholder = "Slug",
+            help = "Please enter a Slug")
+    } else {
+      @slug(surferFD("slug"),
+            label = "Slug",
+            placeholder = "Slug",
+            help = "You can only enter a Slug once")
+            <input type = "hidden"
+              class = "form-control"
+              name = "@surferFD("slugIndex").name"
+              id = "@surferFD("slugIndex").id"
+              value = "1">
+    }
+    @select(surferFD("type"),
+          label = "Type",
+          optionMap = surferTypeMap,
+          isMultiple = false,
+          help = "Please select a type")
+  <div class = "form-group">
+    <div class = "col-sm-offset-2 col-sm-10">
+      <button type = "submit" class = "btn btn default">Add</button>
+    </div>
+  </div> 
+  </div>  
+  }
+}

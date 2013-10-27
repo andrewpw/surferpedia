@@ -2,44 +2,16 @@ body {
   
 }
 
+.delete{
+  float: right;
+}
+
 .nav .caret{
   border-top-color: #999 !important;
   border-bottom-color: #999;
 }
-.jake-image{
-  background: url("../images/JakeMarshall.JPG");
-  background-size: cover;
-  background-position: center;
-  height: 500px;
-}
 
-.adriano-image{
-  background: url("../images/adriano.JPG");
-  background-size: cover;
-  background-position: center;
-  height: 500px;
-}
 
-.layne-image{
-  background: url("../images/Layne.JPG");
-  background-size: cover;
-  background-position: center;
-  height: 500px;
-}
-
-.bethany-image{
-  background: url("../images/bethany-hamilton.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 500px;
-}
-
-.laird-image {
-  background: url("../images/LairdHamilton.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 350px;
-}
 
 .header-image{
   background: url("../images/surfing.JPG");
@@ -47,39 +19,11 @@ body {
   height: 350px;
 }
 .img-one{
-  background: url("../images/adriano.jpg");
   background-size: cover;
   background-position: center;
   height: 500px;
 }
 
-.img-two{
-  background: url("../images/Layne.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 500px;
-}
-
-.img-three{
-  background: url("../images/JakeMarshall.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 500px;
-}
-
-.img-four{
-  background: url("../images/bethany-hamilton.jpg");
-  background-size: cover;
-  background-position: 0% 15%;
-  height: 500px;
-}
-
-.img-five{
-  background: url("../images/LairdHamilton.jpg");
-  background-size: cover;
-  background-position: center;
-  height: 500px;
-}
 
 
 .pic-caption{
