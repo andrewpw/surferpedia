@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Date;
+
 public class Surfer {
 
   private String name;
@@ -12,9 +14,13 @@ public class Surfer {
   private String type;
   private int index;
   private int slugIndex;
+  private Date date;
+  private String action;
   
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
-      String slug, String type, int index, int slugIndex) {
+      String slug, String type, int index, int slugIndex, Date date, String action) {
+    this.action= action;
+    this.date = date;
     this.name = name;
     this.hometown = hometown;
     this.awards = awards;
@@ -27,6 +33,22 @@ public class Surfer {
     this.slugIndex = slugIndex;
   }
   
+  public Date getDate() {
+    return date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
+  }
+
+  public String getAction() {
+    return action;
+  }
+
+  public void setAction(String action) {
+    this.action = action;
+  }
+
   public String getBio() {
     return bio;
   }

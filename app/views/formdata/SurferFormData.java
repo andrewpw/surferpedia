@@ -1,6 +1,7 @@
 package views.formdata;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import models.Surfer;
 import models.SurferDB;
@@ -30,6 +31,8 @@ public class SurferFormData {
   /**The telephone type.*/
   public int index;
   public int slugIndex;
+  public Date date;
+  public String action;
   
   /**
    * No argument constructor for this class.
@@ -44,6 +47,8 @@ public class SurferFormData {
    * @param contact the contact to add
    */
   public SurferFormData(Surfer surfer) {
+    this.date = surfer.getDate();
+    this.action = surfer.getAction();
     this.name = surfer.getName();
     this.hometown = surfer.getHometown();
     this.awards = surfer.getAwards();

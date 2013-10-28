@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.Date;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -8,6 +9,7 @@ import views.formdata.SurferTypes;
 import views.html.Index;
 import views.html.ShowSurfer;
 import views.html.ManageSurfer;
+import views.html.Updates;
 import models.SurferDB;
 
 /**
@@ -45,11 +47,15 @@ public class Application extends Controller {
   
   public static Result deleteSurfer(String slug){
     SurferDB.deleteSurfer(slug);
+    SurferDB.getDeleteSurfer(slug).setAction("Delete");
+    SurferDB.getDeleteSurfer(slug).setDate(new Date());;
     return ok(Index.render(""));
   }
   
   public static Result manageSurfer(String slug){
     SurferFormData surferFD = new SurferFormData(SurferDB.getSurfer(slug));
+    surferFD.action = "Edit";
+    surferFD.date = new Date();
     Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
     return ok(ManageSurfer.render(formData, SurferTypes.getTypes(SurferDB.getSurfer(slug).getType())));
   }
@@ -62,4 +68,9 @@ public class Application extends Controller {
       return ok(Index.render(""));
     }
   }
+  
+  public static Result getUpdates(){
+      return ok(Updates.render(""));
+  }
+  
 }
