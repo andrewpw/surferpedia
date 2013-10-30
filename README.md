@@ -1,4 +1,4 @@
-![screenshot](https://raw.github.com/andrewpw/surferpedia/master/doc/surferpedia2.png)
+![screenshot](https://raw.github.com/andrewpw/surferpedia/delete-dialog-1/doc/surferpedia2.png)
 
 Overview
 --------
