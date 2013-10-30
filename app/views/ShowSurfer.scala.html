@@ -19,7 +19,25 @@
           }
           <h2>Biography: </h2><p>@surfer.getBio()</p><p><a href = @routes.Application.manageSurfer(surfer.getSlug())>
           edit</a>
-          <a href = @routes.Application.deleteSurfer(surfer.getSlug()) class = "delete">delete</a></p>
+          <a data-toggle="modal" href="#myModal" class = "delete">delete</a></p>
+          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Really Delete Surfer?</h4>
+        </div>
+        <div class="modal-body">
+          <p>This cannot be undone.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <a href = @routes.Application.deleteSurfer(surfer.getSlug()) type="button" class="btn btn-primary">Delete</a>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+          
         </div>
       </div>
     </div>
