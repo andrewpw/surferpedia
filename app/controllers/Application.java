@@ -27,6 +27,8 @@ public class Application extends Controller {
   
   public static Result newSurfer(){
     SurferFormData surferFD = new SurferFormData();
+    surferFD.action = "Create";
+    surferFD.date = new Date();
     Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
     return ok(ManageSurfer.render(formData, SurferTypes.getTypes()));
   }
