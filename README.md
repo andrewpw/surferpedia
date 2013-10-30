@@ -3,7 +3,7 @@
 Overview
 --------
 
-A [Play Application](http://playframework.com) that provides an encyclopedia of surfers
+A [Play Application](http://playframework.com) that provides an encyclopedia of surfers.
 
 
 Installation
