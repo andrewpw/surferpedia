@@ -1,6 +1,7 @@
 package controllers;
 
 import java.util.Date;
+import java.util.List;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -17,6 +18,7 @@ import models.SurferDB;
  */
 public class Application extends Controller {
 
+  
   /**
    * Returns the home page. 
    * @return The resulting home page. 
@@ -29,15 +31,17 @@ public class Application extends Controller {
     SurferFormData surferFD = new SurferFormData();
     surferFD.action = "Create";
     surferFD.date = new Date();
+    List<String> foot = SurferDB.getFootstyleList();
     Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
-    return ok(ManageSurfer.render(formData, SurferTypes.getTypes()));
+    return ok(ManageSurfer.render(formData, SurferTypes.getTypes(), foot));
   }
   
   public static Result postSurfer(){
     Form<SurferFormData> formData = Form.form(SurferFormData.class).bindFromRequest();
     if (formData.hasErrors()) {
       flash("error", "Please correct the form below.");
-      return badRequest(ManageSurfer.render(formData, SurferTypes.getTypes()));
+      List<String> foot = SurferDB.getFootstyleList();
+      return badRequest(ManageSurfer.render(formData, SurferTypes.getTypes(), foot));
     }
     else {
       SurferFormData data = formData.get();
@@ -58,8 +62,9 @@ public class Application extends Controller {
     SurferFormData surferFD = new SurferFormData(SurferDB.getSurfer(slug));
     surferFD.action = "Edit";
     surferFD.date = new Date();
+    List<String> foot = SurferDB.getFootstyleList();
     Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
-    return ok(ManageSurfer.render(formData, SurferTypes.getTypes(SurferDB.getSurfer(slug).getType())));
+    return ok(ManageSurfer.render(formData, SurferTypes.getTypes(SurferDB.getSurfer(slug).getType()), foot));
   }
   
   public static Result getSurfer(String slug){

@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,15 +19,22 @@ public class SurferDB {
     if (!map.containsKey(slug)){
       int index = map.size() + 1;
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
-          surferFD.bioURL, surferFD.slug, surferFD.type, index, surferFD.slugIndex, surferFD.date, surferFD.action);
+          surferFD.bioURL, surferFD.slug, surferFD.type, index, surferFD.slugIndex, surferFD.date, surferFD.action,
+          surferFD.footstyle);
       map.put(surferFD.slug, surfer);
     }
     else {
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
-          surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.index, surferFD.slugIndex, surferFD.date, surferFD.action);
+          surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.index, surferFD.slugIndex, surferFD.date, 
+          surferFD.action, surferFD.footstyle);
       map.put(surferFD.slug, surfer);      
     }
     return surfer;
+  }
+  
+  public static List<String> getFootstyleList() {
+    String[] footArray = {"Goofy", "Regular"};
+    return Arrays.asList(footArray);
   }
 
   public static Surfer getSurfer(String slug) {

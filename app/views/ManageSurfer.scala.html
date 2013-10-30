@@ -1,4 +1,4 @@
-@(surferFD: Form[views.formdata.SurferFormData], surferTypeMap: Map[String, Boolean])
+@(surferFD: Form[views.formdata.SurferFormData], surferTypeMap: Map[String, Boolean], footstyle: List[String])
 
 @import helper.form
 @import bootstrap3._
@@ -61,6 +61,10 @@
           optionMap = surferTypeMap,
           isMultiple = false,
           help = "Please select a type")
+    @radiobuttons(surferFD("footstyle"),
+                label = "Footstyle",
+                buttonNameList = footstyle,
+                help = "Select your footstyle. (required)")
     @hidden2(surferFD("date"))
     @hidden(surferFD("action"))
     

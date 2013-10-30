@@ -33,6 +33,7 @@ public class SurferFormData {
   public int slugIndex;
   public Date date;
   public String action;
+  public String footstyle;
   
   /**
    * No argument constructor for this class.
@@ -59,6 +60,7 @@ public class SurferFormData {
     this.type = surfer.getType();
     this.index = surfer.getIndex();
     this.slugIndex = surfer.getSlugIndex();
+    this.footstyle = surfer.getFootstyle();
   }
   
   /**

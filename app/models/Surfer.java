@@ -1,6 +1,8 @@
 package models;
 
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class Surfer {
 
@@ -16,9 +18,10 @@ public class Surfer {
   private int slugIndex;
   private Date date;
   private String action;
+  private String footstyle;
   
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
-      String slug, String type, int index, int slugIndex, Date date, String action) {
+      String slug, String type, int index, int slugIndex, Date date, String action, String footstyle) {
     this.action= action;
     this.date = date;
     this.name = name;
@@ -31,8 +34,17 @@ public class Surfer {
     this.type = type;
     this.index = index;
     this.slugIndex = slugIndex;
+    this.footstyle = footstyle;
   }
   
+  public String getFootstyle() {
+    return footstyle;
+  }
+
+  public void setFootstyle(String footstyle) {
+    this.footstyle = footstyle;
+  }
+
   public Date getDate() {
     return date;
   }
