@@ -66,7 +66,7 @@ public class Application extends Controller {
     if (SurferDB.getSurfer(slug) != null){
       return ok(ShowSurfer.render(SurferDB.getSurfer(slug)));
     }
-    else {
+    else { 
       return ok(Index.render(""));
     }
   }
