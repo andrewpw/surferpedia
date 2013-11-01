@@ -14,7 +14,7 @@ body {
 
 
 .header-image{ 
-  background: url("http://www2.hawaii.edu/~andrewpw/header.jpg");
+  background: url("../images/surfing.jpg");
   background-size: cover;
   height: 375px;
 }
