@@ -1,6 +1,6 @@
-@(surfer: Surfer)
+@(isLoggedIn: Boolean, userInfo: UserInfo, surfer: Surfer)
 
-@Main(surfer.getName()) {
+@Main(surfer.getName(), isLoggedIn, userInfo) {
    <div class="row">
   </div>
    <div class="row">
@@ -18,7 +18,9 @@
             <h2>Awards: </h2><p>@surfer.getAwards()</p>
           }
           <h2>Footstyle: </h2><p>@surfer.getFootstyle()</p>
-          <h2>Biography: </h2><p>@surfer.getBio()</p><p><a href = @routes.Application.manageSurfer(surfer.getSlug())>
+          <h2>Biography: </h2><p>@surfer.getBio()</p>
+          @if(isLoggedIn){
+          <p><a href = @routes.Application.manageSurfer(surfer.getSlug())>
           edit</a>
           <a data-toggle="modal" href="#myModal" class = "delete">delete</a></p>
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -40,6 +42,7 @@
   </div><!-- /.modal -->
           
         </div>
+        }
       </div>
     </div>
   </div>

@@ -1,0 +1,13 @@
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, loginForm:Form[views.formdata.LoginFormData])
+
+@import bootstrap3._
+
+@Main(page, isLoggedIn, userInfo) {
+   <div class="container">
+       <div class="row">
+         <div class="col-sm-offset-4 col-sm-4">
+           @loginform(routes.Application.postLogin(), loginForm("email"), loginForm("password"))
+         </div>
+       </div>
+   </div>
+}

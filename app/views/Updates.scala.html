@@ -1,6 +1,6 @@
-@(message: String)
+@(message: String, isLoggedIn: Boolean, userInfo: UserInfo)
 
-@Main("Home") {
+@Main("Home", isLoggedIn, userInfo) {
    <div class="container">
      <h1>List of Updates to Surferpedia</h1>
      <table class= "table table-striped table-bordered">

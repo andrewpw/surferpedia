@@ -1,6 +1,7 @@
 import java.util.Date;
 import models.Surfer;
 import models.SurferDB;
+import models.UserInfoDB;
 import play.Application;
 import play.GlobalSettings;
 import views.formdata.SurferFormData;
@@ -8,6 +9,7 @@ import views.formdata.SurferFormData;
 public class Global extends GlobalSettings {
   
   public void onStart(Application app) {
+    UserInfoDB.addUserInfo("Andrew", "andrew@example.com", "password");
     Surfer surfer3 = new Surfer("Adriano de Souza", "Sao Paulo, Brazil", "Ranked #1 on the 2013 ASP World Tour", 
         "http://epikoo.com/sites/default/files/adriano_de_souza_2.jpg", "Adriano De Souza rode his first wave at eight "
             + "years old and eight years later the surf world would take notice of this young, talented surfer at the "
