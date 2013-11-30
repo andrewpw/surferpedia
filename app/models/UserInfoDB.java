@@ -11,7 +11,6 @@ import java.util.Map;
 public class UserInfoDB {
   
   private static Map<String, UserInfo> userinfos = new HashMap<String, UserInfo>();
-  private static boolean adminDefined = false;
   
   /**
    * Defines the admin account if the values are non-null.
@@ -20,18 +19,19 @@ public class UserInfoDB {
    * @param password Their password or null. 
    */
   public static void defineAdmin(String name, String email, String password) {
-    if (email != null && password != null) {
-      addUserInfo(name, email, password);
-      adminDefined = true;
+    if (email != null && password != null && !adminDefined()) {
+      UserInfo userInfo = new UserInfo(name, email, password);
+      userInfo.setAdmin(true);
+      userInfo.save();
     }
   }
   
   /**
    * Indicates if the admin has been defined.
-   * @return adminDefined
+   * @return True if admin is defined, false otherwise.
    */
   public static boolean adminDefined(){
-    return adminDefined;
+    return (UserInfo.find().where().eq("admin", true).findUnique() != null);
   }
   
   /**
@@ -41,7 +41,8 @@ public class UserInfoDB {
    * @param password Their password. 
    */
   public static void addUserInfo(String name, String email, String password) {
-    userinfos.put(email, new UserInfo(name, email, password));
+    UserInfo userInfo = new UserInfo(name, email, password);
+    userInfo.save();
   }
   
   /**
@@ -50,16 +51,16 @@ public class UserInfoDB {
    * @return True if known user.
    */
   public static boolean isUser(String email) {
-    return userinfos.containsKey(email);
+    return (UserInfo.find().where().eq("email", email).findUnique() != null);
   }
 
   /**
    * Returns the UserInfo associated with the email, or null if not found.
    * @param email The email.
-   * @return The UserInfo.
+   * @return The UserInfo if it exists, null otherwise.
    */
   public static UserInfo getUser(String email) {
-    return userinfos.get((email == null) ? "" : email);
+    return UserInfo.find().where().eq("email", email).findUnique();
   }
 
   /**
