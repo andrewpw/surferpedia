@@ -44,8 +44,8 @@ public class SurferFormData {
   }
   
   /**
-   * Contsructor that takes a contact.
-   * @param contact the contact to add
+   * Constructor that takes a contact.
+   * @param surfer The Surfer to add.
    */
   public SurferFormData(Surfer surfer) {
     this.date = surfer.getDate();
@@ -91,11 +91,11 @@ public class SurferFormData {
       errors.add(new ValidationError("bio", "A one paragraph bio is required."));
     }
     
-    if (slug== null || slug.length() == 0 || (slugIndex == 0 && SurferDB.getSurfer(slug) != null)) {
+    if (slug == null || slug.length() == 0 || (slugIndex == 0 && SurferDB.getSurfer(slug) != null)) {
       errors.add(new ValidationError("slug", "A slug is required and must be unique."));
     }
     
-    if (type == null || type.length() == 0 || SurferTypes.isTypes(type) == false) {
+    if (type == null || type.length() == 0 || !SurferTypes.isTypes(type)) {
       errors.add(new ValidationError("type", "Type is required."));
     }
     
