@@ -59,7 +59,6 @@ public class SurferFormData {
     this.bio = surfer.getBio();
     this.slug = surfer.getSlug();
     this.type = surfer.getType();
-    this.index = surfer.getIndex();
     this.slugIndex = surfer.getSlugIndex();
     this.footstyle = surfer.getFootstyle();
   }

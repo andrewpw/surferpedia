@@ -14,12 +14,11 @@ public class Surfer {
   private String bio;
   private String slug;
   private String type;
-  private int index;
   private int slugIndex;
   private String footstyle;
   
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
-      String slug, String type, int index, int slugIndex, String footstyle) {
+      String slug, String type, int slugIndex, String footstyle) {
     this.name = name;
     this.hometown = hometown;
     this.awards = awards;
@@ -28,7 +27,6 @@ public class Surfer {
     this.bio = bio;
     this.slug = slug;
     this.type = type;
-    this.index = index;
     this.slugIndex = slugIndex;
     this.footstyle = footstyle;
   }
@@ -61,10 +59,6 @@ public class Surfer {
   public void setHometown(String hometown) {
     this.hometown = hometown;
   }
-  public int getIndex() {
-    return index;
-  }
-
   public String getAwards() {
     return awards;
   }
