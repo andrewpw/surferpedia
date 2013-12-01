@@ -35,8 +35,7 @@ public class SurferFormData {
   
   /** Surfer type. */
   public String type;
-  public int index;
-  public int slugIndex;
+  public boolean slugDefined;
   /** Surfing style of Surfer. */
   public String footstyle;
   
@@ -59,7 +58,7 @@ public class SurferFormData {
     this.bio = surfer.getBio();
     this.slug = surfer.getSlug();
     this.type = surfer.getType();
-    this.slugIndex = surfer.getSlugIndex();
+    this.slugDefined = surfer.getSlugIndex();
     this.footstyle = surfer.getFootstyle();
   }
   
@@ -90,7 +89,7 @@ public class SurferFormData {
     if (bio == null || bio.length() == 0) {
       errors.add(new ValidationError("bio", "A one paragraph bio is required."));
     }
-    if (slugIndex == 0 && SurferDB.getSurfer(slug) != null) {
+    if (!slugDefined && SurferDB.getSurfer(slug) != null) {
       errors.add(new ValidationError("slug", "The slug \"" + slug + "\" is already taken."));      
     }
     if (slug == null || slug.length() == 0) {

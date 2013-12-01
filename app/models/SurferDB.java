@@ -17,13 +17,13 @@ public class SurferDB {
     Surfer surfer;
     if (!map.containsKey(slug)){
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
-          surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.slugIndex, surferFD.footstyle);
+          surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.footstyle);
       map.put(surferFD.slug, surfer);
       SurferUpdateDB.addUpdate(new SurferUpdate("Create", surfer.getName()));
     }
     else {
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
-          surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.slugIndex, surferFD.footstyle);
+          surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.footstyle);
       map.put(surferFD.slug, surfer);
       SurferUpdateDB.addUpdate(new SurferUpdate("Edit", surfer.getName()));
     }

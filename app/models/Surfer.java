@@ -14,11 +14,11 @@ public class Surfer {
   private String bio;
   private String slug;
   private String type;
-  private int slugIndex;
+  private boolean slugDefined = false;
   private String footstyle;
   
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
-      String slug, String type, int slugIndex, String footstyle) {
+      String slug, String type, String footstyle) {
     this.name = name;
     this.hometown = hometown;
     this.awards = awards;
@@ -27,7 +27,6 @@ public class Surfer {
     this.bio = bio;
     this.slug = slug;
     this.type = type;
-    this.slugIndex = slugIndex;
     this.footstyle = footstyle;
   }
   
@@ -87,8 +86,15 @@ public class Surfer {
     return slug;
   }
 
-  public int getSlugIndex() {
-    return slugIndex;
+  public boolean getSlugIndex() {
+    return slugDefined;
+  }
+  
+  /**
+   * @param value Value to set.
+   */
+  public void setSlugDefined(boolean value) {
+    this.slugDefined = value;
   }
   
   
