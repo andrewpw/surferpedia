@@ -1,9 +1,9 @@
-![screenshot](https://raw.github.com/andrewpw/surferpedia/master/doc/surferpedia2.png)
+![screenshot](https://raw.github.com/andrewpw/surferpedia/delete-dialog-1/doc/Surferpedia2.png)
 
 Overview
 --------
 
-A [Play Application](http://playframework.com) that provides an encyclopedia of surfers
+A [Play Application](http://playframework.com) that provides an encyclopedia of surfers.
 
 
 Installation
@@ -14,7 +14,12 @@ Download the zip file, unzip and cd into the file. Invoke the play command and e
 Usage
 -----
 
+Use the new tab to create a new entry for a surfer
 Use the navbar to navigate through the bios on different surfers
+View each surfers page, and edit or delete content
+Each surfer must have a unique slug and that slug can be used to retrieve their page by adding it to the end of the URL
+Once you choose a slug you cannot change it
+
 
 Credits
 -------
