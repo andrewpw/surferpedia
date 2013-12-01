@@ -16,14 +16,10 @@ public class Surfer {
   private String type;
   private int index;
   private int slugIndex;
-  private Date date;
-  private String action;
   private String footstyle;
   
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
-      String slug, String type, int index, int slugIndex, Date date, String action, String footstyle) {
-    this.action= action;
-    this.date = date;
+      String slug, String type, int index, int slugIndex, String footstyle) {
     this.name = name;
     this.hometown = hometown;
     this.awards = awards;
@@ -43,22 +39,6 @@ public class Surfer {
 
   public void setFootstyle(String footstyle) {
     this.footstyle = footstyle;
-  }
-
-  public Date getDate() {
-    return date;
-  }
-
-  public void setDate(Date date) {
-    this.date = date;
-  }
-
-  public String getAction() {
-    return action;
-  }
-
-  public void setAction(String action) {
-    this.action = action;
   }
 
   public String getBio() {

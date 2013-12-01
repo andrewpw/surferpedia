@@ -13,21 +13,20 @@ public class SurferDB {
   public static Map<String, Surfer> map = new HashMap<>();
   public static Map<String, Surfer> deleteMap = new HashMap<>();
   
-  public static Surfer add (String slug, SurferFormData surferFD){
+  public static Surfer add(String slug, SurferFormData surferFD){
     Surfer surfer;
-    
     if (!map.containsKey(slug)){
       int index = map.size() + 1;
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
-          surferFD.bioURL, surferFD.slug, surferFD.type, index, surferFD.slugIndex, surferFD.date, surferFD.action,
-          surferFD.footstyle);
+          surferFD.bioURL, surferFD.slug, surferFD.type, index, surferFD.slugIndex, surferFD.footstyle);
       map.put(surferFD.slug, surfer);
+      UpdateDB.addUpdate(new Update("Create", surfer.getName()));
     }
     else {
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
-          surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.index, surferFD.slugIndex, surferFD.date, 
-          surferFD.action, surferFD.footstyle);
-      map.put(surferFD.slug, surfer);      
+          surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.index, surferFD.slugIndex, surferFD.footstyle);
+      map.put(surferFD.slug, surfer);
+      UpdateDB.addUpdate(new Update("Edit", surfer.getName()));
     }
     return surfer;
   }
@@ -68,6 +67,7 @@ public class SurferDB {
   }
 
   public static void deleteSurfer(String slug) {
+    UpdateDB.addUpdate(new Update("Delete", SurferDB.getSurfer(slug).getName()));
     deleteMap.put(slug, map.get(slug));
     map.remove(slug);
   }

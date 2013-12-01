@@ -1,4 +1,4 @@
-@(message: String, isLoggedIn: Boolean, userInfo: UserInfo)
+@(message: String, isLoggedIn: Boolean, userInfo: UserInfo, updates: List[Update])
 
 @Main("Home", isLoggedIn, userInfo) {
    <div class="container">
@@ -9,14 +9,9 @@
          <th>Action</th>
          <th>Surfer</th>
        </tr>
-       @for(surfer <- SurferDB.getSurferList()){
+       @for(update <- updates){
        <tr>
-         <td>@surfer.getDate()</td><td>@surfer.getAction()</td><td>@surfer.getName()</td>
-       </tr>
-       }
-       @for(surfer <- SurferDB.getDeleteSurferList()){
-       <tr>
-         <td>@surfer.getDate()</td><td>@surfer.getAction()</td><td>@surfer.getName()</td>
+         <td>@update.getDate()</td><td>@update.getType()</td><td>@update.getTarget()</td>
        </tr>
        }
      </table>

@@ -12,35 +12,38 @@ import play.data.validation.ValidationError;
  */
 public class SurferFormData {
   
-  /**The first name.*/
+  /** Surfer name.*/
   public String name = "";
-  /**The last name.*/
+  
+  /** Surfer hometown. */
   public String hometown = "";
-  /**The telephone number.*/
+  
+  /** Surfer awards. */
   public String awards = "";
-  /**The id number.*/
+  
+  /** URL for carousel image. */
   public String carouselURL;
-  /**The telephone type.*/
+  
+  /** URL for bio image. */
   public String bioURL;
-  /**The telephone type.*/
+  
+  /** Biography. */
   public String bio;
-  /**The telephone type.*/
+  
+  /** Surfer slug. */
   public String slug;
-  /**The telephone type.*/
+  
+  /** Surfer type. */
   public String type;
-  /**The telephone type.*/
   public int index;
   public int slugIndex;
-  public Date date;
-  public String action;
+  /** Surfing style of Surfer. */
   public String footstyle;
   
   /**
    * No argument constructor for this class.
    */
-  public SurferFormData() {
-    
-    
+  public SurferFormData() { 
   }
   
   /**
@@ -48,8 +51,6 @@ public class SurferFormData {
    * @param surfer The Surfer to add.
    */
   public SurferFormData(Surfer surfer) {
-    this.date = surfer.getDate();
-    this.action = surfer.getAction();
     this.name = surfer.getName();
     this.hometown = surfer.getHometown();
     this.awards = surfer.getAwards();
