@@ -3,6 +3,14 @@
 
 # --- !Ups
 
+create table surfer_update (
+  id                        bigint auto_increment not null,
+  date                      varchar(255),
+  type                      varchar(255),
+  target                    varchar(255),
+  constraint pk_surfer_update primary key (id))
+;
+
 create table user_info (
   id                        bigint auto_increment not null,
   name                      varchar(255),
@@ -18,6 +26,8 @@ create table user_info (
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
+
+drop table surfer_update;
 
 drop table user_info;
 

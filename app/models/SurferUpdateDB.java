@@ -6,23 +6,20 @@ import java.util.List;
 /**
  * A database of Update objects.
  */
-public class UpdateDB {
-
-  private static List<Update> updates = new ArrayList<Update>();
-  
+public class SurferUpdateDB {  
   /**
    * Return a list of updates.
    * @return A list of updates.
    */
-  public static List<Update> getUpdates() {
-    return updates;
+  public static List<SurferUpdate> getUpdates() {
+    return SurferUpdate.find().all();
   }
   
   /**
    * Add an update to the database.
    * @param update Update to be added.
    */
-  public static void addUpdate(Update update) {
-    updates.add(update);
+  public static void addUpdate(SurferUpdate update) {
+    update.save();
   }
 }

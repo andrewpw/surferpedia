@@ -20,13 +20,13 @@ public class SurferDB {
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
           surferFD.bioURL, surferFD.slug, surferFD.type, index, surferFD.slugIndex, surferFD.footstyle);
       map.put(surferFD.slug, surfer);
-      UpdateDB.addUpdate(new Update("Create", surfer.getName()));
+      SurferUpdateDB.addUpdate(new SurferUpdate("Create", surfer.getName()));
     }
     else {
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
           surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.index, surferFD.slugIndex, surferFD.footstyle);
       map.put(surferFD.slug, surfer);
-      UpdateDB.addUpdate(new Update("Edit", surfer.getName()));
+      SurferUpdateDB.addUpdate(new SurferUpdate("Edit", surfer.getName()));
     }
     return surfer;
   }
@@ -67,7 +67,7 @@ public class SurferDB {
   }
 
   public static void deleteSurfer(String slug) {
-    UpdateDB.addUpdate(new Update("Delete", SurferDB.getSurfer(slug).getName()));
+    SurferUpdateDB.addUpdate(new SurferUpdate("Delete", SurferDB.getSurfer(slug).getName()));
     deleteMap.put(slug, map.get(slug));
     map.remove(slug);
   }

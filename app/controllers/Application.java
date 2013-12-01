@@ -15,7 +15,7 @@ import views.html.ShowSurfer;
 import views.html.ManageSurfer;
 import views.html.Updates;
 import models.SurferDB;
-import models.UpdateDB;
+import models.SurferUpdateDB;
 import models.UserInfo;
 import models.UserInfoDB;
 
@@ -89,7 +89,7 @@ public class Application extends Controller {
   }
   
   public static Result getUpdates(){
-      return ok(Updates.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), UpdateDB.getUpdates()));
+      return ok(Updates.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferUpdateDB.getUpdates()));
   }
   
   /**
