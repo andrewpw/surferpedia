@@ -91,9 +91,11 @@ public class SurferFormData {
     if (bio == null || bio.length() == 0) {
       errors.add(new ValidationError("bio", "A one paragraph bio is required."));
     }
-    
-    if (slug == null || slug.length() == 0 || (slugIndex == 0 && SurferDB.getSurfer(slug) != null)) {
-      errors.add(new ValidationError("slug", "A slug is required and must be unique."));
+    if (slugIndex == 0 && SurferDB.getSurfer(slug) != null) {
+      errors.add(new ValidationError("slug", "The slug \"" + slug + "\" is already taken."));      
+    }
+    if (slug == null || slug.length() == 0) {
+      errors.add(new ValidationError("slug", "Slug is required."));
     }
     
     if (type == null || type.length() == 0 || !SurferTypes.isTypes(type)) {
