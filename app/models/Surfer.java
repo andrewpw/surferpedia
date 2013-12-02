@@ -24,12 +24,13 @@ public class Surfer extends Model {
   private String type;
   private boolean slugDefined = false;
   private String footstyle;
+  private String country;
   
   @OneToMany(mappedBy = "surfer")
   private List<SurferUpdate> surferUpdates = new ArrayList<>();
   
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
-      String slug, String type, String footstyle) {
+      String slug, String type, String footstyle, String country) {
     this.name = name;
     this.hometown = hometown;
     this.awards = awards;
@@ -39,6 +40,7 @@ public class Surfer extends Model {
     this.slug = slug;
     this.type = type;
     this.footstyle = footstyle;
+    this.country = country;
   }
   
   /**
@@ -116,12 +118,42 @@ public class Surfer extends Model {
   }
   
   /**
+   * Get list of Surfer Updates tied to this Surfer.
+   * @return A list of Surfer Updates.
+   */
+  public List<SurferUpdate> getSurferUpdates() {
+    return surferUpdates;
+  }
+  
+  /**
+   * Add Surfer Update.
+   * @param update Surfer Update to add.
+   */
+  public void addSurferUpdates(SurferUpdate update) {
+    surferUpdates.add(update);
+  }
+  
+  /**
    * @param value Value to set.
    */
   public void setSlugDefined(boolean value) {
     this.slugDefined = value;
   }
   
+  /**
+   * @return the country
+   */
+  public String getCountry() {
+    return country;
+  }
+
+  /**
+   * @param country the country to set
+   */
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
   /**
    * The EBean ORM finder method for database queries on ID.
    * @return The finder method for products.
