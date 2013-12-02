@@ -14,6 +14,8 @@ public class Global extends GlobalSettings {
     String adminEmail = Play.application().configuration().getString("digits.admin.email");
     String adminPassword = Play.application().configuration().getString("digits.admin.password");
     UserInfoDB.defineAdmin("Andrew", adminEmail, adminPassword);
+    
+    if (SurferDB.getSurferList().isEmpty()) {
     Surfer surfer21 =
         new Surfer(
             "Pauline Ado",
@@ -40,7 +42,8 @@ public class Global extends GlobalSettings {
             + "more on competitive surfing.  Bianca soon stood out at a young age winning the Billabong u/20 girls "
             + "finals at age 13 as well as coming 9th at Mr Price WQS at age 14.  By the year 2009 Bianca won every "
             + "single contest she entered in South Africa.",
-            "http://sphotos-b.xx.fbcdn.net/hphotos-ash3/s720x720/555242_461808770502092_1679674257_n.jpg", "Bianca", "Female", "Goofy");
+            "http://sphotos-b.xx.fbcdn.net/hphotos-ash3/s720x720/555242_461808770502092_1679674257_n.jpg", "Bianca", 
+            "Female", "Goofy");
     Surfer surfer19 =
         new Surfer(
             "Lakey Peterson",
@@ -68,7 +71,8 @@ public class Global extends GlobalSettings {
             + "surf legends Michael Ho (her dad) and Derek Ho (her uncle), Coco soon became an idol in her own right. "
             + "Qualifying for the Association of Surfing Professionals Women's World Tour at age 17—and repeatedly "
             + "voted a top three fan favorite in Surfer magazine's Surfer Poll—Coco now seeks to build on her "
-            + "award-studded surf career while inspiring other girls to break through barriers and pursue their passions.",
+            + "award-studded surf career while inspiring other girls to break through barriers and pursue their "
+            + "passions.",
             "http://bikinibird.com/wp-content/uploads/2012/12/BB_TSD_Vco_Coco_Quinsey_0291_f.jpg", 
             "Coco", "Female", "Regular");
     Surfer surfer17 =
@@ -83,7 +87,8 @@ public class Global extends GlobalSettings {
             + "success on the WQS (World Qualifying Series) tour qualified her for the 2007 Women's ASP World Tour and"
             + " she did not disappoint. She won four of the eight events and claimed the 2007 World Title. "
             + "She would repeat her success in 2008, 2009 and 2010",
-            "http://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Stephanie_Gilmore.jpg/419px-Stephanie_Gilmore.jpg",
+            "http://upload.wikimedia.org/wikipedia/commons/thumb/5/52/"
+            + "Stephanie_Gilmore.jpg/419px-Stephanie_Gilmore.jpg",
             "Gilmore", "Female", "Regular");
     Surfer surfer16 =
         new Surfer(
@@ -93,11 +98,13 @@ public class Global extends GlobalSettings {
             "http://a1.espncdn.com/photo/2013/0709/espnw_g_conlogue1_800.jpg",
             "Courtney Conlogue is the kind of California kid who was good at almost every sport she tried. She could "
             + "have pursued track or soccer, but her heart was in surfing from the moment her father put her on a "
-            + "board at age 4.\nNow the 20-year-old is a three-year veteran of the Association of Surfing Professionals,"
+            + "board at age 4.\nNow the 20-year-old is a three-year veteran of the Association of Surfing "
+            + "Professionals,"
             + " ranked fourth on the list of elite pros and set to compete for the Roxy Pro title in Biarritz, France. "
             + "She won an event in New Zealand in April, and is in the hunt for her first title as ASP women's world "
             + "champion. It's a challenge she relishes.",
-            "http://media.outsideonline.com/images/364*488/WCMDEV_151673_03_courtney_100.jpg", "Conlogue", "Female", "Regular");
+            "http://media.outsideonline.com/images/364*488/WCMDEV_151673_03_courtney_100.jpg", "Conlogue", "Female", 
+            "Regular");
     Surfer surfer15 =
         new Surfer(
             "Sally Fitzgibbons",
@@ -151,7 +158,8 @@ public class Global extends GlobalSettings {
             + "four times. Young featured in a number of important surf films of '60s and '70s including the classic "
             + "1973 surf movie Crystal Voyager and he also had a featured role as surfer Nick Naylor in the 1979 "
             + "Australian drama film Palm Beach",
-            "http://cdn2.coresites.mpora.com/surfeurope_new/wp-content/uploads/2013/09/lg_Nat_Young_Albert_Falzon.jpg", "Nat", "Male", "Goofy");
+            "http://cdn2.coresites.mpora.com/surfeurope_new/wp-content/uploads/2013/09/lg_Nat_Young_Albert_Falzon.jpg", 
+            "Nat", "Male", "Goofy");
     Surfer surfer11 =
         new Surfer(
             "Josh Kerr",
@@ -174,8 +182,8 @@ public class Global extends GlobalSettings {
             + "He is an ambassador for the National Breast Cancer Foundation. Julian's mother is a breast cancer "
             + "survivor and he was inspired to ride a pink board by close family friend and international cricketer "
             + "Matt Hayden that plays with a pink bat for the same cause",
-            "http://blog.stylesight.com/wp-content/uploads/2011/08/Nike_US_Open_of_Surfing_Julian_Wilson_Interview6.jpg", 
-            "Julian", "Male", "Regular");
+            "http://blog.stylesight.com/wp-content/uploads/2011/08/"
+            + "Nike_US_Open_of_Surfing_Julian_Wilson_Interview6.jpg", "Julian", "Male", "Regular");
     Surfer surfer9 =
         new Surfer(
             "Kai Otton",
@@ -243,7 +251,8 @@ public class Global extends GlobalSettings {
             + "the sport. In 2007 he also became the all-time leader in career event wins by winning "
             + "the Boost Mobile Pro event at Lower Trestles near San Clemente, California. "
             + "The previous record was held by Slater's childhood hero, 3-time world champion Tom Curren",
-            "http://www.athletepromotions.com/blog/wp-content/uploads/2013/08/kelly-slater.jpg", "Kelly", "Male", "Regular");
+            "http://www.athletepromotions.com/blog/wp-content/uploads/2013/08/kelly-slater.jpg", "Kelly", "Male", 
+            "Regular");
     Surfer surfer4 =
         new Surfer(
             "Mick Fanning",
@@ -298,24 +307,25 @@ public class Global extends GlobalSettings {
     SurferDB.add(surfer.getSlug(), new SurferFormData(surfer));
     SurferDB.add(surfer2.getSlug(), new SurferFormData(surfer2));
     SurferDB.add(surfer3.getSlug(), new SurferFormData(surfer3));
-    SurferDB.add(surfer4.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer5.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer6.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer7.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer8.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer9.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer10.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer11.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer12.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer13.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer14.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer15.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer16.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer17.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer18.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer19.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer20.getSlug(), new SurferFormData(surfer));
-    SurferDB.add(surfer21.getSlug(), new SurferFormData(surfer));
+    SurferDB.add(surfer4.getSlug(), new SurferFormData(surfer4));
+    SurferDB.add(surfer5.getSlug(), new SurferFormData(surfer5));
+    SurferDB.add(surfer6.getSlug(), new SurferFormData(surfer6));
+    SurferDB.add(surfer7.getSlug(), new SurferFormData(surfer7));
+    SurferDB.add(surfer8.getSlug(), new SurferFormData(surfer8));
+    SurferDB.add(surfer9.getSlug(), new SurferFormData(surfer9));
+    SurferDB.add(surfer10.getSlug(), new SurferFormData(surfer10));
+    SurferDB.add(surfer11.getSlug(), new SurferFormData(surfer11));
+    SurferDB.add(surfer12.getSlug(), new SurferFormData(surfer12));
+    SurferDB.add(surfer13.getSlug(), new SurferFormData(surfer13));
+    SurferDB.add(surfer14.getSlug(), new SurferFormData(surfer14));
+    SurferDB.add(surfer15.getSlug(), new SurferFormData(surfer15));
+    SurferDB.add(surfer16.getSlug(), new SurferFormData(surfer16));
+    SurferDB.add(surfer17.getSlug(), new SurferFormData(surfer17));
+    SurferDB.add(surfer18.getSlug(), new SurferFormData(surfer18));
+    SurferDB.add(surfer19.getSlug(), new SurferFormData(surfer19));
+    SurferDB.add(surfer20.getSlug(), new SurferFormData(surfer20));
+    SurferDB.add(surfer21.getSlug(), new SurferFormData(surfer21));
+    }
   }
 
 }
