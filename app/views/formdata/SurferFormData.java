@@ -36,6 +36,10 @@ public class SurferFormData {
   /** Surfer type. */
   public String type;
   public boolean slugDefined;
+  
+  /** Surfer country. */
+  public String country;
+  
   /** Surfing style of Surfer. */
   public String footstyle;
   
@@ -60,6 +64,7 @@ public class SurferFormData {
     this.type = surfer.getType();
     this.slugDefined = surfer.getSlugIndex();
     this.footstyle = surfer.getFootstyle();
+    this.country = surfer.getCountry();
   }
   
   /**
@@ -94,11 +99,14 @@ public class SurferFormData {
     }
     if (slug == null || slug.length() == 0) {
       errors.add(new ValidationError("slug", "Slug is required."));
-    }
-    
+    } 
     if (type == null || type.length() == 0 || !SurferTypes.isTypes(type)) {
       errors.add(new ValidationError("type", "Type is required."));
     }
+    if (country == null || country.length() == 0) {
+      errors.add(new ValidationError("country", "Country is required."));
+    }
+    
     
     return errors.isEmpty() ? null : errors;
   }
