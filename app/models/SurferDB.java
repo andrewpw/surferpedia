@@ -16,9 +16,7 @@ public class SurferDB {
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
           surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.footstyle, surferFD.country);
       SurferUpdate update = new SurferUpdate("Create", surfer.getName());
-      update.setSurfer(surfer);
       SurferUpdateDB.addUpdate(update);
-      surfer.addSurferUpdates(update);
       surfer.save();
     }
     else {
@@ -32,9 +30,7 @@ public class SurferDB {
       surfer.setType(surferFD.type);
       surfer.setFootstyle(surferFD.footstyle);
       surfer.setCountry(surferFD.country);
-      SurferUpdate update = new SurferUpdate("Edit", surfer.getName());
-      SurferUpdateDB.addUpdate(update);
-      surfer.addSurferUpdates(update);
+      SurferUpdateDB.addUpdate(new SurferUpdate("Edit", surfer.getName()));
       surfer.save();
     }
     return surfer;
@@ -64,9 +60,7 @@ public class SurferDB {
 
   public static void deleteSurfer(String slug) {
     Surfer surfer = getSurfer(slug);
-    SurferUpdate update = new SurferUpdate("Delete", SurferDB.getSurfer(slug).getName());
-    SurferUpdateDB.addUpdate(update);
-    update.setSurfer(surfer);
+    SurferUpdateDB.addUpdate(new SurferUpdate("Delete", SurferDB.getSurfer(slug).getName()));
     surfer.delete();
   }
 }
