@@ -60,7 +60,7 @@ public class SurferDB {
 
   /**
    * Delete  Surfer.
-   * @param slug Slug of the Surfer.
+   * @param slug Slug of the Surfer. 
    */
   public static void deleteSurfer(String slug) {
     Surfer surfer = getSurfer(slug);
