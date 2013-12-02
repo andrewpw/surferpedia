@@ -58,6 +58,10 @@ public class SurferDB {
     return (getSurfer(slug) != null);
   }
 
+  /**
+   * Delete  Surfer.
+   * @param slug Slug of the Surfer.
+   */
   public static void deleteSurfer(String slug) {
     Surfer surfer = getSurfer(slug);
     SurferUpdateDB.addUpdate(new SurferUpdate("Delete", SurferDB.getSurfer(slug).getName()));
