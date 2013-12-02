@@ -35,6 +35,8 @@ public class SurferFormData {
   
   /** Surfer type. */
   public String type;
+  
+  /** Specified is slug is already defined. */
   public boolean slugDefined;
   
   /** Surfer country. */
@@ -105,6 +107,10 @@ public class SurferFormData {
     }
     if (country == null || country.length() == 0) {
       errors.add(new ValidationError("country", "Country is required."));
+    }
+    if (!CountryType.isType(country)) {
+      errors.add(new ValidationError("country", "Country does not exist or is not spelled correctly. "
+          + "<a href=\"about:blank\">Test</a>"));
     }
     
     
