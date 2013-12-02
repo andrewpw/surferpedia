@@ -29,7 +29,7 @@ public class Global extends GlobalSettings {
             + "we've seen so far, she may just be joining countryman Lee Ann Curren in the upper echelons of women's "
             + "surfing in years to come.",
             "https://pbs.twimg.com/profile_images/3136992645/ac7850df00bb561fee245b86b2545ef9.jpeg", 
-            "Ado", "Female", "Regular");
+            "Ado", "Female", "Regular", "France");
     Surfer surfer20 =
         new Surfer(
             "Bianca Buitendag",
@@ -43,7 +43,7 @@ public class Global extends GlobalSettings {
             + "finals at age 13 as well as coming 9th at Mr Price WQS at age 14.  By the year 2009 Bianca won every "
             + "single contest she entered in South Africa.",
             "http://sphotos-b.xx.fbcdn.net/hphotos-ash3/s720x720/555242_461808770502092_1679674257_n.jpg", "Bianca", 
-            "Female", "Goofy");
+            "Female", "Goofy", "South Africa");
     Surfer surfer19 =
         new Surfer(
             "Lakey Peterson",
@@ -55,7 +55,7 @@ public class Global extends GlobalSettings {
             + "adventure. It was during this trip that Lakey learned to surf. For three months, the Petersons set up "
             + "shop in Manly Beach, Australia, where their littlest member instantly earned the nickname \"Lakey "
             + "Legend\" from the locals for effortlessly catching wave after wave on her boogie board.",
-            "http://img246.imageshack.us/img246/4176/img9612.jpg", "Lakey", "Female", "Regular");
+            "http://img246.imageshack.us/img246/4176/img9612.jpg", "Lakey", "Female", "Regular", "United States");
     Surfer surfer18 =
         new Surfer(
             "Coco Ho",
@@ -74,7 +74,7 @@ public class Global extends GlobalSettings {
             + "award-studded surf career while inspiring other girls to break through barriers and pursue their "
             + "passions.",
             "http://bikinibird.com/wp-content/uploads/2012/12/BB_TSD_Vco_Coco_Quinsey_0291_f.jpg", 
-            "Coco", "Female", "Regular");
+            "Coco", "Female", "Regular", "United States");
     Surfer surfer17 =
         new Surfer(
             "Stephanie Gilmore",
@@ -89,7 +89,7 @@ public class Global extends GlobalSettings {
             + "She would repeat her success in 2008, 2009 and 2010",
             "http://upload.wikimedia.org/wikipedia/commons/thumb/5/52/"
             + "Stephanie_Gilmore.jpg/419px-Stephanie_Gilmore.jpg",
-            "Gilmore", "Female", "Regular");
+            "Gilmore", "Female", "Regular", "Australia");
     Surfer surfer16 =
         new Surfer(
             "Courtney Conlogue",
@@ -104,7 +104,7 @@ public class Global extends GlobalSettings {
             + "She won an event in New Zealand in April, and is in the hunt for her first title as ASP women's world "
             + "champion. It's a challenge she relishes.",
             "http://media.outsideonline.com/images/364*488/WCMDEV_151673_03_courtney_100.jpg", "Conlogue", "Female", 
-            "Regular");
+            "Regular", "United States");
     Surfer surfer15 =
         new Surfer(
             "Sally Fitzgibbons",
@@ -114,7 +114,8 @@ public class Global extends GlobalSettings {
             + "image.jpg?1333545704",
             "Surfing superstar Sally Fitzgibbons is one of the top ranked female surfers in the world. In March, 2012, "
             + "Fitzgibbons won her second straight ASP 6-Star win in a row at Newcastle's Surfest.",
-            "https://pbs.twimg.com/profile_images/710644548/Sally2.jpg", "Fitzgibbons", "Female", "Regular");
+            "https://pbs.twimg.com/profile_images/710644548/Sally2.jpg", "Fitzgibbons", "Female", "Regular", 
+            "Australia");
     Surfer surfer14 =
         new Surfer(
             "Tyler Wright",
@@ -130,7 +131,7 @@ public class Global extends GlobalSettings {
             + "the biggest prize purse on the ASP World Women’s Tour. At only 14 years-old, Tyler broke a record for "
             + "being the youngest winner of a CT event, both male and female.",
             "http://www.aspworldtour.com/wp-content/uploads/2011/01/wright_t4080pipe10cestari_l1.jpg", 
-            "Tyler", "Female", "Regular");
+            "Tyler", "Female", "Regular", "Australia");
     Surfer surfer13 =
         new Surfer(
             "Carissa Moore",
@@ -144,7 +145,8 @@ public class Global extends GlobalSettings {
             + "finesse of a leopard. She’ll do the biggest hack you’ve ever seen and follow it up with an air-reverse. "
             + "And, most importantly, she does it all with a smile.",
             "http://cdn.surf.transworld.net/wp-content/blogs.dir/443/files/carissa-moore-"
-            + "hottest-girls-in-pro-surfing/carissa_photobrent006.JPG", "Carissa", "Female", "Regular");
+            + "hottest-girls-in-pro-surfing/carissa_photobrent006.JPG", "Carissa", "Female", "Regular", 
+            "United States");
     Surfer surfer12 =
         new Surfer(
             "Nat Young",
@@ -159,7 +161,7 @@ public class Global extends GlobalSettings {
             + "1973 surf movie Crystal Voyager and he also had a featured role as surfer Nick Naylor in the 1979 "
             + "Australian drama film Palm Beach",
             "http://cdn2.coresites.mpora.com/surfeurope_new/wp-content/uploads/2013/09/lg_Nat_Young_Albert_Falzon.jpg", 
-            "Nat", "Male", "Goofy");
+            "Nat", "Male", "Goofy", "Australia");
     Surfer surfer11 =
         new Surfer(
             "Josh Kerr",
@@ -170,7 +172,7 @@ public class Global extends GlobalSettings {
             + "to a surfboard at age eleven and was winning airshows by 16. Stomping tweaked reverse slobs. "
             + "(He won two airshow titles. One in 2001 and the other in 2003). Yet he is no one trick pony. "
             + "Josh Kerr competed on the Dream Tour stage in both 2007 and 2009",
-            "http://www.rusty.com/files/Profiles/josh_kerr_mugshot.jpg", "Kerr", "Male", "Regular");
+            "http://www.rusty.com/files/Profiles/josh_kerr_mugshot.jpg", "Kerr", "Male", "Regular", "Australia");
     Surfer surfer10 =
         new Surfer(
             "Julian Wilson",
@@ -183,7 +185,7 @@ public class Global extends GlobalSettings {
             + "survivor and he was inspired to ride a pink board by close family friend and international cricketer "
             + "Matt Hayden that plays with a pink bat for the same cause",
             "http://blog.stylesight.com/wp-content/uploads/2011/08/"
-            + "Nike_US_Open_of_Surfing_Julian_Wilson_Interview6.jpg", "Julian", "Male", "Regular");
+            + "Nike_US_Open_of_Surfing_Julian_Wilson_Interview6.jpg", "Julian", "Male", "Regular", "Australia");
     Surfer surfer9 =
         new Surfer(
             "Kai Otton",
@@ -195,7 +197,7 @@ public class Global extends GlobalSettings {
             + "country town of Tathra, Australia, he drove to Australia’s more high profile spots, surfing events "
             + "without a seed, and living out of his car. He surfed on his own and worked in surf shops and surf "
             + "factories",
-            "http://iamwok.com/wp-content/uploads/2013/01/kai_otton_m.jpg", "Kai", "Male", "Goofy");
+            "http://iamwok.com/wp-content/uploads/2013/01/kai_otton_m.jpg", "Kai", "Male", "Goofy", "Australia");
     Surfer surfer8 =
         new Surfer(
             "Taj Burrow",
@@ -209,7 +211,7 @@ public class Global extends GlobalSettings {
             + "stating that, as a 17-year-old, he was \"too young to do the tour full-on\". After his first year on "
             + "tour in 1998, Burrow claimed the ASP World Tour Rookie of the Year award after finishing 12th place "
             + "in the rankings",
-            "http://www.lat34.com/_/Photo/200xNone/taj_burrow_2.jpg", "Taj", "Male", "Regular");
+            "http://www.lat34.com/_/Photo/200xNone/taj_burrow_2.jpg", "Taj", "Male", "Regular", "Australia");
     Surfer surfer7 =
         new Surfer(
             "Jordy Smith",
@@ -223,7 +225,8 @@ public class Global extends GlobalSettings {
             + "making him the no. 1 ranked surfer in the world.\nSmith grew up in Durban and started surfing at age 6. "
             + "He attended a local Durban high school, Glenwood High School.\nSmith is known for the manoeuvres "
             + "\"rodeo flip\" and full rotation \"alley-oops\" and he has been sponsored by O'Neill since 2007.",
-            "http://cdn.business.transworld.net/files/2008/06/10/jordy_smith_vestal.jpg", "Jordy", "Male", "Regular");
+            "http://cdn.business.transworld.net/files/2008/06/10/jordy_smith_vestal.jpg", "Jordy", "Male", "Regular",
+            "South Africa");
     Surfer surfer6 =
         new Surfer(
             "Joel Parkinson",
@@ -236,7 +239,7 @@ public class Global extends GlobalSettings {
             + "and achieve runner-up second place to the ASP World Title four times, Parkinson won his only "
             + "ASP World Championship Tour Surfing Title on 14 December 2012 in Hawaii at the Banzai Pipeline during "
             + "the ASP World Tours' final event for 2012–the Billabong Pipeline Masters",
-            "http://www.lat34.com/_/Photo/200xNone/joel_parkinson_2.jpg", "Parkinson", "Male", "Regular");
+            "http://www.lat34.com/_/Photo/200xNone/joel_parkinson_2.jpg", "Parkinson", "Male", "Regular", "Australia");
     Surfer surfer5 =
         new Surfer(
             "Kelly Slater",
@@ -252,7 +255,7 @@ public class Global extends GlobalSettings {
             + "the Boost Mobile Pro event at Lower Trestles near San Clemente, California. "
             + "The previous record was held by Slater's childhood hero, 3-time world champion Tom Curren",
             "http://www.athletepromotions.com/blog/wp-content/uploads/2013/08/kelly-slater.jpg", "Kelly", "Male", 
-            "Regular");
+            "Regular", "United States");
     Surfer surfer4 =
         new Surfer(
             "Mick Fanning",
@@ -267,7 +270,8 @@ public class Global extends GlobalSettings {
             + "On the edge of the Queensland border, Fanning had access to epic surf north and south "
             + "and he began to make a name for himself. In 1996 he established himself as one the very best surfers "
             + "to rule the Queensland points by placing in the top three at the Australian National Titles.",
-            "http://upload.wikimedia.org/wikipedia/commons/b/b2/Mick_Fanning.jpg", "Mick", "Male", "Regular");
+            "http://upload.wikimedia.org/wikipedia/commons/b/b2/Mick_Fanning.jpg", "Mick", "Male", "Regular",
+            "Australia");
     Surfer surfer3 =
         new Surfer(
             "Adriano de Souza",
@@ -278,7 +282,8 @@ public class Global extends GlobalSettings {
                 + "years old and eight years later the surf world would take notice of this young, talented surfer at the "
                 + "Billabong ASP World Junior Championships. At the 2004 event, he defeated opponents four years his senior"
                 + " and was named the youngest ASP World Junior Champion ever at 16.",
-            "http://thumbs.dreamstime.com/z/adriano-de-souza-quicksilver-pro-18699912.jpg", "Adriano", "Male", "Regular");
+            "http://thumbs.dreamstime.com/z/adriano-de-souza-quicksilver-pro-18699912.jpg", "Adriano", "Male", 
+            "Regular", "Brazil");
     Surfer surfer2 =
         new Surfer(
             "Jake Marshall",
@@ -289,7 +294,8 @@ public class Global extends GlobalSettings {
                 + "potential to make an impact on our sport, but none look more poised to do so than Jake Marshall. "
                 + "Raised on the rippable beachbreaks and reefs of San Diego's North County, Jake has developed a "
                 + "solid base of smooth rail work as well as the kind of flair that few 14-year-old surfers can match.",
-            "http://www.nssa.org/photogallery/gallery/2010-11_Season/JakeMarshallPOWweb.jpg", "Jake", "Grom", "Regular");
+            "http://www.nssa.org/photogallery/gallery/2010-11_Season/JakeMarshallPOWweb.jpg", "Jake", "Grom", 
+            "Regular", "United States");
     Surfer surfer =
         new Surfer(
             "Bethany Hamilton",
@@ -303,7 +309,7 @@ public class Global extends GlobalSettings {
                 + "the Rell Sun Menehune event on Oahu, where she won both the short and long board divisions. "
                 + "This sparked a love for surf competition within her spirit.",
             "http://www.bellaonline.com/review/issues/fall2012/images/PubPortrait_Cr_bethanyHamilton.jpg", "Bethany",
-            "Female", "Regular");
+            "Female", "Regular", "United States");
     SurferDB.add(surfer.getSlug(), new SurferFormData(surfer));
     SurferDB.add(surfer2.getSlug(), new SurferFormData(surfer2));
     SurferDB.add(surfer3.getSlug(), new SurferFormData(surfer3));
