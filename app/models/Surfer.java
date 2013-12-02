@@ -1,21 +1,32 @@
 package models;
 
-import java.util.Arrays;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import play.db.ebean.Model;
 
-public class Surfer {
+@Entity
+public class Surfer extends Model {
 
+  @Id
+  private long id;
   private String name;
   private String hometown;
   private String awards;
   private String carouselURL;
   private String bioURL;
+  @Lob
   private String bio;
   private String slug;
   private String type;
   private boolean slugDefined = false;
   private String footstyle;
+  
+  @OneToMany(mappedBy = "surfer")
+  private List<SurferUpdate> surferUpdates = new ArrayList<>();
   
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
       String slug, String type, String footstyle) {
@@ -30,6 +41,20 @@ public class Surfer {
     this.footstyle = footstyle;
   }
   
+  /**
+   * @return the id
+   */
+  public long getId() {
+    return id;
+  }
+
+  /**
+   * @param id the id to set
+   */
+  public void setId(long id) {
+    this.id = id;
+  }
+
   public String getFootstyle() {
     return footstyle;
   }
@@ -97,5 +122,12 @@ public class Surfer {
     this.slugDefined = value;
   }
   
+  /**
+   * The EBean ORM finder method for database queries on ID.
+   * @return The finder method for products.
+   */
+  public static Finder<Long, Surfer> find() {
+    return new Finder<Long, Surfer>(Long.class, Surfer.class);
+  }
   
 }

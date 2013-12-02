@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
 
 /**
  * Update object for Surferpedia.
@@ -20,6 +20,9 @@ public class SurferUpdate extends Model {
   private String date;
   private String type;
   private String target;
+  
+  @ManyToOne
+  private Surfer surfer;
 
   /**
    * Constructor.
@@ -76,6 +79,20 @@ public class SurferUpdate extends Model {
     this.target = target;
   }
   
+  /**
+   * @return the surfer
+   */
+  public Surfer getSurfer() {
+    return surfer;
+  }
+
+  /**
+   * @param surfer the surfer to set
+   */
+  public void setSurfer(Surfer surfer) {
+    this.surfer = surfer;
+  }
+
   /**
    * The EBean ORM finder method for database queries on Update.
    * @return The finder method for Update

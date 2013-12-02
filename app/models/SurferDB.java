@@ -9,22 +9,26 @@ import views.formdata.SurferFormData;
 import models.Surfer;
 
 public class SurferDB {
-
-  public static Map<String, Surfer> map = new HashMap<>();
-  public static Map<String, Surfer> deleteMap = new HashMap<>();
   
   public static Surfer add(String slug, SurferFormData surferFD){
     Surfer surfer;
-    if (!map.containsKey(slug)){
+    if (!doesSurferExist(slug)){
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
           surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.footstyle);
-      map.put(surferFD.slug, surfer);
+      surfer.save();
       SurferUpdateDB.addUpdate(new SurferUpdate("Create", surfer.getName()));
     }
     else {
-      surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
-          surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.footstyle);
-      map.put(surferFD.slug, surfer);
+      surfer = getSurfer(slug);
+      surfer.setName(surferFD.name);
+      surfer.setHometown(surferFD.hometown);
+      surfer.setAwards(surferFD.awards);
+      surfer.setCarouselURL(surferFD.carouselURL);
+      surfer.setBio(surferFD.bio);
+      surfer.setBioURL(surferFD.bioURL);
+      surfer.setType(surferFD.type);
+      surfer.setFootstyle(surferFD.footstyle);
+      surfer.save();
       SurferUpdateDB.addUpdate(new SurferUpdate("Edit", surfer.getName()));
     }
     return surfer;
@@ -36,38 +40,25 @@ public class SurferDB {
   }
 
   public static Surfer getSurfer(String slug) {
-    if (map.containsKey(slug)){
-      return map.get(slug);
-    }
-    else{
-      return null;
-    }
-  }
-  
-  public static Surfer getDeleteSurfer(String slug) {
-    if (deleteMap.containsKey(slug)){
-      return deleteMap.get(slug);
-    }
-    else{
-      return null;
-    }
+    return Surfer.find().where().eq("slug", slug).findUnique();
   }
   
   public static List<Surfer> getSurferList(){
-    List<Surfer> surferList = new ArrayList<>();
-    surferList.addAll(map.values());
-    return surferList;
+    return Surfer.find().all();
   }
   
-  public static List<Surfer> getDeleteSurferList(){
-    List<Surfer> surferList = new ArrayList<>();
-    surferList.addAll(deleteMap.values());
-    return surferList;
+  /**
+   * Check if a Surfer already exists.
+   * @param slug Slug of surfer.
+   * @return True if the Surfer exists, false otherwise.
+   */
+  public static boolean doesSurferExist(String slug) {
+    return (getSurfer(slug) != null);
   }
 
   public static void deleteSurfer(String slug) {
     SurferUpdateDB.addUpdate(new SurferUpdate("Delete", SurferDB.getSurfer(slug).getName()));
-    deleteMap.put(slug, map.get(slug));
-    map.remove(slug);
+    Surfer surfer = getSurfer(slug);
+    surfer.delete();
   }
 }
