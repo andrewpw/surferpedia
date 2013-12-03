@@ -130,7 +130,7 @@ public class Global extends GlobalSettings {
             + "surfers including Brazil’s Silvana Lima and ASP Women’s World Champion Stephanie Gilmore, and claimed "
             + "the biggest prize purse on the ASP World Women’s Tour. At only 14 years-old, Tyler broke a record for "
             + "being the youngest winner of a CT event, both male and female.",
-            "http://images.smh.com.au/2012/02/11/3030926/art-353-tyler-wright-200x0.jpg", 
+            "http://images.smh.com.au/2012/02/11/3030926/art-353-tyler-wright-200x0.jpg",  
             "Tyler", "Female", "Regular", "Australia");
     Surfer surfer13 =
         new Surfer(
