@@ -121,7 +121,7 @@ public class Global extends GlobalSettings {
             "Tyler Wright",
             "Lennox Head, New South Wales, Australia",
             "ASP Rookie of the year",
-            "http://images.smh.com.au/2012/02/11/3030926/art-353-tyler-wright-200x0.jpg",
+            "http://www.aspworldtour.com/wp-content/uploads/2011/01/wright_t4080pipe10cestari_l1.jpg",
             "Born into a dedicated surfing family, Tyler is making her mark in the surfing world having already "
             + "defeated some of the top 17 female surfers on the planet and earned the critics’ praise as one to "
             + "watch in coming years.\n"
@@ -130,7 +130,7 @@ public class Global extends GlobalSettings {
             + "surfers including Brazil’s Silvana Lima and ASP Women’s World Champion Stephanie Gilmore, and claimed "
             + "the biggest prize purse on the ASP World Women’s Tour. At only 14 years-old, Tyler broke a record for "
             + "being the youngest winner of a CT event, both male and female.",
-            "http://www.aspworldtour.com/wp-content/uploads/2011/01/wright_t4080pipe10cestari_l1.jpg", 
+            "http://images.smh.com.au/2012/02/11/3030926/art-353-tyler-wright-200x0.jpg", 
             "Tyler", "Female", "Regular", "Australia");
     Surfer surfer13 =
         new Surfer(
