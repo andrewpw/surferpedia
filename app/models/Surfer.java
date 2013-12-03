@@ -1,29 +1,36 @@
 package models;
 
-import java.util.Arrays;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import play.db.ebean.Model;
 
-public class Surfer {
+@Entity
+public class Surfer extends Model {
 
+  @Id
+  private long id;
   private String name;
   private String hometown;
   private String awards;
   private String carouselURL;
   private String bioURL;
+  @Lob
   private String bio;
   private String slug;
   private String type;
-  private int index;
-  private int slugIndex;
-  private Date date;
-  private String action;
+  private boolean slugDefined = false;
   private String footstyle;
+  private String country;
+  
+  @OneToMany(mappedBy = "surfer")
+  private List<SurferUpdate> surferUpdates = new ArrayList<>();
   
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
-      String slug, String type, int index, int slugIndex, Date date, String action, String footstyle) {
-    this.action= action;
-    this.date = date;
+      String slug, String type, String footstyle, String country) {
     this.name = name;
     this.hometown = hometown;
     this.awards = awards;
@@ -32,33 +39,30 @@ public class Surfer {
     this.bio = bio;
     this.slug = slug;
     this.type = type;
-    this.index = index;
-    this.slugIndex = slugIndex;
     this.footstyle = footstyle;
+    this.country = country;
   }
   
+  /**
+   * @return the id
+   */
+  public long getId() {
+    return id;
+  }
+
+  /**
+   * @param id the id to set
+   */
+  public void setId(long id) {
+    this.id = id;
+  }
+
   public String getFootstyle() {
     return footstyle;
   }
 
   public void setFootstyle(String footstyle) {
     this.footstyle = footstyle;
-  }
-
-  public Date getDate() {
-    return date;
-  }
-
-  public void setDate(Date date) {
-    this.date = date;
-  }
-
-  public String getAction() {
-    return action;
-  }
-
-  public void setAction(String action) {
-    this.action = action;
   }
 
   public String getBio() {
@@ -81,10 +85,6 @@ public class Surfer {
   public void setHometown(String hometown) {
     this.hometown = hometown;
   }
-  public int getIndex() {
-    return index;
-  }
-
   public String getAwards() {
     return awards;
   }
@@ -113,9 +113,53 @@ public class Surfer {
     return slug;
   }
 
-  public int getSlugIndex() {
-    return slugIndex;
+  public boolean getSlugIndex() {
+    return slugDefined;
   }
   
+  /**
+   * Get list of Surfer Updates tied to this Surfer.
+   * @return A list of Surfer Updates.
+   */
+  public List<SurferUpdate> getSurferUpdates() {
+    return surferUpdates;
+  }
+  
+  /**
+   * Add Surfer Update.
+   * @param update Surfer Update to add.
+   */
+  public void addSurferUpdates(SurferUpdate update) {
+    surferUpdates.add(update);
+  }
+  
+  /**
+   * @param value Value to set.
+   */
+  public void setSlugDefined(boolean value) {
+    this.slugDefined = value;
+  }
+  
+  /**
+   * @return the country
+   */
+  public String getCountry() {
+    return country;
+  }
+
+  /**
+   * @param country the country to set
+   */
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+  /**
+   * The EBean ORM finder method for database queries on ID.
+   * @return The finder method for products.
+   */
+  public static Finder<Long, Surfer> find() {
+    return new Finder<Long, Surfer>(Long.class, Surfer.class);
+  }
   
 }

@@ -12,35 +12,43 @@ import play.data.validation.ValidationError;
  */
 public class SurferFormData {
   
-  /**The first name.*/
+  /** Surfer name.*/
   public String name = "";
-  /**The last name.*/
+  
+  /** Surfer hometown. */
   public String hometown = "";
-  /**The telephone number.*/
+  
+  /** Surfer awards. */
   public String awards = "";
-  /**The id number.*/
+  
+  /** URL for carousel image. */
   public String carouselURL;
-  /**The telephone type.*/
+  
+  /** URL for bio image. */
   public String bioURL;
-  /**The telephone type.*/
+  
+  /** Biography. */
   public String bio;
-  /**The telephone type.*/
+  
+  /** Surfer slug. */
   public String slug;
-  /**The telephone type.*/
+  
+  /** Surfer type. */
   public String type;
-  /**The telephone type.*/
-  public int index;
-  public int slugIndex;
-  public Date date;
-  public String action;
+  
+  /** Specified is slug is already defined. */
+  public boolean slugDefined;
+  
+  /** Surfer country. */
+  public String country;
+  
+  /** Surfing style of Surfer. */
   public String footstyle;
   
   /**
    * No argument constructor for this class.
    */
-  public SurferFormData() {
-    
-    
+  public SurferFormData() { 
   }
   
   /**
@@ -48,8 +56,6 @@ public class SurferFormData {
    * @param surfer The Surfer to add.
    */
   public SurferFormData(Surfer surfer) {
-    this.date = surfer.getDate();
-    this.action = surfer.getAction();
     this.name = surfer.getName();
     this.hometown = surfer.getHometown();
     this.awards = surfer.getAwards();
@@ -58,9 +64,9 @@ public class SurferFormData {
     this.bio = surfer.getBio();
     this.slug = surfer.getSlug();
     this.type = surfer.getType();
-    this.index = surfer.getIndex();
-    this.slugIndex = surfer.getSlugIndex();
+    this.slugDefined = surfer.getSlugIndex();
     this.footstyle = surfer.getFootstyle();
+    this.country = surfer.getCountry();
   }
   
   /**
@@ -90,14 +96,23 @@ public class SurferFormData {
     if (bio == null || bio.length() == 0) {
       errors.add(new ValidationError("bio", "A one paragraph bio is required."));
     }
-    
-    if (slug == null || slug.length() == 0 || (slugIndex == 0 && SurferDB.getSurfer(slug) != null)) {
-      errors.add(new ValidationError("slug", "A slug is required and must be unique."));
+    if (!slugDefined && SurferDB.getSurfer(slug) != null) {
+      errors.add(new ValidationError("slug", "The slug \"" + slug + "\" is already taken."));      
     }
-    
+    if (slug == null || slug.length() == 0) {
+      errors.add(new ValidationError("slug", "Slug is required."));
+    } 
     if (type == null || type.length() == 0 || !SurferTypes.isTypes(type)) {
       errors.add(new ValidationError("type", "Type is required."));
     }
+    if (country == null || country.length() == 0) {
+      errors.add(new ValidationError("country", "Country is required."));
+    }
+    if (!CountryType.isType(country)) {
+      errors.add(new ValidationError("country", "Country does not exist or is not spelled correctly. "
+          + "<a href=\"about:blank\">Test</a>"));
+    }
+    
     
     return errors.isEmpty() ? null : errors;
   }

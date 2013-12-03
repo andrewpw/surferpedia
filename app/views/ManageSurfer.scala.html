@@ -24,6 +24,10 @@
           label = "Hometown",
           placeholder = "Hometown",
           help = "Please enter a Hometown")
+    @text(surferFD("country"),
+          label = "Country",
+          placeholder = "Country",
+          help = "Please enter a Country")
     @text(surferFD("awards"),
           label = "Awards",
           placeholder = "Awards",
@@ -52,9 +56,9 @@
             help = "You can only enter a Slug once")
             <input type = "hidden"
               class = "form-control"
-              name = "@surferFD("slugIndex").name"
-              id = "@surferFD("slugIndex").id"
-              value = "1">
+              name = "@surferFD("slugDefined").name"
+              id = "@surferFD("slugDefined").id"
+              value = "true">
     }
     @select(surferFD("type"),
           label = "Type",

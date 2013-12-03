@@ -15,6 +15,7 @@ import views.html.ShowSurfer;
 import views.html.ManageSurfer;
 import views.html.Updates;
 import models.SurferDB;
+import models.SurferUpdateDB;
 import models.UserInfo;
 import models.UserInfoDB;
 
@@ -37,8 +38,6 @@ public class Application extends Controller {
     UserInfo userInfo = UserInfoDB.getUser(request().username());
     String user = userInfo.getEmail();
     SurferFormData surferFD = new SurferFormData();
-    surferFD.action = "Create";
-    surferFD.date = new Date();
     List<String> foot = SurferDB.getFootstyleList();
     Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
     return ok(ManageSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData, SurferTypes.getTypes(), foot));
@@ -67,8 +66,6 @@ public class Application extends Controller {
     UserInfo userInfo = UserInfoDB.getUser(request().username());
     String user = userInfo.getEmail();
     SurferDB.deleteSurfer(slug);
-    SurferDB.getDeleteSurfer(slug).setAction("Delete");
-    SurferDB.getDeleteSurfer(slug).setDate(new Date());;
     return ok(Index.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx())));
   }
   
@@ -77,8 +74,6 @@ public class Application extends Controller {
     UserInfo userInfo = UserInfoDB.getUser(request().username());
     String user = userInfo.getEmail();
     SurferFormData surferFD = new SurferFormData(SurferDB.getSurfer(slug));
-    surferFD.action = "Edit";
-    surferFD.date = new Date();
     List<String> foot = SurferDB.getFootstyleList();
     Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
     return ok(ManageSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()) ,formData, SurferTypes.getTypes(SurferDB.getSurfer(slug).getType()), foot));
@@ -94,7 +89,7 @@ public class Application extends Controller {
   }
   
   public static Result getUpdates(){
-      return ok(Updates.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx())));
+      return ok(Updates.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferUpdateDB.getUpdates()));
   }
   
   /**
