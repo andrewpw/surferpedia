@@ -37,12 +37,11 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-<<<<<<< HEAD
-=======
           <li class=><a data-toggle="dropdown" href="#">Search<b class = "caret"></b></a>
-            <p>Search Bar Goes Here?</p>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+              <p>Search Bar Goes Here?</p>
+            </ul>
           </li>
->>>>>>> final-project
           @if(isLoggedIn){
           <li><a href="@routes.Application.newSurfer()">New</a></li>
           <li><a href="@routes.Application.getUpdates()">Update</a>
@@ -56,7 +55,6 @@
           } else {
             <li><a href="@routes.Application.login()">Login</a></li>
           }
-          <li><a href="@routes.Application.login()">Search</a></li>
         </ul>
       </div>
     </div>
