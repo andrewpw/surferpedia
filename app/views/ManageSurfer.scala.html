@@ -1,9 +1,11 @@
-@(isLoggedIn: Boolean, userInfo: UserInfo, surferFD: Form[views.formdata.SurferFormData], surferTypeMap: Map[String, Boolean], footstyle: List[String])
+@(isLoggedIn: Boolean, userInfo: UserInfo, surferFD: Form[views.formdata.SurferFormData], 
+surferTypeMap: Map[String, Boolean], footstyle: List[String], searchFormData: Form[views.formdata.SearchFormData],
+countryType: Map[String, Boolean])
 
 @import helper.form
 @import bootstrap3._
 
-@Main("Manage Surfer", isLoggedIn, userInfo) {
+@Main("Manage Surfer", isLoggedIn, userInfo, searchFormData, surferTypeMap, countryType) {
   
   <div class = "container">
   @if(flash.containsKey("success")){

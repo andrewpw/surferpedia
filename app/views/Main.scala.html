@@ -1,4 +1,8 @@
-@(page: String, isLoggedIn: Boolean, userInfo: UserInfo)(content: Html)
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, searchFD: Form[views.formdata.SearchFormData],
+  surferType: Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
+
+@import helper.form
+@import bootstrap3._
 
 <!DOCTYPE html>
 
@@ -74,6 +78,14 @@
             <li><a href="@routes.Application.login()">Login</a></li>
           }
         </ul>
+                @form(routes.Application.postSearch(), 'class -> "form-horizontal") {
+          @search(searchFD("searchTerm"),
+                  searchFD("type"),
+                  searchFD("country"),
+                  surferType,
+                  false,
+                  countryType)
+        }
       </div>
     </div>
   </div>
