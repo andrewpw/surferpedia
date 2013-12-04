@@ -1,6 +1,8 @@
-@(message: String, isLoggedIn: Boolean, userInfo: UserInfo, updates: List[SurferUpdate])
+@(message: String, isLoggedIn: Boolean, userInfo: UserInfo, updates: List[SurferUpdate], 
+  searchFormData: Form[views.formdata.SearchFormData], surferType: Map[String, Boolean], 
+  countryType: Map[String, Boolean])
 
-@Main("Home", isLoggedIn, userInfo) {
+@Main("Home", isLoggedIn, userInfo, searchFormData, surferType, countryType) {
    <div class="container">
      <h1>List of Updates to Surferpedia</h1>
      <table class= "table table-striped table-bordered">

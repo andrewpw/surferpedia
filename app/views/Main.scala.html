@@ -1,4 +1,8 @@
-@(page: String, isLoggedIn: Boolean, userInfo: UserInfo)(content: Html)
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, searchFD: Form[views.formdata.SearchFormData],
+  surferType: Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
+
+@import helper.form
+@import bootstrap3._
 
 <!DOCTYPE html>
 

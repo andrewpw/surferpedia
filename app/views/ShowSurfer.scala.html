@@ -1,6 +1,7 @@
-@(isLoggedIn: Boolean, userInfo: UserInfo, surfer: Surfer)
+@(isLoggedIn: Boolean, userInfo: UserInfo, surfer: Surfer, searchFormData: Form[views.formdata.SearchFormData],
+  surferType: Map[String, Boolean], countryType: Map[String, Boolean])
 
-@Main(surfer.getName(), isLoggedIn, userInfo) {
+@Main(surfer.getName(), isLoggedIn, userInfo, searchFormData, surferType, countryType) {
    <div class="row">
   </div>
    <div class="row">

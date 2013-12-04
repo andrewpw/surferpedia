@@ -1,0 +1,46 @@
+@(searchField: Field, typeField: Field, countryField: Field, typeMap: Map[String, Boolean], isMultiple: Boolean,
+countryMap: Map[String, Boolean])
+  
+    <div class="form-group @if(searchField.hasErrors) {has-error}">
+        <div class="col-sm-6">
+         <input type="text" 
+               class="form-control" 
+               id="@searchField.id" 
+               name="@searchField.name" 
+               value="@searchField.value.getOrElse("")"
+               placeholder="Enter Search Term" />
+        </div>
+    <div class="form-group @if(typeField.hasErrors) {has-error}">
+      <div class="col-sm-2">
+        <select
+          class="form-control"
+          id="@typeField.id"
+          name="@if(isMultiple) {@(typeField.name + "[]")} else {@typeField.name}"
+          @if(isMultiple) {multiple="multiple"}>
+          @if(!isMultiple) {<option class="blank" value="">Please select a value</option>}
+          @for((optionName, isSelected) <- typeMap) {
+            <option id="@optionName" value="@optionName" @if(isSelected) {selected}>@optionName</option>
+          }
+        </select>
+      </div>
+        <div class="form-group @if(countryField.hasErrors) {has-error}">
+      <div class="col-sm-2">
+        <select
+          class="form-control"
+          id="@countryField.id"
+          name="@if(isMultiple) {@(countryField.name + "[]")} else {@countryField.name}"
+          @if(isMultiple) {multiple="multiple"}>
+          @if(!isMultiple) {<option class="blank" value="">Please select a value</option>}
+          @for((optionName, isSelected) <- countryMap) {
+            <option id="@optionName" value="@optionName" @if(isSelected) {selected}>@optionName</option>
+          }
+        </select>
+      </div>
+      <div class = "form-group col-sm-2">
+      <button type = "submit" class = "btn btn default">Search</button>
+    </div>
+  </div>
+  </div> 
+    </div>
+
+
