@@ -3,7 +3,6 @@
  */
 package controllers;
 
-import java.util.Date;
 import java.util.List;
 import play.data.Form;
 import play.mvc.Controller;
@@ -113,6 +112,10 @@ public class Application extends Controller {
     }
   }
   
+  /**
+   * Return the update page. 
+   * @return The update page. Andrew changes this.
+   */
   public static Result getUpdates(){
       SearchFormData searchFormData = new SearchFormData();
       Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
