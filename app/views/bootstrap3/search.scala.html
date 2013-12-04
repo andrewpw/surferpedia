@@ -2,15 +2,14 @@
 countryMap: Map[String, Boolean])
   
     <div class="form-group @if(searchField.hasErrors) {has-error}">
-      <label class="col-sm-2 control-label">Search</label>
-      <div class="col-sm-3">
-        <input type="text" 
+        <div class="col-sm-6">
+         <input type="text" 
                class="form-control" 
                id="@searchField.id" 
                name="@searchField.name" 
                value="@searchField.value.getOrElse("")"
                placeholder="Enter Search Term" />
-      </div>
+        </div>
     <div class="form-group @if(typeField.hasErrors) {has-error}">
       <div class="col-sm-2">
         <select
@@ -24,7 +23,6 @@ countryMap: Map[String, Boolean])
           }
         </select>
       </div>
-    </div>
         <div class="form-group @if(countryField.hasErrors) {has-error}">
       <div class="col-sm-2">
         <select
@@ -38,11 +36,10 @@ countryMap: Map[String, Boolean])
           }
         </select>
       </div>
-    </div>
-      <div class = "form-group">
-    <div class = "col-sm-3">
+      <div class = "form-group col-sm-2">
       <button type = "submit" class = "btn btn default">Search</button>
     </div>
+  </div>
   </div> 
     </div>
 
