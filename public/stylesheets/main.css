@@ -41,3 +41,8 @@ body {
 .inner{
   padding: 0;
 }
+
+.searchForm {
+	padding-top: 7px;
+	height:25px;
+}
