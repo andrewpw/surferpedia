@@ -16,11 +16,118 @@ public class Global extends GlobalSettings {
     UserInfoDB.defineAdmin("Andrew", adminEmail, adminPassword);
     
     if (SurferDB.getSurferList().isEmpty()) {
+      Surfer surfer30 =
+          new Surfer(
+              "Bailey Nagy",
+              "North Shore, HI",
+              "",
+              "http://www.surfline.com/surfnews/images/2011/04_april/ns_groms/full/_MG_9639-Bailey-Nagy_Suitt.jpg",
+              "Local Spot: Rocky Lefts\nSponsors: Rip Curl, Sticky Bumps, Flojos, FCS, North Shore surf shop, Smith.\n"
+              + "Words to live by: \"If your dreams don't scare you, then they're not big enough.\"\n"
+              + "Favorite Surfer: Tyler Wright, Pancho Sullivan, and Myles Padaca.\n"
+              + "I am most inspired by: My sister Kylie.",
+              "http://3.bp.blogspot.com/_X7-_7zuVbxw/TAWPHRCm2FI/AAAAAAAAABo/QnJ8rfHn9aw/s1600/No+braces+10.jpg", 
+              "Bailey", "Grom", "Regular", "United States"); 
+      Surfer surfer29 =
+          new Surfer(
+              "Luke Gordon",
+              "Pawleys Island, SC",
+              "",
+              "http://www.surfermag.com/hot-100/img/grm9s.jpg",
+              "Words to live by: Always have fun and go big!!!!!!!\nFavorite Surfer: Kelly Slater and Julian Wilson.\n"
+              + "I am most inspired by: God.\nMy greatest fear: Spiders.\nThe best surf video segment of all time is: "
+              + "Julian Wilson - Sweet Nothing.\nMy favorite non-surf film: Rocky or Duck Dynasty.\n"
+              + "The best breakfast cereal: Fruity Pebbles.\nThe last time I wore a tie: Going to church in Camden.",
+              "http://www.nssa.org/upload/thumb_175x150_luke%20gordon%20crop.jpg", 
+              "Luke", "Grom", "Regular", "United States"); 
+    Surfer surfer28 =
+          new Surfer(
+              "Noah Beschen",
+              "Sunset Beach, HI",
+              "",
+              "http://www.surfermag.com/hot-100/img/grm8s.jpg",
+              "Son of surfing legend Shane Beschen and part of the newest crew of North Shore groms coming up. "
+              + "Noah is no one trick pony - if he's not pulling in at V-Land then he's probably ripping his backyard "
+              + "half-pipe on his skateboard. Noah and his little buddies will be ruling the North Shore for "
+              + "years to come.",
+              "http://25.media.tumblr.com/tumblr_lqi0udrwtp1qjdi0mo1_1280.jpg", 
+              "Noah", "Grom", "Regular", "United States"); 
+    Surfer surfer27 =
+          new Surfer(
+              "Barron Mamiya",
+              "Sunset Beach, HI",
+              "",
+              "http://www.surfermag.com/hot-100/img/grm7s.jpg",
+              "Barron Mamiya took home 1st place in the squids division of the vqs championships. "
+              + "Not only did Barron win the comp but also got a standing ovation from the whole beach by getting the "
+              + "only barrel ride of the comp and nearly posting a a 10 point ride. The future of surfing we think so!!!",
+              "http://static.grindtv.com/images/1/00/30/88/48/308848.jpg", 
+              "Barron", "Grom", "Regular", "United States"); 
+    Surfer surfer26 =
+      new Surfer(
+          "Kyuss King",
+          "Byron Bay, Australia",
+          "",
+          "http://kyussking.com/au/wp-content/uploads/2011/12/banner44.jpg",
+          "The Journey begins, Kyuss started surfing at the age of 2, surfing small days out the Pass on the front of "
+          + "his dads Mal, Kyuss would stand tall and ride the waves to shore clapping his hands, turn to his dad and "
+          + "say \"MORE\" Kyuss took to surfing like he'd done it in another life, Kyuss was always keen to get out "
+          + "there, onshore, rain, blue bottles, Kyuss wanted to go.",
+          "http://kyussking.com/au/wp-content/uploads/2011/12/bannermain1.jpg", 
+          "Kyuss", "Grom", "Regular", "Australia");  
+    Surfer surfer25 =
+      new Surfer(
+          "Sebastian Williams",
+          "Oaxaca, Mexico",
+          "",
+          "http://www.uaposurf.com/wp-content/uploads/2011/11/Sebastiancutback.jpg",
+          "Sebastian Williams, 11 years old, Mexican citizen living in Oaxaca, Mex. "
+          + "Started surfing at 4 yrs. old with my father in Hawaii. "
+          + "Wants to travel and surf around the world, and one day be the world champion.",
+          "http://www.uaposurf.com/wp-content/uploads/2011/11/sebsatiandempsey.jpg", 
+          "Sebastian", "Grom", "Regular", "Mexico");
+    Surfer surfer24 =
+      new Surfer(
+          "Finn McGill",
+          "Sunset Beach, HI",
+          " 2011 NSSA Explorer Supergrom Champion: 2011 NSSA Regional Champ ; Open Minigrom, Explorer Supergrom: 2011 "
+          + "HASA States Champ: U12 Boys , 2011 North Shore Menehune Champ 11-12 Boys",
+          "http://www.thegrommom.com/wp-content/uploads/2013/04/8236810f-5a12-432e-8b35-dcffb9a2b391.jpg",
+          "HOBBIES & INTERESTS Skating, Golf , Cooking\n"
+          + "THINGS YOU LOVE My fam, Surfing, Skating, dairy free pizza\n"
+          + "THINGS YOU HATE I'm a lover - not a hater\n"
+          + "PEOPLE YOU ADMIRE My parents, My coaches. Apollo Ohno. Billy Mays. he had great energy"
+          + "AMBITIONS Win a world title. Win Pipe Masters. Beat Kelly Slaters record"
+          + "AGE STARTED SURFING can't even remember"
+          + "FAVORITE BREAK Vland, Vland, Vland....",
+          "http://www.thegrommom.com/wp-content/uploads/2013/04/301298_279434708746499_1181622999_n.jpg", 
+          "Finn", "Grom", "Regular", "United States");  
+    Surfer surfer23 =
+      new Surfer(
+          "John Mel",
+          "Newport Beach, CA",
+          "",
+          "http://beach.blog.orangecounty.com/files/2012/06/JohnmelJPG.jpg",
+          "The transplant from Santa Cruz has had no problem calling Newport Beach home, and has been turning heads "
+          + "around O.C. Son of pro surfer Peter Mel, the young protege has been training hard with the PacSun "
+          + "USA Surf Team",
+          "http://b.vimeocdn.com/ps/238/863/2388637_300.jpg", 
+          "Mel", "Grom", "Regular", "United States");
+    Surfer surfer22 =
+      new Surfer(
+          "Griffin Colapinto",
+          "San Clemente, CA",
+          "He won the VQS in newport, is ranked 1st in NSSA Open Juniors, and a member of the PacSun USA team.",
+          "http://www.lostenterprises.com/images/team/big/griffin_big_imag_size.jpg",
+          "We aren't sure what is going through Griffin's head 99% of the time, but his man carves on the lowers right do "
+           + "all the talking. Griffin is a competitive monster.",
+          "http://stwww.surfingmagazine.com/wp-content/blogs.dir/1/files/2011/02/griffin-portrait-677x475.jpg", 
+          "Griffin", "Grom", "Regular", "United States");
     Surfer surfer21 =
         new Surfer(
             "Pauline Ado",
             "Anglet, France",
-            "http://cdn.surf.transworld.net/files/2009/01/06/paulineadof_l.jpg",
+            "",
             "http://www.freaksurfmag.com/Images/oakley-pro-junior-girls/pauline-ado.jpg",
             "As the 2009 ASP World Junior Champion, Pauline Ado is one of Europe’s most promising young faces. "
             + "Reserved yet competitively driven, the diminutive blonde was raised in the wave-rich Basque Country "
@@ -331,6 +438,16 @@ public class Global extends GlobalSettings {
     SurferDB.add(surfer19.getSlug(), new SurferFormData(surfer19));
     SurferDB.add(surfer20.getSlug(), new SurferFormData(surfer20));
     SurferDB.add(surfer21.getSlug(), new SurferFormData(surfer21));
+    SurferDB.add(surfer22.getSlug(), new SurferFormData(surfer22));
+    SurferDB.add(surfer23.getSlug(), new SurferFormData(surfer23));
+    SurferDB.add(surfer24.getSlug(), new SurferFormData(surfer24));
+    SurferDB.add(surfer25.getSlug(), new SurferFormData(surfer25));
+    SurferDB.add(surfer26.getSlug(), new SurferFormData(surfer26));
+    SurferDB.add(surfer27.getSlug(), new SurferFormData(surfer27));
+    SurferDB.add(surfer28.getSlug(), new SurferFormData(surfer28));
+    SurferDB.add(surfer29.getSlug(), new SurferFormData(surfer29));
+    SurferDB.add(surfer30.getSlug(), new SurferFormData(surfer30));
+    
     }
   }
 
