@@ -36,12 +36,12 @@ Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
         <a class="navbar-brand" href="/">Surferpedia</a>
       </div>
       <div class="collapse navbar-collapse">
+      @form(routes.Application.postSearch(), 'class -> "form-horizontal") { @search(searchFD("searchTerm"),
+            searchFD("type"), searchFD("country"), surferType, false, countryType) }
         <ul class="nav navbar-nav navbar-left">
           @if(isLoggedIn){
           <li><a href="@routes.Application.newSurfer()">New</a></li>
           <li><a href="@routes.Application.getUpdates()">Update</a></li> }
-          <li>@form(routes.Application.postSearch(), 'class -> "form-horizontal") { @search(searchFD("searchTerm"),
-            searchFD("type"), searchFD("country"), surferType, false, countryType) }</li>
         </ul>
          <div class="col-sm-3 col-md-3 pull-right">
         <ul class="nav navbar-nav navbar-right">
