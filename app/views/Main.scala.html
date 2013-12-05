@@ -1,31 +1,31 @@
-@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, searchFD: Form[views.formdata.SearchFormData],
-  surferType: Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
+@(page: String, isLoggedIn: Boolean, userInfo: UserInfo, searchFD: Form[views.formdata.SearchFormData], surferType:
+Map[String, Boolean], countryType: Map[String, Boolean])(content: Html) 
 
-@import helper.form
+@import helper._ 
 @import bootstrap3._
 
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <title>@page (Surferpedia)</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-        
-        <!--  Load site-specific customizations after bootstrap. -->
-        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
-        <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
-        
-        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
+<head>
+<title>@page (Surferpedia)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+<!--  Load site-specific customizations after bootstrap. -->
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.png")">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
           <script src="http://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script>
           <script src="http://cdnjs.cloudflare.com/ajax/libs/respond.js/1.2.0/respond.js"></script>
         <![endif]-->
-    </head>
-    <body>
-  
-  <div class="header-image"></div>  
-     <!-- Responsive navbar -->
+</head>
+<body>
+
+  <div class="header-image"></div>
+  <!-- Responsive navbar -->
   <div class="navbar navbar-inverse" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -36,32 +36,29 @@
         <a class="navbar-brand" href="/">Surferpedia</a>
       </div>
       <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li class=><a data-toggle="dropdown" href="#">Search<b class = "caret"></b></a>
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-              <p>Search Bar Goes Here?</p>
-            </ul>
-          </li>
+      @form(routes.Application.postSearch(), 'class -> "form-horizontal") { @search(searchFD("searchTerm"),
+            searchFD("type"), searchFD("country"), surferType, false, countryType) }
+        <ul class="nav navbar-nav navbar-left">
           @if(isLoggedIn){
           <li><a href="@routes.Application.newSurfer()">New</a></li>
-          <li><a href="@routes.Application.getUpdates()">Update</a>
-          </li>
-          }
+          <li><a href="@routes.Application.getUpdates()">Update</a></li> }
         </ul>
+         <div class="col-sm-3 col-md-3 pull-right">
         <ul class="nav navbar-nav navbar-right">
           @if(isLoggedIn) {
-            <li><p class="navbar-text">@userInfo.getEmail()</p></li>
-            <li><a href="@routes.Application.logout()">Logout</a></li>
+          <li><p class="navbar-text">@userInfo.getEmail()</p></li>
+          <li><a href="@routes.Application.logout()">Logout</a></li> 
           } else {
-            <li><a href="@routes.Application.login()">Login</a></li>
+          <li><a href="@routes.Application.login()">Login</a></li> 
           }
         </ul>
       </div>
     </div>
   </div>
-      @content
-      <!-- Load Bootstrap JavaScript components. HTMLUnit (used in testing) requires JQuery 1.8.3 or below). -->
-      <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-      <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    </body>
+  </div>
+  @content
+  <!-- Load Bootstrap JavaScript components. HTMLUnit (used in testing) requires JQuery 1.8.3 or below). -->
+  <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
 </html>

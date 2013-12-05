@@ -18,6 +18,7 @@ import views.html.Login;
 import views.html.ShowSurfer;
 import views.html.ManageSurfer;
 import views.html.Updates;
+import views.html.Search;
 import models.SurferDB;
 import models.SurferUpdateDB;
 import models.UserInfo;
@@ -172,6 +173,9 @@ public class Application extends Controller {
    * @return The search results.
    */
   public static Result postSearch() {
-    return TODO;
+    Form<SearchFormData> formData = Form.form(SearchFormData.class).bindFromRequest();
+    SearchFormData data = formData.get();
+    return ok(Search.render("Search Results", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
+        formData, SurferTypes.getTypes(), CountryType.getTypes(), data.searchTerm, data.type, data.country));
   }
 }

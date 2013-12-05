@@ -1,0 +1,7 @@
+@(message: String, isLoggedIn: Boolean, userInfo: UserInfo, searchFormData: Form[views.formdata.SearchFormData],
+ surferType: Map[String, Boolean], countryType: Map[String, Boolean], searchTerm: String, searchType: 
+ String, country: String)
+
+@Main("Search", isLoggedIn, userInfo, searchFormData, surferType, countryType) {
+  <p>Search Results for @searchType from @country with name "@searchTerm".</p>
+}
