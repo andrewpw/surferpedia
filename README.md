@@ -15,9 +15,10 @@ Usage
 -----
 
 Use the new tab to create a new entry for a surfer
-Use the navbar to navigate through the bios on different surfers
-View each surfers page, and edit or delete content
+You must sign in as the admin to create new surfers, and edit or delete content
+For the sake of testing purposes, admin login is username: admin@example.com password: password
 Each surfer must have a unique slug and that slug can be used to retrieve their page by adding it to the end of the URL
+Surfers pages can be accessed by clicking their name in the carousel
 Once you choose a slug you cannot change it
 
 
