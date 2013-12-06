@@ -1,5 +1,5 @@
 package views.formdata;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import models.Surfer;
 
@@ -11,7 +11,7 @@ import models.Surfer;
  */
 public class SurferTypes {
 
-  private static Map<String, Boolean> genderMap = new HashMap<>();
+  private static Map<String, Boolean> genderMap = new LinkedHashMap<>();
   static {
     genderMap.put("Male", false);
     genderMap.put("Female", false);
