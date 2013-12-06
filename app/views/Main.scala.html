@@ -57,7 +57,7 @@ Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
         class="form-control"
         id="@searchFD("type").id"
         name="@searchFD("type").name">
-        <option class="blank" value="All Types">All Types</option>
+        <option class="blank" value="">All Types</option>
         @for((optionName, isSelected) <- surferType) {
           <option id="@optionName" value="@optionName" @if(isSelected) {selected}>@optionName</option>
         }
@@ -68,7 +68,7 @@ Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
         class="form-control"
         id="@searchFD("country").id"
         name="@searchFD("country").name">
-        <option class="blank" value="All Countries">All Countries</option>
+        <option class="blank" value="">All Countries</option>
         @for((optionName, isSelected) <- countryType) {
           <option id="@optionName" value="@optionName" @if(isSelected) {selected}>@optionName</option>
         }

@@ -67,4 +67,16 @@ public class SurferDB {
     SurferUpdateDB.addUpdate(new SurferUpdate("Delete", SurferDB.getSurfer(slug).getName()));
     surfer.delete();
   }
+  
+  /**
+   * Return a list of Surfers that match the given criteria.
+   * @param term The search term.
+   * @param type The type of surfer.
+   * @param country The country of the surfer.
+   * @return A List of Surfers that match the search criteria.
+   */
+  public static List<Surfer> search(String term, String type, String country) {
+    return Surfer.find().filter().icontains("name", term).icontains("type", type).icontains("country", country)
+        .sort("name").filter(SurferDB.getSurferList());
+  }
 }

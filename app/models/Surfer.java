@@ -10,7 +10,8 @@ import play.db.ebean.Model;
 
 @Entity
 public class Surfer extends Model {
-
+  private static final long serialVersionUID = 1L;
+  private static final int MAX_BIO_LENGTH = 40;
   @Id
   private long id;
   private String name;
@@ -152,6 +153,19 @@ public class Surfer extends Model {
    */
   public void setCountry(String country) {
     this.country = country;
+  }
+  
+  /**
+   * Get a truncated (40 characters max) biography of a Surfer.
+   * @return A truncated biography of the Surfer.
+   */
+  public String getTruncatedBio() {
+    if (this.bio.length() <= MAX_BIO_LENGTH) {
+      return this.bio;
+    }
+    else {
+      return this.bio.substring(0, MAX_BIO_LENGTH);
+    }
   }
 
   /**
