@@ -1,6 +1,7 @@
 package views.formdata;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -49,7 +50,7 @@ public class CountryType {
    * @return Mapping of countries of surfers.
    */
   public static Map<String, Boolean> getTypes() {
-    Map<String, Boolean> countryMap = new HashMap<String, Boolean>();
+    Map<String, Boolean> countryMap = new LinkedHashMap<String, Boolean>();
     for (String type : countryTypes) {
       countryMap.put(type, false);
     }
