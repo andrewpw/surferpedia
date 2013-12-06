@@ -176,6 +176,7 @@ public class Application extends Controller {
     Form<SearchFormData> formData = Form.form(SearchFormData.class).bindFromRequest();
     SearchFormData data = formData.get();
     return ok(Search.render("Search Results", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
-        formData, SurferTypes.getTypes(), CountryType.getTypes(), data.searchTerm, data.type, data.country));
+        formData, SurferTypes.getTypes(), CountryType.getTypes(), data.searchTerm, data.type, data.country,
+        SurferDB.search(data.searchTerm, data.type, data.country)));
   }
 }
