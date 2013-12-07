@@ -49,6 +49,19 @@ public class SurferDB {
     return Surfer.find().all();
   }
   
+  public static List<Surfer> getRandomSurferList(){
+    List<Surfer> list = new ArrayList<Surfer>();
+    while(list.size() < 3){  
+      int rand = (int) (1 + (Math.random() * Surfer.find().findRowCount()));
+      Surfer addSurfer = Surfer.find().where().eq("id", rand).findUnique(); 
+      if (!list.contains(addSurfer)){
+        list.add(addSurfer);
+      }
+      
+    }
+    return list;
+  }
+  
   /**
    * Check if a Surfer already exists.
    * @param slug Slug of surfer.
