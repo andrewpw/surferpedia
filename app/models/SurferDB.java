@@ -57,6 +57,7 @@ public class SurferDB {
       if (!list.contains(addSurfer)){
         list.add(addSurfer);
       }
+      
     }
     return list;
   }
