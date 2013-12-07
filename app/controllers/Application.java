@@ -19,6 +19,7 @@ import views.html.ShowSurfer;
 import views.html.ManageSurfer;
 import views.html.Updates;
 import views.html.Search;
+import models.Surfer;
 import models.SurferDB;
 import models.SurferUpdateDB;
 import models.UserInfo;
@@ -169,14 +170,28 @@ public class Application extends Controller {
   }
   
   /**
+   * Displays index page if search page is accessed without the search form.
+   * @return The index page.
+   */
+  public static Result search() {
+    return redirect(routes.Application.index());
+  }
+  
+  /**
    * Result page from the Search widget.
    * @return The search results.
    */
-  public static Result postSearch() {
+  public static Result postSearch(int page) {
     Form<SearchFormData> formData = Form.form(SearchFormData.class).bindFromRequest();
     SearchFormData data = formData.get();
+    List<Surfer> results = SurferDB.search(data.searchTerm, data.type, data.country);
+    if ((results.size() / 15) >= page) {
+      System.out.println("Valid");
+    } else {
+      System.out.println("Invalid");      
+    }
     return ok(Search.render("Search Results", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
         formData, SurferTypes.getTypes(), CountryType.getTypes(), data.searchTerm, data.type, data.country,
-        SurferDB.search(data.searchTerm, data.type, data.country)));
+        results));
   }
 }
