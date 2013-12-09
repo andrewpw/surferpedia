@@ -40,7 +40,7 @@ public class Application extends Controller {
   public static Result index() {
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
-    return ok(Index.render("Welcome to the home page.", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
+    return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
                            searchForm, SurferTypes.getTypes(), CountryType.getTypes()));
   }
   
@@ -173,23 +173,30 @@ public class Application extends Controller {
   
   /**
    * Result page from the Search widget.
+   * @param page The page to retrieve.
    * @return The search results.
    */
   public static Result search(int page) {
     Form<SearchFormData> formData = Form.form(SearchFormData.class).bindFromRequest();
     SearchFormData data = formData.get(); 
     Page<Surfer> results = SurferDB.search(data.searchTerm, data.type, data.country, page);
-    System.out.println("DEBUG " + data.searchTerm + " " + data.type + " " + data.country + " " + page);
-    return ok(Search.render("Search Results", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
+    return ok(Search.render("Search", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
         formData, SurferTypes.getTypes(), CountryType.getTypes(), data.searchTerm, data.type, data.country,
         results));
   }
   
+  /**
+   * Result page for pagination.
+   * @param searchTerm The search term.
+   * @param type The type of Surfer.
+   * @param country The country of the Surfer.
+   * @param page The page to retrieve.
+   * @return The search result page. 
+   */
   public static Result pageSearch(String searchTerm, String type, String country, int page) {
     Form<SearchFormData> formData = Form.form(SearchFormData.class).bindFromRequest();
-    SearchFormData data = formData.get(); 
     Page<Surfer> results = SurferDB.search(searchTerm, type, country, page - 1);
-    return ok(Search.render("Search Results", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
+    return ok(Search.render("Search", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
         formData, SurferTypes.getTypes(), CountryType.getTypes(), searchTerm, type, country,
         results));
   }

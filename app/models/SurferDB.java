@@ -12,7 +12,10 @@ import models.Surfer;
 
 public class SurferDB {
   
+  private static final int PAGE_SIZE = 15;
+  
   public static Surfer add(String slug, SurferFormData surferFD){
+    
     Surfer surfer;
     if (!doesSurferExist(slug)){
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
@@ -88,10 +91,11 @@ public class SurferDB {
    * @param term The search term.
    * @param type The type of surfer.
    * @param country The country of the surfer.
+   * @param page Page number to retrieve.
    * @return A List of Surfers that match the search criteria.
    */
   public static Page<Surfer> search(String term, String type, String country, int page) {
     return Surfer.find().where().icontains("name", term).icontains("type", type)
-        .icontains("country", country).order("name").findPagingList(15).setFetchAhead(false).getPage(page);
+        .icontains("country", country).order("name").findPagingList(PAGE_SIZE).setFetchAhead(false).getPage(page);
   }
 }

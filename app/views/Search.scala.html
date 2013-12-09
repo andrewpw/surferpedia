@@ -13,7 +13,7 @@ String, currentPage: com.avaje.ebean.Page[Surfer])
    <th>Description</th>
    </tr>
     @for(surfer <- currentPage.getList()) {
-    <tr><td>@surfer.getName()</td>
+    <tr><td><a href="../surfer/@surfer.getSlug()">@surfer.getName()</a></td>
     <td>@surfer.getTruncatedBio()</td>
     </tr>
     }
@@ -22,7 +22,7 @@ String, currentPage: com.avaje.ebean.Page[Surfer])
 @if(currentPage.getTotalPageCount > 1) {
 <ul class="pagination">
   @if(currentPage.hasPrev) {
-  <li><a href="@routes.Application.pageSearch(searchTerm, searchType, country, currentPage.prev.getPageIndex) ">&laquo;</a></li>
+  <li><a href="@routes.Application.pageSearch(searchTerm, searchType, country, currentPage.prev.getPageIndex + 1) ">&laquo;</a></li>
   }
   @for(index <- 1 to currentPage.getTotalPageCount) {
   <li><a href="@routes.Application.pageSearch(searchTerm, searchType, country, index)">@index</a></li>
