@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import com.avaje.ebean.Page;
+import com.avaje.ebean.PagingList;
 import views.formdata.SurferFormData;
 import models.Surfer;
 
@@ -88,8 +90,8 @@ public class SurferDB {
    * @param country The country of the surfer.
    * @return A List of Surfers that match the search criteria.
    */
-  public static List<Surfer> search(String term, String type, String country) {
-    return Surfer.find().filter().icontains("name", term).icontains("type", type).icontains("country", country)
-        .sort("name").filter(SurferDB.getSurferList());
+  public static Page<Surfer> search(String term, String type, String country, int page) {
+    return Surfer.find().where().icontains("name", term).icontains("type", type)
+        .icontains("country", country).order("name").findPagingList(15).setFetchAhead(false).getPage(page);
   }
 }
