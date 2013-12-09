@@ -184,4 +184,13 @@ public class Application extends Controller {
         formData, SurferTypes.getTypes(), CountryType.getTypes(), data.searchTerm, data.type, data.country,
         results));
   }
+  
+  public static Result pageSearch(String searchTerm, String type, String country, int page) {
+    Form<SearchFormData> formData = Form.form(SearchFormData.class).bindFromRequest();
+    SearchFormData data = formData.get(); 
+    Page<Surfer> results = SurferDB.search(searchTerm, type, country, page - 1);
+    return ok(Search.render("Search Results", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
+        formData, SurferTypes.getTypes(), CountryType.getTypes(), searchTerm, type, country,
+        results));
+  }
 }
