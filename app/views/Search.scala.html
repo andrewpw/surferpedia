@@ -19,13 +19,19 @@ String, currentPage: com.avaje.ebean.Page[Surfer])
     }
     </table>
 
+@if(currentPage.getTotalPageCount > 1) {
 <ul class="pagination">
-  <li><a href="#">&laquo;</a></li>
+  @if(currentPage.hasPrev) {
+  <li><a href="@routes.Application.pageSearch(searchTerm, searchType, country, currentPage.prev.getPageIndex) ">&laquo;</a></li>
+  }
   @for(index <- 1 to currentPage.getTotalPageCount) {
   <li><a href="@routes.Application.pageSearch(searchTerm, searchType, country, index)">@index</a></li>
   }
-  <li><a href="#">&raquo;</a></li>
+  @if(currentPage.hasNext) {
+  <li><a href="@routes.Application.pageSearch(searchTerm, searchType, country, currentPage.next.getPageIndex + 1)">&raquo;</a></li>
+  }
 </ul>
+}
 
           </div>
 
