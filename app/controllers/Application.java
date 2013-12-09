@@ -4,6 +4,8 @@
 package controllers;
 
 import java.util.List;
+import com.avaje.ebean.Page;
+import com.avaje.ebean.PagingList;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -170,26 +172,14 @@ public class Application extends Controller {
   }
   
   /**
-   * Displays index page if search page is accessed without the search form.
-   * @return The index page.
-   */
-  public static Result search() {
-    return redirect(routes.Application.index());
-  }
-  
-  /**
    * Result page from the Search widget.
    * @return The search results.
    */
-  public static Result postSearch(int page) {
+  public static Result search(int page) {
     Form<SearchFormData> formData = Form.form(SearchFormData.class).bindFromRequest();
-    SearchFormData data = formData.get();
-    List<Surfer> results = SurferDB.search(data.searchTerm, data.type, data.country);
-    if ((results.size() / 15) >= page) {
-      System.out.println("Valid");
-    } else {
-      System.out.println("Invalid");      
-    }
+    SearchFormData data = formData.get(); 
+    Page<Surfer> results = SurferDB.search(data.searchTerm, data.type, data.country, page);
+    System.out.println("DEBUG " + data.searchTerm + " " + data.type + " " + data.country + " " + page);
     return ok(Search.render("Search Results", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
         formData, SurferTypes.getTypes(), CountryType.getTypes(), data.searchTerm, data.type, data.country,
         results));

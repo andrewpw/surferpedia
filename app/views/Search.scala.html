@@ -1,23 +1,51 @@
 @(message: String, isLoggedIn: Boolean, userInfo: UserInfo, searchFormData: Form[views.formdata.SearchFormData],
- surferType: Map[String, Boolean], countryType: Map[String, Boolean], searchTerm: String, searchType: 
- String, country: String, results: List[Surfer])
+surferType: Map[String, Boolean], countryType: Map[String, Boolean], searchTerm: String, searchType: String, country:
+String, currentPage: com.avaje.ebean.Page[Surfer]) 
+
+@import bootstrap3._
 
 @Main("Search", isLoggedIn, userInfo, searchFormData, surferType, countryType) {
-  <div class="container">
-    <table class="table table-bordered col-md-4">
-        <tr>Search: Keyword(s) "@searchTerm", Type: @if(searchType == "") {"All Types"} else {"@searchType"}, 
-            Country: @if(country == "") {"All Countries"} else {"@country"}. [@results.size() results]<br /></tr>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
+
+<div class="container">
+  <table class="table table-bordered">
+   <tr>
+   <th>Name</th>
+   <th>Description</th>
+   </tr>
+    @for(surfer <- currentPage.getList()) {
+    <tr><td>@surfer.getName()</td>
+    <td>@surfer.getTruncatedBio()</td>
     </tr>
-    <tr>
-  @for(surfer <- results) {
-    <tr>
-      <td><a href="../surfer/@surfer.getSlug()">@surfer.getName()</a></td>
-      <td>@surfer.getTruncatedBio()</td>
-    </tr>
-  }
-  </table>
-  </div>
+    }
+    </table>
+    <div id="pagination" class="pagination">
+        @if(currentPage.hasPrev) {
+          @paginate(searchFormData("searchTerm"),
+                    searchTerm,
+                    searchFormData("type"),
+                    searchType,
+                    searchFormData("country"),
+                    country,
+                    currentPage.getPageIndex - 1,
+                    "glyphicon glyphicon-arrow-left",
+                    "")
+        } else {
+         <li class="prev disabled"><a><span class="glyphicon glyphicon-arrow-left"></span></a></li> 
+        }
+        <li class="current"><a>@currentPage.getDisplayXtoYofZ(" - "," / ")</a></li> 
+        @if(currentPage.hasNext) {
+          @paginate(searchFormData("searchTerm"),
+                    searchTerm,
+                    searchFormData("type"),
+                    searchType,
+                    searchFormData("country"),
+                    country,
+                    currentPage.getPageIndex + 1,
+                    "glyphicon glyphicon-arrow-right",
+                    "")
+        } else {
+         <li class="next disabled"><a>&rarr;</a></li> }
+    </div>
+          </div>
+</div>
 }
