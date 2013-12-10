@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,16 +57,9 @@ public class SurferDB {
   }
   
   public static List<Surfer> getRandomSurferList(){
-    List<Surfer> list = new ArrayList<Surfer>();
-    while(list.size() < 3){  
-      int rand = (int) (1 + (Math.random() * Surfer.find().findRowCount()));
-      Surfer addSurfer = Surfer.find().where().eq("id", rand).findUnique(); 
-      if (!list.contains(addSurfer)){
-        list.add(addSurfer);
-      }
-      
-    }
-    return list;
+    List<Surfer> list = getSurferList();
+    Collections.shuffle(list);
+    return list.subList(0, 3);
   }
   
   /**
