@@ -1,8 +1,11 @@
 package views.formdata;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import models.Surfer;
 
 /**
  * Holds Country type for Country validation and search box list.
@@ -71,13 +74,30 @@ public class CountryType {
   }
   
   /**
+   * Return list of countries that are represented by Surfer's in the database.
+   * @return A list of countries that Surfer's in the database are from in alphabetical order.
+   */
+  public static Map<String, Boolean> getSearchCountries() {
+    Map<String, Boolean> countryMap = new LinkedHashMap<>();
+    List<String> countryList = new ArrayList<>();
+    for (Surfer surfer : Surfer.find().select("country").findList()) {
+      if (!countryList.contains(surfer.getCountry())) {
+        countryList.add(surfer.getCountry());
+      }
+    }
+    Collections.sort(countryList);
+    for (String s : countryList) {
+      countryMap.put(s, false);
+    }
+    return countryMap;
+  }
+  
+  /**
    * Check if a country input is a valid country.
    * @param country The country to check.
    * @return True if the country is valid, false otherwise.
    */
   public static boolean isType(String country) {
     return getTypes().containsKey(country);
-  }
-  
-  
+  } 
 }
