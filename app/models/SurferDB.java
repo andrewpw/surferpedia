@@ -1,25 +1,27 @@
 package models;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import com.avaje.ebean.Page;
-import com.avaje.ebean.PagingList;
 import views.formdata.SurferFormData;
-import models.Surfer;
 
+/**
+ * Database that stores Surfers.
+ */
 public class SurferDB {
-  
   private static final int PAGE_SIZE = 15;
+  private static final int RANDOM_SURFER_LIST_SIZE = 3;
   
-  public static Surfer add(String slug, SurferFormData surferFD){
-    
+  /**
+   * Add a Surfer to the database.
+   * @param slug The slug of the Surfer.
+   * @param surferFD Form data of the Surfer.
+   * @return The Surfer that was just added.
+   */
+  public static Surfer add(String slug, SurferFormData surferFD) {
     Surfer surfer;
-    if (!doesSurferExist(slug)){
+    if (!doesSurferExist(slug)) {
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
           surferFD.bioURL, surferFD.slug, surferFD.type, surferFD.footstyle, surferFD.country);
       SurferUpdate update = new SurferUpdate("Create", surfer.getName());
@@ -48,18 +50,31 @@ public class SurferDB {
     return Arrays.asList(footArray);
   }
 
+  /**
+   * Retrieve a Surfer from the database.
+   * @param slug The slug of the Surfer.
+   * @return The Surfer with the matching slug.
+   */
   public static Surfer getSurfer(String slug) {
     return Surfer.find().where().eq("slug", slug).findUnique();
   }
   
-  public static List<Surfer> getSurferList(){
+  /**
+   * Get a List of all Surfer's in the database.
+   * @return A List of all Surfers.
+   */
+  public static List<Surfer> getSurferList() {
     return Surfer.find().all();
   }
   
-  public static List<Surfer> getRandomSurferList(){
+  /**
+   * Get a randomized List of 3 Surfers.
+   * @return A List of 3 random Surfers.
+   */
+  public static List<Surfer> getRandomSurferList() {
     List<Surfer> list = getSurferList();
     Collections.shuffle(list);
-    return list.subList(0, 3);
+    return list.subList(0, RANDOM_SURFER_LIST_SIZE);
   }
   
   /**
