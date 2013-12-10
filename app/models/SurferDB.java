@@ -2,6 +2,8 @@ package models;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,10 @@ import models.Surfer;
 
 public class SurferDB {
   
+  private static final int PAGE_SIZE = 15;
+  
   public static Surfer add(String slug, SurferFormData surferFD){
+    
     Surfer surfer;
     if (!doesSurferExist(slug)){
       surfer = new Surfer(surferFD.name, surferFD.hometown, surferFD.awards, surferFD.carouselURL, surferFD.bio, 
@@ -52,16 +57,9 @@ public class SurferDB {
   }
   
   public static List<Surfer> getRandomSurferList(){
-    List<Surfer> list = new ArrayList<Surfer>();
-    while(list.size() < 3){  
-      int rand = (int) (1 + (Math.random() * Surfer.find().findRowCount()));
-      Surfer addSurfer = Surfer.find().where().eq("id", rand).findUnique(); 
-      if (!list.contains(addSurfer)){
-        list.add(addSurfer);
-      }
-      
-    }
-    return list;
+    List<Surfer> list = getSurferList();
+    Collections.shuffle(list);
+    return list.subList(0, 3);
   }
   
   /**
@@ -88,10 +86,11 @@ public class SurferDB {
    * @param term The search term.
    * @param type The type of surfer.
    * @param country The country of the surfer.
+   * @param page Page number to retrieve.
    * @return A List of Surfers that match the search criteria.
    */
   public static Page<Surfer> search(String term, String type, String country, int page) {
     return Surfer.find().where().icontains("name", term).icontains("type", type)
-        .icontains("country", country).order("name").findPagingList(15).setFetchAhead(false).getPage(page);
+        .icontains("country", country).order("name").findPagingList(PAGE_SIZE).setFetchAhead(false).getPage(page);
   }
 }

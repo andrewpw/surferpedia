@@ -8,7 +8,7 @@ Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
 
 <html>
 <head>
-<title>@page (Surferpedia)</title>
+<title>@page</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
 
@@ -41,25 +41,19 @@ Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
           <li><a href="@routes.Application.newSurfer()">New</a></li>
           <li><a href="@routes.Application.getUpdates()">Update</a></li> }
         </ul>
-         <div class="pull-right">
-        <ul class="nav navbar-nav navbar-right">
-        
-        <!--  Search Widget -->
-        @search(searchFD("searchTerm"),
-                searchFD("type"),
-                searchFD("country"),
-                surferType,
-                countryType)  
+        <div class="pull-right">
+          <ul class="nav navbar-nav navbar-right">
+
+            <!--  Search Widget -->
+            @search(searchFD("searchTerm"), searchFD("type"), searchFD("country"), surferType, countryType)
             @if(isLoggedIn) {
-          <li><p class="navbar-text">@userInfo.getEmail()</p></li>
-          <li><a href="@routes.Application.logout()">Logout</a></li> 
-          } else {
-          <li><a href="@routes.Application.login()">Login</a></li> 
-          }
-        </ul>
+            <li><p class="navbar-text">@userInfo.getEmail()</p></li>
+            <li><a id="logout" href="@routes.Application.logout()">Logout</a></li> } else {
+            <li><a id="login" href="@routes.Application.login()">Login</a></li> }
+          </ul>
+        </div>
       </div>
     </div>
-  </div>
   </div>
   @content
   <!-- Load Bootstrap JavaScript components. HTMLUnit (used in testing) requires JQuery 1.8.3 or below). -->

@@ -1,7 +1,7 @@
 @(message: String, isLoggedIn: Boolean, userInfo: UserInfo, searchFormData: Form[views.formdata.SearchFormData],
  surferType: Map[String, Boolean], countryType: Map[String, Boolean])
 
-@Main("Home", isLoggedIn, userInfo, searchFormData, surferType, countryType) {
+@Main(message, isLoggedIn, userInfo, searchFormData, surferType, countryType) {
    <div class="outer">
      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
      <!-- Indicators -->
@@ -21,8 +21,8 @@
          }
          <div class ="img-one" style = "background-image: url('@surfer.getCarouselURL()');"></div>
          <div class="carousel-caption">
-           <a href = "/surfer/@surfer.getSlug()">
-           <p class="pic-caption">@surfer.getName()</p></a>
+
+           <p class="pic-caption">@surfer.getName()</p>
          </div>
            </div>
         }
