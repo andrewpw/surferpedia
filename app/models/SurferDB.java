@@ -90,7 +90,22 @@ public class SurferDB {
    * @return A List of Surfers that match the search criteria.
    */
   public static Page<Surfer> search(String term, String type, String country, int page) {
-    return Surfer.find().where().icontains("name", term).icontains("type", type)
-        .icontains("country", country).order("name").findPagingList(PAGE_SIZE).setFetchAhead(false).getPage(page);
+    System.out.println(term + " | " + type + " | " + country);
+    if (type.equals("") && country.equals("")) {
+      return Surfer.find().where().icontains("name", term).order("name")
+          .findPagingList(PAGE_SIZE).setFetchAhead(false).getPage(page);     
+    }
+    else if (type.equals("")) {
+      return Surfer.find().where().icontains("name", term).ieq("country", country)
+          .order("name").findPagingList(PAGE_SIZE).setFetchAhead(false).getPage(page);
+    }
+    else if (country.equals("")) {
+      return Surfer.find().where().icontains("name", term).ieq("type", type)
+          .order("name").findPagingList(PAGE_SIZE).setFetchAhead(false).getPage(page);
+    }
+    else {
+      return Surfer.find().where().icontains("name", term).ieq("type", type)
+          .ieq("country", country).order("name").findPagingList(PAGE_SIZE).setFetchAhead(false).getPage(page);
+    }
   }
 }
