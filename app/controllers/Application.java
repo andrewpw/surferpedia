@@ -73,6 +73,8 @@ public class Application extends Controller {
     Form<SurferFormData> formData = Form.form(SurferFormData.class).bindFromRequest();
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    RatingFormData ratingFormData = new RatingFormData();
+    Form<RatingFormData> ratingForm = Form.form(RatingFormData.class).fill(ratingFormData);
     if (formData.hasErrors()) {
       flash("error", "Please correct the form below.");
       List<String> foot = SurferDB.getFootstyleList();
@@ -84,7 +86,7 @@ public class Application extends Controller {
       flash("success", String.format("Successfully added %s", data.name));
       SurferDB.add(data.slug, data);
       return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(data.slug),
-          searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
+          searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
     }
   }
   
@@ -130,14 +132,28 @@ public class Application extends Controller {
   public static Result getSurfer(String slug) {
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    RatingFormData ratingFormData = new RatingFormData();
+    Form<RatingFormData> ratingForm = Form.form(RatingFormData.class).fill(ratingFormData);
     if (SurferDB.getSurfer(slug) != null){
       return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
-                searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
+                searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
     }
     else { 
       return ok(Index.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), searchForm,
                 SurferTypes.getTypes(), CountryType.getSearchCountries()));
     }
+  }
+  
+  public static Result postRating(String slug) {
+    Form<RatingFormData> formData = Form.form(RatingFormData.class).bindFromRequest();
+    SearchFormData searchFormData = new SearchFormData();
+    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    RatingFormData data = formData.get();
+    Surfer surfer = SurferDB.getSurfer(slug);
+    surfer.setRating(data.rating);
+    surfer.save();
+    return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
+        searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), formData));
   }
   
   /**
