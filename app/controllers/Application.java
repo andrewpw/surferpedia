@@ -12,6 +12,7 @@ import play.mvc.Result;
 import play.mvc.Security;
 import views.formdata.CountryType;
 import views.formdata.LoginFormData;
+import views.formdata.RatingFormData;
 import views.formdata.SearchFormData;
 import views.formdata.SurferFormData;
 import views.formdata.SurferTypes;

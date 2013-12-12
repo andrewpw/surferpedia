@@ -1,5 +1,9 @@
 @(isLoggedIn: Boolean, userInfo: UserInfo, surfer: Surfer, searchFormData: Form[views.formdata.SearchFormData],
-  surferType: Map[String, Boolean], countryType: Map[String, Boolean])
+  surferType: Map[String, Boolean], countryType: Map[String, Boolean], rating: List[String], 
+  ratingFD: Form[views.formdata.RatingFormData])
+
+@import helper.form
+@import bootstrap3._
 
 @Main(surfer.getName(), isLoggedIn, userInfo, searchFormData, surferType, countryType) {
    <div class="row">
@@ -8,6 +12,12 @@
    <div class="col-md-4">
       <div class="well">
         <div class ="img-one" style = "background-image: url('@surfer.getBioURL()');"></div>
+        <div class="wrapper">
+          @radiobuttons(ratingFD("rating"),
+                label = "Rating",
+                buttonNameList = rating,
+                help = "Rate this surfer.")
+        </div>
       </div>
     </div>
     <div class="col-md-8">

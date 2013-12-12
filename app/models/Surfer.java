@@ -26,6 +26,7 @@ public class Surfer extends Model {
   private boolean slugDefined = false;
   private String footstyle;
   private String country;
+  private int rating;
   
   @OneToMany(mappedBy = "surfer")
   private List<SurferUpdate> surferUpdates = new ArrayList<>();
@@ -42,6 +43,7 @@ public class Surfer extends Model {
     this.type = type;
     this.footstyle = footstyle;
     this.country = country;
+    this.rating = 0;
   }
   
   /**
@@ -56,6 +58,20 @@ public class Surfer extends Model {
    */
   public void setId(long id) {
     this.id = id;
+  }
+  
+  /**
+   * @return the rating
+   */
+  public int getRating() {
+    return rating;
+  }
+
+  /**
+   * @param rating the rating to set
+   */
+  public void setRating(int rating) {
+    this.rating = rating;
   }
 
   public String getFootstyle() {
