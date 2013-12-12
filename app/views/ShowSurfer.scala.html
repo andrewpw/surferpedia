@@ -31,8 +31,9 @@
           <p><b>Biography:</b> @surfer.getBio()</p>
           @if(isLoggedIn){
           <p><a href = @routes.Application.manageSurfer(surfer.getSlug())>
-          edit</a>
-          <a data-toggle="modal" href="#myModal" class = "delete">delete</a></p>
+ <button type="button" class="btn btn-primary btn-sm">Edit</button></a>
+          <a data-toggle="modal" href="#myModal" class = "delete">
+          <button type="button" class="btn btn-primary btn-sm">Delete</button></a></p>
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
