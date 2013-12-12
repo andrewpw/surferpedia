@@ -12,6 +12,7 @@ import play.mvc.Result;
 import play.mvc.Security;
 import views.formdata.CountryType;
 import views.formdata.LoginFormData;
+import views.formdata.RatingFormData;
 import views.formdata.SearchFormData;
 import views.formdata.SurferFormData;
 import views.formdata.SurferTypes;
@@ -61,6 +62,10 @@ public class Application extends Controller {
         SurferTypes.getTypes(), foot, searchForm, CountryType.getSearchCountries()));
   }
   
+  /**
+   * Handles post form submission from the Surfer form.
+   * @return The Surfer that was created/edited if the request was valid. The form page with error messages otherwise.
+   */
   @Security.Authenticated(Secured.class)
   public static Result postSurfer(){
     UserInfo userInfo = UserInfoDB.getUser(request().username());
@@ -68,6 +73,8 @@ public class Application extends Controller {
     Form<SurferFormData> formData = Form.form(SurferFormData.class).bindFromRequest();
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    RatingFormData ratingFormData = new RatingFormData();
+    Form<RatingFormData> ratingForm = Form.form(RatingFormData.class).fill(ratingFormData);
     if (formData.hasErrors()) {
       flash("error", "Please correct the form below.");
       List<String> foot = SurferDB.getFootstyleList();
@@ -79,10 +86,15 @@ public class Application extends Controller {
       flash("success", String.format("Successfully added %s", data.name));
       SurferDB.add(data.slug, data);
       return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(data.slug),
-          searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
+          searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
     }
   }
   
+  /**
+   * Delete a Surfer.
+   * @param slug The slug of the Surfer to delete.
+   * @return The Index page.
+   */
   @Security.Authenticated(Secured.class)
   public static Result deleteSurfer(String slug){
     UserInfo userInfo = UserInfoDB.getUser(request().username());
@@ -94,8 +106,13 @@ public class Application extends Controller {
                            SurferTypes.getTypes(), CountryType.getSearchCountries()));
   }
   
+  /**
+   * Edit a Surfer.
+   * @param slug The slug of the Surfer to edit.
+   * @return The Surfer form page.
+   */
   @Security.Authenticated(Secured.class)
-  public static Result manageSurfer(String slug){
+  public static Result manageSurfer(String slug) {
     UserInfo userInfo = UserInfoDB.getUser(request().username());
     String user = userInfo.getEmail();
     SurferFormData surferFD = new SurferFormData(SurferDB.getSurfer(slug));
@@ -103,21 +120,40 @@ public class Application extends Controller {
     Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
-    return ok(ManageSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()) ,formData, 
+    return ok(ManageSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData,
         SurferTypes.getTypes(SurferDB.getSurfer(slug).getType()), foot, searchForm, CountryType.getSearchCountries()));
   }
   
-  public static Result getSurfer(String slug){
+  /**
+   * Get a Surfer.
+   * @param slug The slug of the Surfer.
+   * @return The Surfer's personal page if slug is valid else the Index page.
+   */
+  public static Result getSurfer(String slug) {
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    RatingFormData ratingFormData = new RatingFormData();
+    Form<RatingFormData> ratingForm = Form.form(RatingFormData.class).fill(ratingFormData);
     if (SurferDB.getSurfer(slug) != null){
-      return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()) ,SurferDB.getSurfer(slug),
-                searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
+      return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
+                searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
     }
     else { 
       return ok(Index.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), searchForm,
                 SurferTypes.getTypes(), CountryType.getSearchCountries()));
     }
+  }
+  
+  public static Result postRating(String slug) {
+    Form<RatingFormData> formData = Form.form(RatingFormData.class).bindFromRequest();
+    SearchFormData searchFormData = new SearchFormData();
+    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    RatingFormData data = formData.get();
+    Surfer surfer = SurferDB.getSurfer(slug);
+    surfer.setRating(data.rating);
+    surfer.save();
+    return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
+        searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), formData));
   }
   
   /**

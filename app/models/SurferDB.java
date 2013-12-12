@@ -3,7 +3,9 @@ package models;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import play.data.Form;
 import com.avaje.ebean.Page;
+import views.formdata.RatingFormData;
 import views.formdata.SurferFormData;
 
 /**
@@ -48,6 +50,11 @@ public class SurferDB {
   public static List<String> getFootstyleList() {
     String[] footArray = {"Goofy", "Regular"};
     return Arrays.asList(footArray);
+  }
+  
+  public static List<String> getRatingList() {
+    String[] ratingArray = {"5", "4", "3", "2", "1"};
+    return Arrays.asList(ratingArray);
   }
 
   /**

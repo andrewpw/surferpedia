@@ -16,6 +16,7 @@ create table surfer (
   slug_defined              tinyint(1) default 0,
   footstyle                 varchar(255),
   country                   varchar(255),
+  rating                    integer,
   constraint pk_surfer primary key (id))
 ;
 

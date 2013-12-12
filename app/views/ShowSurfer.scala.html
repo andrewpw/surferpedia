@@ -1,11 +1,41 @@
 @(isLoggedIn: Boolean, userInfo: UserInfo, surfer: Surfer, searchFormData: Form[views.formdata.SearchFormData],
-  surferType: Map[String, Boolean], countryType: Map[String, Boolean])
+  surferType: Map[String, Boolean], countryType: Map[String, Boolean], rating: List[String], 
+  ratingFD: Form[views.formdata.RatingFormData])
+
+@import helper.form
+@import bootstrap3._
 
 @Main(surfer.getName(), isLoggedIn, userInfo, searchFormData, surferType, countryType) {
    <div class="row">
   </div>
    <div class="row">
    <div class="col-md-4">
+   @System.out.println("SurferRating " + surfer.getRating())
+     <div class = "well" id = "rates">
+       <h2>Rate This Surfer</h2>
+       @form(routes.Application.postRating(surfer.getSlug()), 'class -> "form-horizontal"){
+        <div class="wrapper">
+          <div id="ratings">
+            @for(buttonName <- rating) {
+              <input
+                type="radio"
+                name="@ratingFD("rating").name"
+                id="@buttonName"
+                value="@buttonName"
+                @if(buttonName == ratingFD.value.getOrElse("")) {checked} />
+              <label for="@buttonName">
+              </label>
+            } 
+            
+          </div>
+        </div>
+        <div class = "form-group" >
+          <div class = "rateSub">
+            <button type = "submit" class = "btn btn-primary">Rate</button>
+          </div>
+        </div>
+        }
+      </div>
       <div class="well">
         <div class ="img-one" style = "background-image: url('@surfer.getBioURL()');"></div>
       </div>
