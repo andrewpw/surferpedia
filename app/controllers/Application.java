@@ -44,9 +44,12 @@ public class Application extends Controller {
     return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
                            searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
   }
-  
+  /**
+   * Create new Surfer.
+   * @return The new Surfer form page.
+   */
   @Security.Authenticated(Secured.class)
-  public static Result newSurfer(){
+  public static Result newSurfer() {
     UserInfo userInfo = UserInfoDB.getUser(request().username());
     String user = userInfo.getEmail();
     SurferFormData surferFD = new SurferFormData();
