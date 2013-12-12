@@ -61,6 +61,10 @@ public class Application extends Controller {
         SurferTypes.getTypes(), foot, searchForm, CountryType.getSearchCountries()));
   }
   
+  /**
+   * Handles post form submission from the Surfer form.
+   * @return The Surfer that was created/edited if the request was valid. The form page with error messages otherwise.
+   */
   @Security.Authenticated(Secured.class)
   public static Result postSurfer(){
     UserInfo userInfo = UserInfoDB.getUser(request().username());
