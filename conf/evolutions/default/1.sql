@@ -4,23 +4,23 @@
 # --- !Ups
 
 create table surfer (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   hometown                  varchar(255),
   awards                    varchar(255),
   carousel_url              varchar(255),
   bio_url                   varchar(255),
-  bio                       clob,
+  bio                       longtext,
   slug                      varchar(255),
   type                      varchar(255),
-  slug_defined              boolean,
+  slug_defined              tinyint(1) default 0,
   footstyle                 varchar(255),
   country                   varchar(255),
   constraint pk_surfer primary key (id))
 ;
 
 create table surfer_update (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   date                      varchar(255),
   type                      varchar(255),
   target                    varchar(255),
@@ -29,19 +29,13 @@ create table surfer_update (
 ;
 
 create table user_info (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   email                     varchar(255),
   password                  varchar(255),
-  admin                     boolean,
+  admin                     tinyint(1) default 0,
   constraint pk_user_info primary key (id))
 ;
-
-create sequence surfer_seq;
-
-create sequence surfer_update_seq;
-
-create sequence user_info_seq;
 
 alter table surfer_update add constraint fk_surfer_update_surfer_1 foreign key (surfer_id) references surfer (id) on delete restrict on update restrict;
 create index ix_surfer_update_surfer_1 on surfer_update (surfer_id);
@@ -50,19 +44,13 @@ create index ix_surfer_update_surfer_1 on surfer_update (surfer_id);
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists surfer;
+drop table surfer;
 
-drop table if exists surfer_update;
+drop table surfer_update;
 
-drop table if exists user_info;
+drop table user_info;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists surfer_seq;
-
-drop sequence if exists surfer_update_seq;
-
-drop sequence if exists user_info_seq;
+SET FOREIGN_KEY_CHECKS=1;
 
