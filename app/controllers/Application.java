@@ -109,7 +109,7 @@ public class Application extends Controller {
    * @return The Surfer form page.
    */
   @Security.Authenticated(Secured.class)
-  public static Result manageSurfer(String slug){
+  public static Result manageSurfer(String slug) {
     UserInfo userInfo = UserInfoDB.getUser(request().username());
     String user = userInfo.getEmail();
     SurferFormData surferFD = new SurferFormData(SurferDB.getSurfer(slug));
@@ -117,15 +117,20 @@ public class Application extends Controller {
     Form<SurferFormData> formData = Form.form(SurferFormData.class).fill(surferFD);
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
-    return ok(ManageSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()) ,formData, 
+    return ok(ManageSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData,
         SurferTypes.getTypes(SurferDB.getSurfer(slug).getType()), foot, searchForm, CountryType.getSearchCountries()));
   }
   
-  public static Result getSurfer(String slug){
+  /**
+   * Get a Surfer.
+   * @param slug The slug of the Surfer.
+   * @return The Surfer's personal page if slug is valid else the Index page.
+   */
+  public static Result getSurfer(String slug) {
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
     if (SurferDB.getSurfer(slug) != null){
-      return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()) ,SurferDB.getSurfer(slug),
+      return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
                 searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
     }
     else { 
