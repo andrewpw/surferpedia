@@ -87,6 +87,11 @@ public class Application extends Controller {
     }
   }
   
+  /**
+   * Delete a Surfer.
+   * @param slug The slug of the Surfer to delete.
+   * @return The Index page.
+   */
   @Security.Authenticated(Secured.class)
   public static Result deleteSurfer(String slug){
     UserInfo userInfo = UserInfoDB.getUser(request().username());
@@ -98,6 +103,11 @@ public class Application extends Controller {
                            SurferTypes.getTypes(), CountryType.getSearchCountries()));
   }
   
+  /**
+   * Edit a Surfer.
+   * @param slug The slug of the Surfer to edit.
+   * @return The Surfer form page.
+   */
   @Security.Authenticated(Secured.class)
   public static Result manageSurfer(String slug){
     UserInfo userInfo = UserInfoDB.getUser(request().username());
