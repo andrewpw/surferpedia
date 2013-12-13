@@ -49,7 +49,7 @@ Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
             @if(isLoggedIn) {
             <li><p class="navbar-text">@userInfo.getEmail()</p></li>
             <li><a id="logout" href="@routes.Application.logout()">Logout</a></li> } else {
-            <li><a id="login" href="@routes.Application.login()">Login</a></li> }
+            <li><a id="login" href="@routes.Application.login()">Login/Signup</a></li> }
           </ul>
         </div>
       </div>

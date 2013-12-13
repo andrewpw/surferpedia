@@ -1,16 +1,19 @@
 @(page: String, isLoggedIn: Boolean, userInfo: UserInfo, loginForm:Form[views.formdata.LoginFormData], 
-  searchFormData: Form[views.formdata.SearchFormData], surferType: Map[String, Boolean], 
-  countryType: Map[String, Boolean])
+  searchFormData: Form[views.formdata.SearchFormData], signupForm: Form[views.formdata.SignupFormData],
+  surferType: Map[String, Boolean], countryType: Map[String, Boolean])
 
 @import bootstrap3._
 
 @Main(page, isLoggedIn, userInfo, searchFormData, surferType, countryType) {
    <div class="container">
        <div class="row">
-         <div class="col-sm-offset-4 col-sm-4">
+         <div class="col-sm-offset-2 col-sm-4">
            @loginform(routes.Application.postLogin(), loginForm("email"), loginForm("password"))
          </div>
-       </div>
+         <div class="col-sm-4">
+           @signupform(routes.Application.newUser(), signupForm("signupName"), signupForm("signupEmail"), signupForm("signupPassword"))
+            </div>       
+         </div>
    </div>
    @if(!models.UserInfoDB.adminDefined()){
      <div class = "alert alert-danger">No Admin Credetials Defined!</div>

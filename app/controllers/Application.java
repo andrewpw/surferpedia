@@ -14,6 +14,7 @@ import views.formdata.CountryType;
 import views.formdata.LoginFormData;
 import views.formdata.RatingFormData;
 import views.formdata.SearchFormData;
+import views.formdata.SignupFormData;
 import views.formdata.SurferFormData;
 import views.formdata.SurferTypes;
 import views.html.Index;
@@ -136,7 +137,8 @@ public class Application extends Controller {
     Form<RatingFormData> ratingForm = Form.form(RatingFormData.class).fill(ratingFormData);
     if (SurferDB.getSurfer(slug) != null){
       return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
-                searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
+                searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), 
+                ratingForm));
     }
     else { 
       return ok(Index.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), searchForm,
@@ -173,25 +175,25 @@ public class Application extends Controller {
    */
   public static Result login() {
     Form<LoginFormData> formData = Form.form(LoginFormData.class);
+    Form<SignupFormData> signupData = Form.form(SignupFormData.class);
     //Form<RegistrationFormData> regFormData = Form.form(RegistrationFormData.class);
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
     return ok(Login.render("Login", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData, searchForm,
-              SurferTypes.getTypes(), CountryType.getSearchCountries()));
+              signupData, SurferTypes.getTypes(), CountryType.getSearchCountries()));
   }
   
   public static Result postLogin() {
-
     // Get the submitted form data from the request object, and run validation.
     Form<LoginFormData> formData = Form.form(LoginFormData.class).bindFromRequest();
     //Form<RegistrationFormData> regFormData = Form.form(RegistrationFormData.class);
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
-
+    Form<SignupFormData> signupData = Form.form(SignupFormData.class);
     if (formData.hasErrors()) {
-      flash("error", "Login credentials not valid.");
+      flash("loginError", "Login credentials not valid.");
       return badRequest(Login.render("Login", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData,
-                        searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
+                        searchForm, signupData, SurferTypes.getTypes(), CountryType.getSearchCountries()));
     }
     else {
       // email/password OK, so now we set the session variable and only go to authenticated pages.
@@ -239,5 +241,30 @@ public class Application extends Controller {
     return ok(Search.render("Search", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
         formData, SurferTypes.getTypes(), CountryType.getSearchCountries(), searchTerm, type, country,
         results));
+  }
+  
+  /**
+   * Result page after signing up as a new user.
+   * @return The Index page.
+   */
+  public static Result newUser() {
+    // Get the submitted form data from the request object, and run validation.
+    Form<LoginFormData> formData = Form.form(LoginFormData.class);
+    //Form<RegistrationFormData> regFormData = Form.form(RegistrationFormData.class);
+    SearchFormData searchFormData = new SearchFormData();
+    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    Form<SignupFormData> signupData = Form.form(SignupFormData.class).bindFromRequest();
+    if (signupData.hasErrors()) {
+      flash("signupError", "Form input not valid.");
+      return badRequest(Login.render("Login", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), formData,
+                        searchForm, signupData, SurferTypes.getTypes(), CountryType.getSearchCountries()));
+    }
+    else {
+      SignupFormData data = signupData.get();
+      UserInfoDB.addUserInfo(data.signupName, data.signupEmail, data.signupPassword);
+      CountryType.getSearchCountries();
+      return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
+                             searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
+    }
   }
 }
