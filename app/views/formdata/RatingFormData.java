@@ -19,7 +19,7 @@ public class RatingFormData {
 
   /**
    * Constructor.
-   * @param the surfer to rate.
+   * @param surfer the surfer to rate.
    */
   public RatingFormData(Surfer surfer) {
     this.rating = surfer.getRating();
