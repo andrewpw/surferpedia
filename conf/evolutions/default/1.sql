@@ -3,11 +3,6 @@
 
 # --- !Ups
 
-create table rating (
-  user_info_id              bigint,
-  surfer_id                 bigint)
-;
-
 create table surfer (
   id                        bigint auto_increment not null,
   name                      varchar(255),
@@ -43,20 +38,14 @@ create table user_info (
   constraint pk_user_info primary key (id))
 ;
 
-alter table rating add constraint fk_rating_userInfo_1 foreign key (user_info_id) references user_info (id) on delete restrict on update restrict;
-create index ix_rating_userInfo_1 on rating (user_info_id);
-alter table rating add constraint fk_rating_surfer_2 foreign key (surfer_id) references surfer (id) on delete restrict on update restrict;
-create index ix_rating_surfer_2 on rating (surfer_id);
-alter table surfer_update add constraint fk_surfer_update_surfer_3 foreign key (surfer_id) references surfer (id) on delete restrict on update restrict;
-create index ix_surfer_update_surfer_3 on surfer_update (surfer_id);
+alter table surfer_update add constraint fk_surfer_update_surfer_1 foreign key (surfer_id) references surfer (id) on delete restrict on update restrict;
+create index ix_surfer_update_surfer_1 on surfer_update (surfer_id);
 
 
 
 # --- !Downs
 
 SET FOREIGN_KEY_CHECKS=0;
-
-drop table rating;
 
 drop table surfer;
 

@@ -1,10 +1,7 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import play.db.ebean.Model;
 
 /**
@@ -20,9 +17,6 @@ public class UserInfo extends Model {
   private String email;
   private String password;
   private boolean admin = false;
-  
-  @OneToMany(mappedBy = "userInfo")
-  private List<Rating> ratings = new ArrayList<>();
   
   /**
    * Creates a new UserInfo instance.
@@ -99,22 +93,6 @@ public class UserInfo extends Model {
    */
   public void setAdmin(boolean admin) {
     this.admin = admin;
-  }
-  
-  /**
-   * Return List of Ratings.
-   * @return A List of Ratings. 
-   */
-  public List<Rating> getRatings() {
-    return ratings;
-  }
-  
-  /**
-   * Add Rating to the Surfer's Rating List.
-   * @param rating The Rating to add.
-   */
-  public void addRating(Rating rating) {
-    ratings.add(rating);
   }
 
   /**
