@@ -63,6 +63,7 @@
           <p><a href = @routes.Application.manageSurfer(surfer.getSlug())>
  <button type="button" class="btn btn-primary btn-sm">Edit</button></a>
           <a data-toggle="modal" href="#myModal" class = "delete">
+          @if(userInfo.isAdmin()) {
           <button type="button" class="btn btn-primary btn-sm">Delete</button></a></p>
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -81,7 +82,7 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-          
+      }    
         </div>
         }
       </div>

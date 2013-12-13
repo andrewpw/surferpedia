@@ -10,17 +10,18 @@
           <fieldset>
              <div class="form-group @if(nameField.hasErrors) {has-error}" >
               <input id="@nameField.id" name="@nameField.name" value="@nameField.value.getOrElse("")" class="form-control" placeholder="Name" type="text">
+              <span class="help-block">@{nameField.error.map { error => error.message }}</span>
             </div>
             <div class="form-group @if(emailField.hasErrors) {has-error}" >
               <input id="@emailField.id" name="@emailField.name" value="@emailField.value.getOrElse("")" class="form-control" placeholder="E-mail" type="text">
-            </div>
+              <span class="help-block">@{emailField.error.map { error => error.message }}</span> </div>
             <div class="form-group @if(passwordField.hasErrors) {has-error}" >
               <input id="@passwordField.id" name="@passwordField.name" value="@passwordField.value.getOrElse("")" class="form-control" placeholder="Password" type="password">
-            </div>
+              <span class="help-block">@{passwordField.error.map { error => error.message }}</span> </div>
             <input id="signup" class="btn btn-lg btn-success btn-block" type="submit" value="Sign Up">
           </fieldset>
         }
-         @if(flash.containsKey("error")) {
+         @if(flash.containsKey("errorSignup")) {
            <div id="error-message" class="text-danger">
              @flash.get("error")
            </div>

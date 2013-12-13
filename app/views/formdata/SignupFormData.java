@@ -13,13 +13,13 @@ import play.data.validation.ValidationError;
 public class SignupFormData {
 
   /** Name. */
-  public String name;
+  public String signupName;
   
   /** Email. */
-  public String email;
+  public String signupEmail;
   
   /** Password. */
-  public String password;
+  public String signupPassword;
   
   /**
    * Default Constructor.
@@ -35,9 +35,9 @@ public class SignupFormData {
    * @param password The User's password.
    */
   public SignupFormData(String name, String email, String password) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
+    this.signupName = name;
+    this.signupEmail = email;
+    this.signupPassword = password;
   }
   
   /**
@@ -47,16 +47,16 @@ public class SignupFormData {
   public List<ValidationError> validate() {
     List<ValidationError> errors = new ArrayList<>();
     
-    if (name == null || name.length() == 0) {
+    if (signupName == null || signupName.length() == 0) {
       errors.add(new ValidationError("name", "Name is required."));
     }
-    if (email == null || email.length() == 0) {
+    if (signupEmail == null || signupEmail.length() == 0) {
       errors.add(new ValidationError("email", "Email is required."));
     }
-    if (UserInfoDB.getUser(email) != null) {
-      errors.add(new ValidationError("email", "The email \"" + email + "\" is already used."));
+    if (UserInfoDB.getUser(signupEmail) != null) {
+      errors.add(new ValidationError("email", "The email \"" + signupEmail + "\" is already used."));
     }    
-    if (password == null || password.length() == 0) {
+    if (signupPassword == null || signupPassword.length() == 0) {
       errors.add(new ValidationError("password", "Password is required."));
     }
     return errors.isEmpty() ? null : errors;

@@ -25,7 +25,7 @@
             <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
           </fieldset>
         }
-         @if(flash.containsKey("error")) {
+         @if(flash.containsKey("loginError")) {
            <div id="error-message" class="text-danger">
              @flash.get("error")
            </div>
