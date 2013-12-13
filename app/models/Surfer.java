@@ -29,7 +29,7 @@ public class Surfer extends Model {
   private int rating;
   
   @OneToMany(mappedBy = "surfer")
-  private List<SurferUpdate> surferUpdates = new ArrayList<>();
+  List<Rating> ratings = new ArrayList<>();
   
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
       String slug, String type, String footstyle, String country) {
@@ -135,22 +135,6 @@ public class Surfer extends Model {
   }
   
   /**
-   * Get list of Surfer Updates tied to this Surfer.
-   * @return A list of Surfer Updates.
-   */
-  public List<SurferUpdate> getSurferUpdates() {
-    return surferUpdates;
-  }
-  
-  /**
-   * Add Surfer Update.
-   * @param update Surfer Update to add.
-   */
-  public void addSurferUpdates(SurferUpdate update) {
-    surferUpdates.add(update);
-  }
-  
-  /**
    * @param value Value to set.
    */
   public void setSlugDefined(boolean value) {
@@ -182,6 +166,22 @@ public class Surfer extends Model {
     else {
       return this.bio.substring(0, MAX_BIO_LENGTH);
     }
+  }
+  
+  /**
+   * Get List of Ratings.
+   * @return A List of Ratings.
+   */
+  public List<Rating> getRatings() {
+    return ratings;
+  }
+  
+  /**
+   * Add Rating to Rating List.
+   * @param rating The Rating to add.
+   */
+  public void addRating(Rating rating) {
+    ratings.add(rating);
   }
 
   /**

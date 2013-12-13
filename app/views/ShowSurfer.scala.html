@@ -9,6 +9,7 @@
    <div class="row">
   </div>
    <div class="row">
+   @if(isLoggedIn) {
    <div class="col-md-4">
    @System.out.println("SurferRating " + surfer.getRating())
      <div class = "well" id = "rates">
@@ -36,6 +37,7 @@
         </div>
         }
       </div>
+      }
       <div class="well">
         <div class ="img-one" style = "background-image: url('@surfer.getBioURL()');"></div>
       </div>
@@ -59,7 +61,7 @@
           <b>Footstyle:</b> @surfer.getFootstyle()
         </p>
           <p><b>Biography:</b> @surfer.getBio()</p>
-          @if(isLoggedIn){
+          @if(isLoggedIn) {
           <p><a href = @routes.Application.manageSurfer(surfer.getSlug())>
  <button type="button" class="btn btn-primary btn-sm">Edit</button></a>
           <a data-toggle="modal" href="#myModal" class = "delete">
