@@ -48,16 +48,16 @@ public class SignupFormData {
     List<ValidationError> errors = new ArrayList<>();
     
     if (signupName == null || signupName.length() == 0) {
-      errors.add(new ValidationError("name", "Name is required."));
+      errors.add(new ValidationError("signupName", "Name is required."));
     }
     if (signupEmail == null || signupEmail.length() == 0) {
-      errors.add(new ValidationError("email", "Email is required."));
+      errors.add(new ValidationError("signupEmail", "Email is required."));
     }
     if (UserInfoDB.getUser(signupEmail) != null) {
-      errors.add(new ValidationError("email", "The email \"" + signupEmail + "\" is already used."));
+      errors.add(new ValidationError("signupEmail", "The email \"" + signupEmail + "\" is already used."));
     }    
     if (signupPassword == null || signupPassword.length() == 0) {
-      errors.add(new ValidationError("password", "Password is required."));
+      errors.add(new ValidationError("signupPassword", "Password is required."));
     }
     return errors.isEmpty() ? null : errors;
   }
