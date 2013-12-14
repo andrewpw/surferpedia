@@ -17,6 +17,7 @@ create table surfer (
   footstyle                 varchar(255),
   country                   varchar(255),
   rating                    integer,
+  rating_count              integer,
   constraint pk_surfer primary key (id))
 ;
 

@@ -27,6 +27,7 @@ public class Surfer extends Model {
   private String footstyle;
   private String country;
   private int rating;
+  private int ratingCount;
   
   @OneToMany(mappedBy = "surfer")
   private List<SurferUpdate> surferUpdates = new ArrayList<>();
@@ -44,6 +45,7 @@ public class Surfer extends Model {
     this.footstyle = footstyle;
     this.country = country;
     this.rating = 0;
+    this.ratingCount = 0;
   }
   
   /**
@@ -64,6 +66,9 @@ public class Surfer extends Model {
    * @return the rating
    */
   public int getRating() {
+    if(ratingCount > 0){
+      return Math.round((float)rating / ratingCount);
+    }
     return rating;
   }
 
@@ -71,7 +76,8 @@ public class Surfer extends Model {
    * @param rating the rating to set
    */
   public void setRating(int rating) {
-    this.rating = rating;
+    ratingCount++;
+    this.rating += rating;
   }
 
   public String getFootstyle() {
