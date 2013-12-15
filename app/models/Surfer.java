@@ -31,6 +31,9 @@ public class Surfer extends Model {
   @OneToMany(mappedBy = "surfer")
   private List<SurferUpdate> surferUpdates = new ArrayList<>();
   
+  @OneToMany(mappedBy = "surfer")
+  private List<Favorite> favorites = new ArrayList<>();
+  
   public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
       String slug, String type, String footstyle, String country) {
     this.name = name;
@@ -169,6 +172,23 @@ public class Surfer extends Model {
    */
   public void setCountry(String country) {
     this.country = country;
+  }
+  
+  /**
+   * @return the favorites
+   */
+  public List<Favorite> getFavorites() {
+    return favorites;
+  }
+  
+  /**
+   * Add a favorite.
+   * @param favorite Favorite to add.
+   */
+  public void addFavorite(Favorite favorite) {
+    if (favorite != null) {
+      favorites.add(favorite);
+    }
   }
   
   /**

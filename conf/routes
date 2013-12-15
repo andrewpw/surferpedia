@@ -17,6 +17,8 @@ POST    /search                     controllers.Application.search(page: Integer
 GET     /search                     controllers.Application.pageSearch(searchTerm: String, type: String, country: String, page: Integer ?= 0)
 POST    /surfer/:slug               controllers.Application.postRating(slug)
 POST    /newUser                    controllers.Application.newUser()
+GET     /favorite/add               controllers.Application.addFavorite(slug)
+GET     /favorite/remove            controllers.Application.deleteFavorite(slug)
  
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,7 +1,10 @@
 package models;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import play.db.ebean.Model;
 
 /**
@@ -18,6 +21,9 @@ public class UserInfo extends Model {
   private String password;
   private boolean admin = false;
   
+  @OneToMany(mappedBy = "userInfo")
+  private List<Favorite> favorites = new ArrayList<>();
+
   /**
    * Creates a new UserInfo instance.
    * @param name The name.
@@ -93,6 +99,23 @@ public class UserInfo extends Model {
    */
   public void setAdmin(boolean admin) {
     this.admin = admin;
+  }
+  
+  /**
+   * @return the favorites
+   */
+  public List<Favorite> getFavorites() {
+    return favorites;
+  }
+  
+  /**
+   * Add a favorite.
+   * @param favorite Favorite to add.
+   */
+  public void addFavorite(Favorite favorite) {
+    if (favorite != null) {
+      favorites.add(favorite);
+    }
   }
 
   /**
