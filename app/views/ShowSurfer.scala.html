@@ -6,8 +6,7 @@
 @import bootstrap3._
 
 @Main(surfer.getName(), isLoggedIn, userInfo, searchFormData, surferType, countryType) {
-   <div class="row">
-  </div>
+  <div class="container">
    <div class="row">
    <div class="col-md-4">
    @System.out.println("SurferRating " + surfer.getRating())
@@ -43,7 +42,15 @@
     <div class="col-md-8">
       <div class="well">
         <div class = "page">
-          <h1 id="intro">@surfer.getName()</h1><hr/>
+          <h1 id="intro">@surfer.getName()</h1>
+          @if(isLoggedIn) {
+            @if(!FavoriteDB.isAFavorite(surfer, userInfo)) {
+              <a href="@routes.Application.addFavorite(surfer.getSlug())" type="button" class="btn btn-primary">Favorite</a>
+            } else {
+              <a href="@routes.Application.deleteFavorite(surfer.getSlug())" type="button" class="btn btn-primary">Remove Favorite</a>
+            }
+          }     
+          <hr/>
         <p>
           <b>Home Town:</b> @surfer.getHometown()
         </p>
@@ -87,5 +94,6 @@
         }
       </div>
     </div>
+  </div>
   </div>
 }

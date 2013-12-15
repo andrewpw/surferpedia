@@ -23,6 +23,7 @@ import views.html.ShowSurfer;
 import views.html.ManageSurfer;
 import views.html.Updates;
 import views.html.Search;
+import models.FavoriteDB;
 import models.Surfer;
 import models.SurferDB;
 import models.SurferUpdateDB;
@@ -266,5 +267,37 @@ public class Application extends Controller {
       return ok(Index.render("Index", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
                              searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
     }
+  }
+  
+  /**
+   * Result page for adding a Favorite.
+   * @param slug The slug of the Surfer that is to be a Favorite.
+   * @return The Surfer with the matching slug.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result addFavorite(String slug) {
+    SearchFormData searchFormData = new SearchFormData();
+    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    RatingFormData ratingFormData = new RatingFormData();
+    Form<RatingFormData> ratingForm = Form.form(RatingFormData.class).fill(ratingFormData);
+    FavoriteDB.add(SurferDB.getSurfer(slug), Secured.getUserInfo(ctx()));
+    return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
+        searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
+  }
+  
+  /**
+   * Result page for adding a Favorite.
+   * @param slug The slug of the Surfer that is to be a Favorite.
+   * @return The Surfer with the matching slug.
+   */
+  @Security.Authenticated(Secured.class)
+  public static Result deleteFavorite(String slug) {
+    SearchFormData searchFormData = new SearchFormData();
+    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    RatingFormData ratingFormData = new RatingFormData();
+    Form<RatingFormData> ratingForm = Form.form(RatingFormData.class).fill(ratingFormData);
+    FavoriteDB.delete(SurferDB.getSurfer(slug), Secured.getUserInfo(ctx()));
+    return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
+        searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
   }
 }
