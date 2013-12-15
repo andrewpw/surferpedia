@@ -2,6 +2,12 @@ body {
 	
 }
 
+.navbar-inverse {
+	border: none;
+	background-image: none;
+	background-color: black;
+}
+
 .wrapper:hover label {
 	background-position: left bottom;
 }
