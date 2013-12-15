@@ -1,0 +1,11 @@
+@(user: UserInfo, isLoggedIn: Boolean, userInfo: UserInfo, searchFormData: Form[views.formdata.SearchFormData],
+  surferType: Map[String, Boolean], countryType: Map[String, Boolean])
+
+@import helper.form
+@import bootstrap3._
+
+@Main(userInfo.getName, isLoggedIn, userInfo, searchFormData, surferType, countryType) {
+  <div class="page-header">
+    <h1>@user.getName() <small>@user.getEmail()</small></h1>
+  </div>
+}

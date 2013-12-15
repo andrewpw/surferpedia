@@ -46,7 +46,7 @@ Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
         
             <!--  Search Widget -->
             @search(searchFD("searchTerm"), searchFD("type"), searchFD("country"), surferType, countryType)        
-          <li><p class="navbar-text">@userInfo.getEmail()</p></li>
+          <li><a href="@routes.Application.showUser(userInfo.getId())">@userInfo.getEmail()</a></li>
           <li><a id="logout" href="@routes.Application.logout()">Logout</a></li>
         </ul>
         } else {
