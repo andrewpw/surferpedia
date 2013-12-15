@@ -4,6 +4,7 @@ import org.junit.Test;
 import play.test.TestBrowser;
 import play.libs.F.Callback;
 import test.pages.IndexPage;
+import test.pages.LoginPage;
 import test.pages.ResultPage;
 import static play.test.Helpers.HTMLUNIT;
 import static play.test.Helpers.inMemoryDatabase;
@@ -46,6 +47,23 @@ public class IntegrationTest {
         indexPage.clickSearchButton();
         ResultPage resultPage = new ResultPage(browser.getDriver(), PORT);
         resultPage.isAt();
+      }
+    });
+  }
+  
+  /**
+   * Check to see that a search submission goes to Results page.
+   */
+  @Test
+  public void testLogin() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) {
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
       }
     });
   }

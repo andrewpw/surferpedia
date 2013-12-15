@@ -1,85 +1,96 @@
 body {
-  
-}
-.wrapper:hover label{
-        background-position:left bottom;
-    }
-    label{
-        background:url('http://img833.imageshack.us/img833/5959/stard.png') no-repeat left bottom;
-        float:right;
-        line-height:20px;   
-        padding-left:20px;
-        height:15px;
-    }
-    input:checked+label,.wrapper:hover label:hover,.wrapper:hover label:hover~label{
-        background-position:0px -1px;
-    }
-    input:checked~label{
-        background-position:0px -1px;
-    }   
-    input{
-        display:none;
-    }
-    .wrapper{
-        float:left;
-        padding-left: 130px;
-    }
-
-
-.form-group .rateSub{
-  padding-top: 30px;
-  margin-left: 165px;
+	
 }
 
-#rates.well{
+.navbar-inverse {
+	border: none;
+	background-image: none;
+	background-color: black;
 }
 
-#rates.well h2{
-  padding:0px;
-  text-align: center;
+.wrapper:hover label {
+	background-position: left bottom;
 }
 
-.delete{
-  float: right;
+label {
+	background: url('http://img833.imageshack.us/img833/5959/stard.png')
+		no-repeat left bottom;
+	float: right;
+	line-height: 20px;
+	padding-left: 20px;
+	height: 15px;
 }
 
-.nav .caret{
-  border-top-color: #999 !important;
-  border-bottom-color: #999;
+input:checked+label,.wrapper:hover label:hover,.wrapper:hover label:hover
+	~label{
+	background-position: 0px -1px;
 }
 
-
-
-.header-image{ 
-  background: url("../images/surfing.jpg");
-  background-size: cover;
-  height: 375px;
-}
-.img-one{
-  background-size: cover;
-  background-position: center;
-  height: 500px;
+input:checked ~label{
+	background-position: 0px -1px;
 }
 
-
-
-.pic-caption{
-  font-size: 30px;
+input {
+	display: none;
 }
 
-.page{
-  font-size: 15px;
+.wrapper {
+	float: left;
+	padding-left: 130px;
 }
 
-.outer{
-  padding: 10px 150px 30px 150px;
+.form-group .rateSub {
+	padding-top: 30px;
+	margin-left: 165px;
 }
 
-.inner{
-  padding: 0;
+#rates.well {
+	
+}
+
+#rates.well h2 {
+	padding: 0px;
+	text-align: center;
+}
+
+.delete {
+	float: right;
+}
+
+.nav .caret {
+	border-top-color: #999 !important;
+	border-bottom-color: #999;
+}
+
+.header-image {
+	background: url("../images/surfing.jpg");
+	background-size: cover;
+	height: 375px;
+}
+
+.img-one {
+	background-size: cover;
+	background-position: center;
+	height: 500px;
+}
+
+.pic-caption {
+	font-size: 30px;
+}
+
+.page {
+	font-size: 15px;
+}
+
+.outer {
+	padding: 10px 150px 30px 150px;
+}
+
+.inner {
+	padding: 0;
 }
 
 .searchForm {
 	padding-top: 7px;
-	height:25px;
+	height: 25px;
 }
