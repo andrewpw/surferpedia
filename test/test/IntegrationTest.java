@@ -62,6 +62,8 @@ public class IntegrationTest {
         browser.goTo(indexPage);
         indexPage.isAt();
         indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
       }
     });
   }
