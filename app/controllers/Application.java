@@ -5,7 +5,6 @@ package controllers;
 
 import java.util.List;
 import com.avaje.ebean.Page;
-import com.avaje.ebean.PagingList;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -20,6 +19,7 @@ import views.formdata.SurferTypes;
 import views.html.Index;
 import views.html.Login;
 import views.html.ShowSurfer;
+import views.html.ShowUser;
 import views.html.ManageSurfer;
 import views.html.Updates;
 import views.html.Search;
@@ -299,5 +299,24 @@ public class Application extends Controller {
     FavoriteDB.delete(SurferDB.getSurfer(slug), Secured.getUserInfo(ctx()));
     return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
         searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
+  }
+  
+  /**
+   * Result page for UserInfo information.
+   * @param id The ID of the UserInfo.
+   * @return A page about a UserInfo.
+   */
+  @Security.Authenticated(Secured.class)  
+  public static Result showUser(long id) {
+    SearchFormData searchFormData = new SearchFormData();
+    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    UserInfo user = UserInfoDB.getUser(id);
+   if (user == null) {
+     return redirect(routes.Application.index());
+   }
+   else {
+     return ok(ShowUser.render(user, Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
+         searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
+   }
   }
 }

@@ -1,17 +1,11 @@
 package models;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Provides an in-memory repository for UserInfo.
  * Storing credentials in the clear is kind of bogus.
  * @author Philip Johnson
  */
 public class UserInfoDB {
-  
-  private static Map<String, UserInfo> userinfos = new HashMap<String, UserInfo>();
-  
   /**
    * Defines the admin account if the values are non-null.
    * @param name Their name.
@@ -30,7 +24,7 @@ public class UserInfoDB {
    * Indicates if the admin has been defined.
    * @return True if admin is defined, false otherwise.
    */
-  public static boolean adminDefined(){
+  public static boolean adminDefined() {
     return (UserInfo.find().where().eq("admin", true).findUnique() != null);
   }
   
@@ -62,6 +56,15 @@ public class UserInfoDB {
   public static UserInfo getUser(String email) {
     return UserInfo.find().where().eq("email", email).findUnique();
   }
+  
+  /**
+   * Returns the UserInfo associated with the email, or null if not found.
+   * @param id The ID of the UserInfo to find.
+   * @return The UserInfo if it exists, null otherwise.
+   */
+  public static UserInfo getUser(long id) {
+    return UserInfo.find().byId(id);
+  }
 
   /**
    * Returns true if email and password are valid credentials.
@@ -79,6 +82,13 @@ public class UserInfoDB {
             getUser(email).getPassword().equals(password));
   }
   
+  /**
+   * Determine if a User can be registered. 
+   * @param name The name of the User.
+   * @param email The email of the User.
+   * @param password The password of the User.
+   * @return True if the User can register, false otherwise.
+   */
   public static boolean canRegister(String name, String email, String password) {
     return ((email != null) 
         &&
