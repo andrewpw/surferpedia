@@ -1,6 +1,8 @@
 package test;
 
+import java.util.concurrent.TimeUnit;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import play.test.TestBrowser;
 import play.libs.F.Callback;
 import test.pages.IndexPage;
@@ -57,7 +59,7 @@ public class IntegrationTest {
   @Test
   public void testEmptyLogin() {
     running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
-      public void invoke(TestBrowser browser) {
+      public void invoke(TestBrowser browser) throws InterruptedException {
         IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
         browser.goTo(indexPage);
         indexPage.isAt();
@@ -82,7 +84,8 @@ public class IntegrationTest {
         indexPage.goToLogin();
         LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
         loginPage.isAt();
-        loginPage.login();
+        assertThat(browser.pageSource().contains("id=\"email\"")).isTrue();
+        browser.fill("#email").with("Test");
       }
     });
   }

@@ -43,6 +43,16 @@ public class IndexPage extends FluentPage {
   }
   
   /**
+   * Fill data of search form.
+   * @param surferName
+   * @param type
+   * @param country
+   */
+  public void fillSearch(String surferName, String type, String country) {
+    fill("#searchTerm").with(surferName);
+  }
+  
+  /**
    * Click login link.
    */
   public void goToLogin() {

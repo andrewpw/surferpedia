@@ -100,6 +100,11 @@ public class SurferDB {
   public static void deleteSurfer(String slug) {
     Surfer surfer = getSurfer(slug);
     SurferUpdateDB.addUpdate(new SurferUpdate("Delete", SurferDB.getSurfer(slug).getName()));
+    for (Favorite favorite : surfer.getFavorites()) {
+      favorite.getUserInfo().getFavorites().remove(favorite);
+      favorite.getUserInfo().save();
+      favorite.delete();
+    }
     surfer.delete();
   }
   
