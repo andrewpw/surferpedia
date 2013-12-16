@@ -2,6 +2,7 @@ package test.pages;
 
 import org.fluentlenium.core.FluentPage;
 import org.openqa.selenium.WebDriver;
+import play.Play;
 // Although Eclipse marks the following two methods as deprecated, 
 // the no-arg versions of the methods used here are not deprecated.  (as of May, 2013).
 import static org.fluentlenium.core.filter.FilterConstructor.withText; 
@@ -36,10 +37,18 @@ public class LoginPage extends FluentPage {
   }
   
   /**
-   * Click search button.
+   * Login as admin.
+   */
+  public void emptyLogin() {
+    submit("#submit");
+    assertThat(pageSource().contains("Login credentials not valid."));
+   }
+  
+  /**
+   * Check login.
    */
   public void login() {
-    submit("#login");
+    fill("#banana").with("Test");
   }
   
   /**
