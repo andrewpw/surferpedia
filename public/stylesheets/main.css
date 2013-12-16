@@ -1,5 +1,5 @@
 body {
-	
+	padding-bottom: 50px;
 }
 
 .navbar-inverse {
@@ -93,4 +93,8 @@ input {
 .searchForm {
 	padding-top: 7px;
 	height: 25px;
+}
+
+.formText {
+	text-align: center;
 }

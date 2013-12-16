@@ -1,21 +1,30 @@
 @(message: String, isLoggedIn: Boolean, userInfo: UserInfo, updates: List[SurferUpdate], 
-  searchFormData: Form[views.formdata.SearchFormData], surferType: Map[String, Boolean], 
-  countryType: Map[String, Boolean])
+searchFormData: Form[views.formdata.SearchFormData], surferType: Map[String, Boolean], countryType: Map[String, Boolean]) 
 
-@Main("Home", isLoggedIn, userInfo, searchFormData, surferType, countryType) {
-   <div class="container">
-     <h1>List of Updates to Surferpedia</h1>
-     <table class= "table table-striped table-bordered">
-       <tr>
-         <th>Date</th>
-         <th>Action</th>
-         <th>Surfer</th>
-       </tr>
-       @for(update <- updates){
-       <tr>
-         <td>@update.getDate()</td><td>@update.getType()</td><td>@update.getTarget()</td>
-       </tr>
-       }
-     </table>
-   </div>
+@Main("Change Log", isLoggedIn, userInfo, searchFormData, surferType, countryType) {
+<div class="container">
+  <h1>List of Updates to Surferpedia</h1>
+  <table class="table table-striped table-bordered">
+    <tr>
+      <th>Date</th>
+      <th>Action</th>
+      <th>Surfer</th>
+    </tr>
+    @for(update <- updates){
+    <tr>
+      <td>@update.getDate()</td>
+      @if(update.getType().equals("Create")) {
+      <td><span class="label label-success">@update.getType()</span></td>
+      }
+      @if(update.getType().equals("Edit")) {
+      <td><span class="label label-primary">@update.getType()</span></td>      
+      }
+      @if(update.getType().equals("Delete")) {
+      <td><span class="label label-danger">@update.getType()</span></td>      
+      }
+      <td>@update.getTarget()</td>
+    </tr>
+    }
+  </table>
+</div>
 }

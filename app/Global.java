@@ -1,4 +1,3 @@
-import java.util.Date; 
 import models.Surfer;
 import models.SurferDB;
 import models.UserInfoDB;
@@ -7,10 +6,15 @@ import play.GlobalSettings;
 import play.Play;
 import views.formdata.SurferFormData;
 
+/**
+ * Play Framework Global object.
+ */
 public class Global extends GlobalSettings {
 
+  /**
+   * Defines initialization of the web application.
+   */
   public void onStart(Application app) {
-
     String adminEmail = Play.application().configuration().getString("digits.admin.email");
     String adminPassword = Play.application().configuration().getString("digits.admin.password");
     UserInfoDB.defineAdmin("Andrew", adminEmail, adminPassword);
@@ -60,8 +64,8 @@ public class Global extends GlobalSettings {
               "http://www.surfermag.com/hot-100/img/grm7s.jpg",
               "Barron Mamiya took home 1st place in the squids division of the vqs championships. "
               + "Not only did Barron win the comp but also got a standing ovation from the whole beach by getting the "
-              + "only barrel ride of the comp and nearly posting a a 10 point ride. The future of surfing we think so!!!",
-              "http://static.grindtv.com/images/1/00/30/88/48/308848.jpg", 
+              + "only barrel ride of the comp and nearly posting a a 10 point ride. The future of surfing we think "
+              + "so!!!", "http://static.grindtv.com/images/1/00/30/88/48/308848.jpg", 
               "Barron", "Grom", "Regular", "United States"); 
     Surfer surfer26 =
       new Surfer(

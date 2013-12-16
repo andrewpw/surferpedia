@@ -1,6 +1,8 @@
 package test;
 
+import java.util.concurrent.TimeUnit;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import play.test.TestBrowser;
 import play.libs.F.Callback;
 import test.pages.IndexPage;
@@ -52,7 +54,25 @@ public class IntegrationTest {
   }
   
   /**
-   * Check to see that a search submission goes to Results page.
+   * Check to see error message pops up when no login information is provided.
+   */
+  @Test
+  public void testEmptyLogin() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) throws InterruptedException {
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
+        loginPage.emptyLogin();
+      }
+    });
+  }
+  
+  /**
+   * Check to see error message pops up when no login information is provided.
    */
   @Test
   public void testLogin() {
@@ -64,8 +84,11 @@ public class IntegrationTest {
         indexPage.goToLogin();
         LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
         loginPage.isAt();
+        assertThat(browser.pageSource().contains("id=\"email\"")).isTrue();
+        browser.fill("#email").with("Test");
       }
     });
   }
+
 
 }
