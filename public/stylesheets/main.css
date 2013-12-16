@@ -98,3 +98,7 @@ input {
 .formText {
 	text-align: center;
 }
+
+.navbar {
+  border-radius: 0px; 
+}
