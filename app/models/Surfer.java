@@ -8,6 +8,9 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import play.db.ebean.Model;
 
+/**
+ * A Surfer Object.
+ */
 @Entity
 public class Surfer extends Model {
   private static final long serialVersionUID = 1L;
@@ -29,12 +32,22 @@ public class Surfer extends Model {
   private int rating;
   
   @OneToMany(mappedBy = "surfer")
-  private List<SurferUpdate> surferUpdates = new ArrayList<>();
-  
-  @OneToMany(mappedBy = "surfer")
   private List<Favorite> favorites = new ArrayList<>();
   
-  public Surfer (String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
+  /**
+   * A Surfer Constructor.
+   * @param name The name of the Surfer.
+   * @param hometown The hometown of the Surfer.
+   * @param awards Awards the Surfer has won.
+   * @param carouselURL The URL for the Surfer's carousel image.
+   * @param bio The biography of the Surfer.
+   * @param bioURL The URL to the image used on the Surfer's personal page.
+   * @param slug The slug of the Surfer.
+   * @param type The type of Surfer.
+   * @param footstyle The Footstyle of the Surfer.
+   * @param country The country of origin of the Surfer.
+   */
+  public Surfer(String name, String hometown, String awards, String carouselURL, String bio, String bioURL, 
       String slug, String type, String footstyle, String country) {
     this.name = name;
     this.hometown = hometown;
@@ -77,81 +90,133 @@ public class Surfer extends Model {
     this.rating = rating;
   }
 
+ /**
+  * @return The footstyle.
+  */
   public String getFootstyle() {
     return footstyle;
   }
 
+  /**
+   * @param footstyle the footstyle to set.
+   */
   public void setFootstyle(String footstyle) {
     this.footstyle = footstyle;
   }
 
+  /**
+   * @return the bio.
+   */
   public String getBio() {
     return bio;
   }
 
+  /**
+   * @param bio the bio to set.
+   */
   public void setBio(String bio) {
     this.bio = bio;
   }
   
+  /**
+   * @return the name.
+   */
   public String getName() {
     return name;
   }
+  
+  /**
+   * @param name the name to set.
+   */
   public void setName(String name) {
     this.name = name;
   }
+  
+  /**
+   * @return the hometown.
+   */
   public String getHometown() {
     return hometown;
   }
+  
+  /**
+   * @param hometown the hometown to set.
+   */
   public void setHometown(String hometown) {
     this.hometown = hometown;
   }
+  
+  /**
+   * @return the rewards.
+   */
   public String getAwards() {
     return awards;
   }
+  
+  /**
+   * @param awards the awards to set.
+   */
   public void setAwards(String awards) {
     this.awards = awards;
   }
+  
+  /**
+   * @return the caruosel URL.
+   */
   public String getCarouselURL() {
     return carouselURL;
   }
+  
+  /**
+   * @param carouselURL the carouselURL to set.
+   */
   public void setCarouselURL(String carouselURL) {
     this.carouselURL = carouselURL;
   }
+  
+  /**
+   * @return the bio URL.
+   */
   public String getBioURL() {
     return bioURL;
   }
+  
+  /**
+   * @param bioURL the bioURL to set.
+   */
   public void setBioURL(String bioURL) {
     this.bioURL = bioURL;
   }
+  
+  /**
+   * @return the type.
+   */
   public String getType() {
     return type;
   }
+  
+  /**
+   * @param type the type to set.
+   */
   public void setType(String type) {
     this.type = type;
   }
+  
+  /**
+   * @return the slug.
+   */
   public String getSlug() {
     return slug;
   }
 
+  /**
+   * @return the slug defined.
+   */
   public boolean getSlugIndex() {
     return slugDefined;
   }
   
   /**
-   * Get list of Surfer Updates tied to this Surfer.
-   * @return A list of Surfer Updates.
-   */
-  public List<SurferUpdate> getSurferUpdates() {
-    return surferUpdates;
-  }
-  
-  /**
-   * Add Surfer Update.
-   * @param update Surfer Update to add.
-   */
-  public void addSurferUpdates(SurferUpdate update) {
-    surferUpdates.add(update);
-  }
   
   /**
    * @param value Value to set.

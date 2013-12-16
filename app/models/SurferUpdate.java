@@ -5,7 +5,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import play.db.ebean.Model;
 
 /**
@@ -20,7 +19,6 @@ public class SurferUpdate extends Model {
   private String date;
   private String type;
   private String target;
-  private String user;
   
 
   /**

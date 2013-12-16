@@ -32,7 +32,6 @@ create table surfer_update (
   date                      varchar(255),
   type                      varchar(255),
   target                    varchar(255),
-  surfer_id                 bigint,
   constraint pk_surfer_update primary key (id))
 ;
 
@@ -49,8 +48,6 @@ alter table favorite add constraint fk_favorite_surfer_1 foreign key (surfer_id)
 create index ix_favorite_surfer_1 on favorite (surfer_id);
 alter table favorite add constraint fk_favorite_userInfo_2 foreign key (user_info_id) references user_info (id) on delete restrict on update restrict;
 create index ix_favorite_userInfo_2 on favorite (user_info_id);
-alter table surfer_update add constraint fk_surfer_update_surfer_3 foreign key (surfer_id) references surfer (id) on delete restrict on update restrict;
-create index ix_surfer_update_surfer_3 on surfer_update (surfer_id);
 
 
 
