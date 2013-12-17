@@ -22,6 +22,7 @@ searchFormData, surferType, countryType) {
               @if(FavoriteDB.getFavorite(user).size() > 0) {
                 @for(favorite <- FavoriteDB.getFavorite(user)) {
                   <a href="/surfer/@favorite.getSurfer().getSlug()">@favorite.getSurfer().getName()</a>
+                  @if(user.equals(userInfo)) {<button type="button" class="btn btn-info btn-xs pull-right">Delete</button>}
                 }
               } else {
                 No Favorite Surfers
@@ -35,7 +36,12 @@ searchFormData, surferType, countryType) {
                 <h3 class="panel-title" style="color:black;">Rating <span class="badge pull-right">TBA</span></h3>
               </div>
               <div class="panel-body">
-                TBA
+                <span class="label label-default">No Rating</span> 
+                <span class="label label-danger">1</span> 
+                <span class="label label-default" style="background-color:#ff4300;">2</span> 
+                <span class="label label-warning" style="background-color:#ffe900; color:gray;">3</span> 
+                <span class="label label-success">4</span>
+                <span class="label label-success" style="background-color:green;">5</span>
               </div>
             </div>
           </div>
