@@ -77,5 +77,12 @@ public class IndexPage extends FluentPage {
     find("#userPage").click();
   }
   
+  /**
+   * Go to change log.
+   */
+  public void goToChangeLog() {
+    find("#changeLog").click();
+  }
+  
   
 }

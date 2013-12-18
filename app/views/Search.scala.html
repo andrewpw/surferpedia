@@ -18,7 +18,7 @@ from: @if(country.equals("")) {"All Countries"} else {"@country"}.</p>
    <th>Description</th>
    </tr>
     @for(surfer <- currentPage.getList()) {
-    <tr><td><a href="../surfer/@surfer.getSlug()">@surfer.getName()</a></td>
+    <tr><td><a id="@surfer.getSlug()" href="../surfer/@surfer.getSlug()">@surfer.getName()</a></td>
     <td>@surfer.getTruncatedBio()</td>
     </tr>
     }
