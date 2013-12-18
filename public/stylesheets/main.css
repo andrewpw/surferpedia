@@ -1,100 +1,106 @@
 body {
-        padding-bottom: 50px;
+    padding-bottom: 50px;
 }
 
 .navbar-inverse {
-        border: none;
-        background-image: none;
-        background-color: black;
+    border: none;
+    background-image: none;
+    background-color: black;
 }
 
 .wrapper:hover label {
-        background-position: left bottom;
+    background-position: left bottom;
 }
 
 label {
-        background: url('http://img833.imageshack.us/img833/5959/stard.png')
-                no-repeat left bottom;
-        float: right;
-        line-height: 20px;
-        padding-left: 20px;
-        height: 15px;
+    background: url('http://img833.imageshack.us/img833/5959/stard.png')
+        no-repeat left bottom;
+    float: right;
+    line-height: 20px;
+    padding-left: 20px;
+    height: 15px;
 }
 
 input:checked+label,.wrapper:hover label:hover,.wrapper:hover label:hover
-        ~label{
-        background-position: 0px -1px;
+    ~label{
+    background-position: 0px -1px;
 }
 
 input:checked ~label{
-        background-position: 0px -1px;
+    background-position: 0px -1px;
 }
 
+/*
 input {
-        display: none;
+  display: none;
 }
+*/
 
 .wrapper {
-        float: left;
-        padding-left: 130px;
+    float: left;
+    padding-left: 130px;
 }
 
 .form-group .rateSub {
-        padding-top: 30px;
-        margin-left: 165px;
+    padding-top: 30px;
+    margin-left: 165px;
 }
 
 #rates.well {
-        
+    
 }
 
 #rates.well h2 {
-        padding: 0px;
-        text-align: center;
+    padding: 0px;
+    text-align: center;
 }
 
 .delete {
-        float: right;
+    float: right;
 }
 
 .nav .caret {
-        border-top-color: #999 !important;
-        border-bottom-color: #999;
+    border-top-color: #999 !important;
+    border-bottom-color: #999;
 }
 
 .header-image {
-        background: url("../images/surfing.jpg");
-        background-size: cover;
-        height: 375px;
+    background: url("../images/surfing.jpg");
+    background-size: cover;
+    height: 375px;
 }
 
 .img-one {
-        background-size: cover;
-        background-position: center;
-        height: 500px;
+    background-size: cover;
+    background-position: center;
+    height: 500px;
 }
 
 .pic-caption {
-        font-size: 30px;
+    font-size: 30px;
 }
 
 .page {
-        font-size: 15px;
+    font-size: 15px;
 }
 
 .outer {
-        padding: 10px 150px 30px 150px;
+    padding: 10px 150px 30px 150px;
 }
 
 .inner {
-        padding: 0;
+    padding: 0;
 }
 
 .searchForm {
-        padding-top: 7px;
-        height: 25px;
+    padding-top: 7px;
+    height: 25px;
 }
 
 .formText {
-        text-align: center;
+    text-align: center;
 }
+
+.navbar {
+  border-radius: 0px; 
+}}
