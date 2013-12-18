@@ -10,15 +10,16 @@ body {
 
 .wrapper:hover label {
 	background-position: left bottom;
+    padding-bottom: 50px;
 }
 
 label {
-	background: url('http://img833.imageshack.us/img833/5959/stard.png')
-		no-repeat left bottom;
-	float: right;
-	line-height: 20px;
-	padding-left: 20px;
-	height: 15px;
+    background: url('http://img833.imageshack.us/img833/5959/stard.png')
+        no-repeat left bottom;
+    float: right;
+    line-height: 20px;
+    padding-left: 20px;
+    height: 15px;
 }
 
 input:checked+label,.wrapper:hover label:hover,.wrapper:hover label:hover
@@ -27,7 +28,7 @@ input:checked+label,.wrapper:hover label:hover,.wrapper:hover label:hover
 }
 
 input:checked ~label{
-	background-position: 0px -1px;
+    background-position: 0px -1px;
 }
 
 /*
@@ -47,37 +48,37 @@ input {
 }
 
 #rates.well {
-	
+    
 }
 
 #rates.well h2 {
-	padding: 0px;
-	text-align: center;
+    padding: 0px;
+    text-align: center;
 }
 
 .delete {
-	float: right;
+    float: right;
 }
 
 .nav .caret {
-	border-top-color: #999 !important;
-	border-bottom-color: #999;
+    border-top-color: #999 !important;
+    border-bottom-color: #999;
 }
 
 .header-image {
-	background: url("../images/surfing.jpg");
-	background-size: cover;
-	height: 375px;
+    background: url("../images/surfing.jpg");
+    background-size: cover;
+    height: 375px;
 }
 
 .img-one {
-	background-size: cover;
-	background-position: center;
-	height: 500px;
+    background-size: cover;
+    background-position: center;
+    height: 500px;
 }
 
 .pic-caption {
-	font-size: 30px;
+    font-size: 30px;
 }
 
 .page {
@@ -85,11 +86,11 @@ input {
 }
 
 .outer {
-	padding: 10px 150px 30px 150px;
+    padding: 10px 150px 30px 150px;
 }
 
 .inner {
-	padding: 0;
+    padding: 0;
 }
 
 .searchForm {

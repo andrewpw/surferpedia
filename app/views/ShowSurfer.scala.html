@@ -14,23 +14,19 @@
        <h2>Rate This Surfer</h2>
        @form(routes.Application.postRating(surfer.getSlug()), 'class -> "form-horizontal"){
         <div class="wrapper">
-          <div id="ratings">
+          <div class = "form-group" >
             @for(buttonName <- rating) {
               <input
                 type="radio"
                 name="@ratingFD("rating").name"
                 id="@buttonName"
                 value="@buttonName"
-                @if(buttonName == ratingFD.value.getOrElse("")) {checked} />
+                onclick = "this.form.submit();"
+                @if(Integer.parseInt(buttonName) == surfer.getRating()) {checked} />
               <label for="@buttonName">
               </label>
             } 
             
-          </div>
-        </div>
-        <div class = "form-group" >
-          <div class = "rateSub">
-            <button type = "submit" class = "btn btn-primary">Rate</button>
           </div>
         </div>
         }
