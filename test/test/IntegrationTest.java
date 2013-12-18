@@ -9,6 +9,7 @@ import play.libs.F.Callback;
 import test.pages.ChangeLogPage;
 import test.pages.IndexPage;
 import test.pages.LoginPage;
+import test.pages.NewSurferPage;
 import test.pages.ResultPage;
 import test.pages.SurferPage;
 import test.pages.UserPage;
@@ -185,6 +186,29 @@ public class IntegrationTest {
         indexPage.goToChangeLog();
         ChangeLogPage changeLogPage = new ChangeLogPage(browser.getDriver(), PORT);
         changeLogPage.isAt();
+      }
+    });    
+  }
+  
+  /**
+   * Test favorite function.
+   */
+  @Test
+  public void testNewSurfer() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) {
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
+        loginPage.login();
+        indexPage.isAt();
+        indexPage.isLoggedIn();
+        indexPage.goToNewSurfer();
+        NewSurferPage newSurferPage = new NewSurferPage(browser.getDriver(), PORT);
+        newSurferPage.isAt();
       }
     });    
   }

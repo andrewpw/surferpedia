@@ -84,5 +84,12 @@ public class IndexPage extends FluentPage {
     find("#changeLog").click();
   }
   
+  /**
+   * Go to change log.
+   */
+  public void goToNewSurfer() {
+    find("#newSurfer").click();
+  }
+  
   
 }
