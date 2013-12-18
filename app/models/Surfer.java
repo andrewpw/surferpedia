@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import play.db.ebean.Model;
 
 /**
@@ -29,11 +30,11 @@ public class Surfer extends Model {
   private boolean slugDefined = false;
   private String footstyle;
   private String country;
-  private int rating;
-  private int ratingCount;
   
   @OneToMany(mappedBy = "surfer")
   private List<Favorite> favorites = new ArrayList<>();
+  @OneToOne(mappedBy = "surfer")
+  private Rating rating;
   
   /**
    * A Surfer Constructor.
@@ -60,8 +61,6 @@ public class Surfer extends Model {
     this.type = type;
     this.footstyle = footstyle;
     this.country = country;
-    this.rating = 0;
-    this.ratingCount = 0;
   }
   
   /**
@@ -76,24 +75,6 @@ public class Surfer extends Model {
    */
   public void setId(long id) {
     this.id = id;
-  }
-  
-  /**
-   * @return the rating
-   */
-  public int getRating() {
-    if(ratingCount > 0){
-      return Math.round((float)rating / ratingCount);
-    }
-    return rating;
-  }
-
-  /**
-   * @param rating the rating to set
-   */
-  public void setRating(int rating) {
-    ratingCount++;
-    this.rating += rating;
   }
 
  /**
@@ -260,6 +241,24 @@ public class Surfer extends Model {
     if (favorite != null) {
       favorites.add(favorite);
     }
+  }
+  
+  /**
+   * Add a Rating.
+   * @param rating the Rating to add.
+   */
+  public Rating addRating(UserInfo userInfo) {
+    return rating = new Rating(this, userInfo);
+  }
+  
+  /**
+   * @return the rating.
+   */
+  public int getRatingVal() {
+    if (rating != null){
+      return rating.getRating();
+    }
+    else return 0;
   }
   
   /**

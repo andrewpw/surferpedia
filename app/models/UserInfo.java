@@ -2,8 +2,10 @@ package models;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import play.db.ebean.Model;
 
@@ -23,6 +25,8 @@ public class UserInfo extends Model {
   
   @OneToMany(mappedBy = "userInfo")
   private List<Favorite> favorites = new ArrayList<>();
+  @ManyToMany(mappedBy = "userInfos", cascade=CascadeType.ALL)
+  private List<Rating> ratings = new ArrayList<>();
 
   /**
    * Creates a new UserInfo instance.

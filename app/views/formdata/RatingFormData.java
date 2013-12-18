@@ -22,6 +22,6 @@ public class RatingFormData {
    * @param surfer the surfer to rate.
    */
   public RatingFormData(Surfer surfer) {
-    this.rating = surfer.getRating();
+    this.rating = surfer.getRatingVal();
   }
 }

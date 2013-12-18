@@ -1,3 +1,4 @@
+import models.RatingDB;
 import models.Surfer;
 import models.SurferDB;
 import models.UserInfoDB;
@@ -451,7 +452,6 @@ public class Global extends GlobalSettings {
     SurferDB.add(surfer28.getSlug(), new SurferFormData(surfer28));
     SurferDB.add(surfer29.getSlug(), new SurferFormData(surfer29));
     SurferDB.add(surfer30.getSlug(), new SurferFormData(surfer30));
-    
     }
   }
 
