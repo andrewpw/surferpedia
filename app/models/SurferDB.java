@@ -117,7 +117,6 @@ public class SurferDB {
    * @return A List of Surfers that match the search criteria.
    */
   public static Page<Surfer> search(String term, String type, String country, int page) {
-    System.out.println(term + " | " + type + " | " + country);
     if (type.equals("") && country.equals("")) {
       return Surfer.find().where().icontains("name", term).order("name")
           .findPagingList(PAGE_SIZE).setFetchAhead(false).getPage(page);     

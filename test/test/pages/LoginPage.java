@@ -1,5 +1,6 @@
 package test.pages;
 
+import java.sql.Driver;
 import org.fluentlenium.core.FluentPage;
 import org.openqa.selenium.WebDriver;
 import play.Play;
@@ -40,16 +41,29 @@ public class LoginPage extends FluentPage {
    * Login as admin.
    */
   public void emptyLogin() {
-    submit("#submit");
-    assertThat(pageSource().contains("Login credentials not valid."));
+    submit("#loginButton");
    }
+  
+  /**
+   * Test login.
+   */
+  public void login() {    
+    String adminEmail = Play.application().configuration().getString("digits.admin.email");
+    String adminPassword = Play.application().configuration().getString("digits.admin.password"); 
+    fill("#email").with(adminEmail);
+    fill("#password").with(adminPassword);
+    submit("#loginButton");
+  }
   
   /**
    * Check login.
    */
-  public void login() {
-    fill("#banana").with("Test");
+  public void loginError() {
+    fill("#email").with("Test");
+    fill("#email").with("Password");
+    submit("#loginButton");
   }
+  
   
   /**
    * Set the form to the passed values, then submit it.

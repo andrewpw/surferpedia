@@ -30,9 +30,11 @@ input:checked ~label{
 	background-position: 0px -1px;
 }
 
+/*
 input {
-	display: none;
+  display: none;
 }
+*/
 
 .wrapper {
 	float: left;
@@ -97,4 +99,8 @@ input {
 
 .formText {
 	text-align: center;
+}
+
+.navbar {
+  border-radius: 0px; 
 }

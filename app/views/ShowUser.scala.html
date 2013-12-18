@@ -2,19 +2,49 @@
 surferType: Map[String, Boolean], countryType: Map[String, Boolean]) @Main(userInfo.getName, isLoggedIn, userInfo,
 searchFormData, surferType, countryType) {
 <div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="panel panel-default">
-        <div class="panel-title">
-          <div class="page-header">
-            <h1 style="padding-left: 10px">
-              @user.getName() <small>@user.getEmail()</small>
-            </h1>
+  <div class="panel panel-info">
+    <div class="panel-heading" style="background-color:black;">
+      <div class="panel-title">
+        <h1 style="color: white;">
+          @user.getName() <small>@user.getEmail()</small>
+        </h1>
+      </div>
+    </div>
+    <div class="panel-body">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="panel panel-info">
+              <div class="panel-heading" style="background-color:white;">
+                <h3 class="panel-title" style="color:black;">Favorite Surfer <span class="badge pull-right">@FavoriteDB.getFavorite(user).size()</span></h3>
+              </div>
+              <div class="panel-body">
+              @if(FavoriteDB.getFavorite(user).size() > 0) {
+                @for(favorite <- FavoriteDB.getFavorite(user)) {
+                  <a href="/surfer/@favorite.getSurfer().getSlug()">@favorite.getSurfer().getName()</a>
+                  @if(user.equals(userInfo)) {<button type="button" class="btn btn-info btn-xs pull-right">Delete</button>}
+                }
+              } else {
+                No Favorite Surfers
+              }
+              </div>
+            </div>
           </div>
-          <div class="panel-title"><h2>Favorite Surfers <span class="badge">@FavoriteDB.getFavorite(user).size()</span></h2></div>
-          @for(favorite <- FavoriteDB.getFavorite(user)) { 
-            <p>@favorite.getSurfer().getName()</p>
-          }
+                    <div class="col-md-6">
+            <div class="panel panel-info">
+              <div class="panel-heading" style="background-color:white;">
+                <h3 class="panel-title" style="color:black;">Rating <span class="badge pull-right">TBA</span></h3>
+              </div>
+              <div class="panel-body">
+                <span class="label label-default">No Rating</span> 
+                <span class="label label-danger">1</span> 
+                <span class="label label-default" style="background-color:#ff4300;">2</span> 
+                <span class="label label-warning" style="background-color:#ffe900; color:gray;">3</span> 
+                <span class="label label-success">4</span>
+                <span class="label label-success" style="background-color:green;">5</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
