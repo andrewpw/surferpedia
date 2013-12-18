@@ -15,10 +15,14 @@ from: @if(country.equals("")) {"All Countries"} else {"@country"}.</p>
   <table class="table table-bordered">
    <tr>
    <th>Name</th>
+   <th>Type</th>
+   <th>Country</th>
    <th>Description</th>
    </tr>
     @for(surfer <- currentPage.getList()) {
     <tr><td><a id="@surfer.getSlug()" href="../surfer/@surfer.getSlug()">@surfer.getName()</a></td>
+    <td>@surfer.getType()</td>
+    <td>@surfer.getCountry()</td>
     <td>@surfer.getTruncatedBio()</td>
     </tr>
     }
