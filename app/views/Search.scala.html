@@ -7,6 +7,11 @@ String, currentPage: com.avaje.ebean.Page[Surfer])
 @Main("Search", isLoggedIn, userInfo, searchFormData, surferType, countryType) {
 
 <div class="container">
+
+<p>@currentPage.getTotalRowCount result(s) for search of keyword(s): "@searchTerm" of type: 
+@if(searchType.equals("")) {"All Types"} else {"@searchType"} 
+from: @if(country.equals("")) {"All Countries"} else {"@country"}.</p> 
+
   <table class="table table-bordered">
    <tr>
    <th>Name</th>

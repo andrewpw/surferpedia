@@ -137,13 +137,29 @@ public class IntegrationTest {
   }
 
   /**
-   * Test user control panel functions.
+   * Test search functions.
    */
   @Test
   public void testSearchWidget() {
     running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) {
-        
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.fillSearch("Bethany Hamilton", "Female", "United States");
+        ResultPage resultPage = new ResultPage(browser.getDriver(), PORT);
+        resultPage.isAt();
+        assertThat(browser.pageSource().contains("1 result(s)")).isTrue();
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.fillSearch("Bethany Hamilton", "Male", "United States");
+        resultPage.isAt();
+        assertThat(browser.pageSource().contains("0 result(s)")).isTrue();
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.fillSearch("Bethany Hamilton", "Female", "Australia");
+        resultPage.isAt();
+        assertThat(browser.pageSource().contains("0 result(s)")).isTrue();
       }
     });    
   }

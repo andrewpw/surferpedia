@@ -44,12 +44,15 @@ public class IndexPage extends FluentPage {
   
   /**
    * Fill data of search form.
-   * @param surferName
-   * @param type
-   * @param country
+   * @param surferName Search term.
+   * @param type Surfer type.
+   * @param country Surfer country.
    */
   public void fillSearch(String surferName, String type, String country) {
     fill("#searchTerm").with(surferName);
+    find("select", withId().equalTo("type")).find("option", withText().equalTo(type)).click();
+    find("select", withId().equalTo("country")).find("option", withText().equalTo(country)).click();
+    submit("#search");
   }
   
   /**

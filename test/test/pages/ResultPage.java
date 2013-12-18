@@ -33,21 +33,5 @@ public class ResultPage extends FluentPage {
   @Override
   public void isAt() {
     assertThat(title()).isEqualTo("Search");
-  }
-  
-  /**
-   * Set the form to the passed values, then submit it.
-   * @param name The form name data.
-   * @param gender The form gender value. 
-   */
-  public void submitForm(String name, String gender) {
-    // Fill the input field with id "name" with the passed name string.
-    fill("#name").with(name);
-    // Find the menu with id "gender", and click the menu item equal to the passed gender string.
-    find("select", withId().equalTo("gender")).find("option", withText().equalTo(gender)).click();
-    //Submit the form whose id is "submit"
-    submit("#submit");
-  }
-  
-  
+  } 
 }
