@@ -9,10 +9,12 @@
   <div class="container">
    <div class="row">
    <div class="col-md-4">
-   @System.out.println("SurferRating " + surfer.getRating())
      <div class = "well" id = "rates">
        <h2>Rate This Surfer</h2>
        @form(routes.Application.postRating(surfer.getSlug()), 'class -> "form-horizontal"){
+        @if(surfer.getRating().hasRated(userInfo) || userInfo == null){
+          <a data-toggle="modal" href="#myModal" class = "rating">
+        }
         <div class="wrapper">
           <div class = "form-group" >
             @for(buttonName <- rating) {
@@ -22,13 +24,35 @@
                 id="@buttonName"
                 value="@buttonName"
                 onclick = "this.form.submit();"
-                @if(Integer.parseInt(buttonName) == surfer.getRating()) {checked} />
+                @if(Integer.parseInt(buttonName) == surfer.getRatingVal()) {checked} />
               <label for="@buttonName">
               </label>
             } 
             
           </div>
         </div>
+              </a>
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Rating Error</h4>
+                  </div>
+                  <div class="modal-body">
+                    @if(surfer.getRating().hasRated(userInfo)){<p>You can only rate this surfer once</p>}
+                    @if(userInfo == null){<p>You must be logged in to rate a surfer</p>}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    @if(userInfo == null){
+                      <a href = @routes.Application.login() type="button" class="btn btn-primary">Login</a>
+                    }
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            
         }
       </div>
       <div class="well">
@@ -65,28 +89,28 @@
           <p><b>Biography:</b> @surfer.getBio()</p>
           @if(isLoggedIn){
           <p><a href = @routes.Application.manageSurfer(surfer.getSlug())>
- <button type="button" class="btn btn-primary btn-sm">Edit</button></a>
+               <button type="button" class="btn btn-primary btn-sm">Edit</button></a>
           <a data-toggle="modal" href="#myModal" class = "delete">
           @if(userInfo.isAdmin()) {
           <button type="button" class="btn btn-primary btn-sm">Delete</button></a></p>
           <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Really Delete Surfer?</h4>
-        </div>
-        <div class="modal-body">
-          <p>This cannot be undone.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <a href = @routes.Application.deleteSurfer(surfer.getSlug()) type="button" class="btn btn-primary">Delete</a>
-        </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-      }    
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                  <h4 class="modal-title">Really Delete Surfer?</h4>
+                </div>
+                <div class="modal-body">
+                  <p>This cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <a href = @routes.Application.deleteSurfer(surfer.getSlug()) type="button" class="btn btn-primary">Delete</a>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+          }    
         </div>
         }
       </div>
@@ -94,3 +118,4 @@
   </div>
   </div>
 }
+

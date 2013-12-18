@@ -24,6 +24,7 @@ import views.html.ManageSurfer;
 import views.html.Updates;
 import views.html.Search;
 import models.FavoriteDB;
+import models.RatingDB;
 import models.Surfer;
 import models.SurferDB;
 import models.SurferUpdateDB;
@@ -87,6 +88,7 @@ public class Application extends Controller {
       SurferFormData data = formData.get();
       flash("success", String.format("Successfully added %s", data.name));
       SurferDB.add(data.slug, data);
+      RatingDB.addRating(SurferDB.getSurfer(data.slug), userInfo, 0);
       return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(data.slug),
           searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
     }
@@ -153,8 +155,7 @@ public class Application extends Controller {
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
     RatingFormData data = formData.get();
     Surfer surfer = SurferDB.getSurfer(slug);
-    surfer.setRating(data.rating);
-    surfer.save();
+    RatingDB.addRating(surfer, Secured.getUserInfo(ctx()), data.rating);
     return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
         searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), formData));
   }
@@ -184,6 +185,10 @@ public class Application extends Controller {
               signupData, SurferTypes.getTypes(), CountryType.getSearchCountries()));
   }
   
+  /**
+   * Creates a new login session.
+   * @return A redirect to the index page on success or the login page on failure
+   */
   public static Result postLogin() {
     // Get the submitted form data from the request object, and run validation.
     Form<LoginFormData> formData = Form.form(LoginFormData.class).bindFromRequest();

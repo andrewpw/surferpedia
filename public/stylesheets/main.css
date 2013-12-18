@@ -10,7 +10,6 @@ body {
 
 .wrapper:hover label {
 	background-position: left bottom;
-    padding-bottom: 50px;
 }
 
 label {
@@ -31,11 +30,11 @@ input:checked ~label{
     background-position: 0px -1px;
 }
 
-/*
-input {
+
+.wrapper input {
   display: none;
 }
-*/
+
 
 .wrapper {
 	float: left;
@@ -48,7 +47,8 @@ input {
 }
 
 #rates.well {
-    
+    padding-bottom: 40px;
+    margin-bottom:5px;
 }
 
 #rates.well h2 {
