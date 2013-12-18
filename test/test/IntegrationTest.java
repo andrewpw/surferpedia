@@ -9,6 +9,7 @@ import play.libs.F.Callback;
 import test.pages.IndexPage;
 import test.pages.LoginPage;
 import test.pages.ResultPage;
+import test.pages.UserPage;
 import static play.test.Helpers.HTMLUNIT;
 import static play.test.Helpers.inMemoryDatabase;
 import static play.test.Helpers.fakeApplication;
@@ -108,10 +109,43 @@ public class IntegrationTest {
         loginPage.login();
         indexPage.isAt();
         indexPage.isLoggedIn();
-        System.out.println(browser.pageSource());
       }
     });
   }
+  
+  /**
+   * Test user control panel functions.
+   */
+  @Test
+  public void testUserPersonalPageLinkInNavigationBar() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) {
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
+        loginPage.login();
+        indexPage.isAt();
+        indexPage.isLoggedIn();
+        indexPage.goToUserPage();
+        UserPage userPage = new UserPage(browser.getDriver(), PORT);
+        userPage.isAt();
+      }
+    });    
+  }
 
+  /**
+   * Test user control panel functions.
+   */
+  @Test
+  public void testSearchWidget() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) {
+        
+      }
+    });    
+  }
 
 }

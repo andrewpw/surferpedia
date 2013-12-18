@@ -12,7 +12,7 @@ import static org.fest.assertions.Assertions.assertThat;
  * Illustration of the Page Object Pattern in Fluentlenium.  
  * @author Philip Johnson
  */
-public class IndexPage extends FluentPage {
+public class UserPage extends FluentPage {
   private String url;
   
   /**
@@ -20,7 +20,7 @@ public class IndexPage extends FluentPage {
    * @param webDriver The driver.
    * @param port The port.
    */
-  public IndexPage(WebDriver webDriver, int port) {
+  public UserPage(WebDriver webDriver, int port) {
     super(webDriver);
     this.url = "http://localhost:" + port;
   }
@@ -32,31 +32,7 @@ public class IndexPage extends FluentPage {
   
   @Override
   public void isAt() {
-    assertThat(title()).isEqualTo("Index");
-  }
-  
-  /**
-   * Click search button.
-   */
-  public void clickSearchButton() {
-    submit("#search");
-  }
-  
-  /**
-   * Fill data of search form.
-   * @param surferName
-   * @param type
-   * @param country
-   */
-  public void fillSearch(String surferName, String type, String country) {
-    fill("#searchTerm").with(surferName);
-  }
-  
-  /**
-   * Click login link.
-   */
-  public void goToLogin() {
-   find("#login").click();
+    assertThat(title()).contains("User - ");
   }
   
   /**
@@ -66,13 +42,5 @@ public class IndexPage extends FluentPage {
   public boolean isLoggedIn() {
     return !find("#logout").isEmpty();
   }
-  
-  /**
-   * Go the User control page.
-   */
-  public void goToUserPage() {
-    find("#userPage").click();
-  }
-  
   
 }

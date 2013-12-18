@@ -1,6 +1,7 @@
 @(user: UserInfo, isLoggedIn: Boolean, userInfo: UserInfo, searchFormData: Form[views.formdata.SearchFormData],
-surferType: Map[String, Boolean], countryType: Map[String, Boolean]) @Main(userInfo.getName, isLoggedIn, userInfo,
-searchFormData, surferType, countryType) {
+surferType: Map[String, Boolean], countryType: Map[String, Boolean]) 
+
+@Main("User - " + userInfo.getName, isLoggedIn, userInfo, searchFormData, surferType, countryType) {
 <div class="container">
   <div class="panel panel-info">
     <div class="panel-heading" style="background-color:black;">
