@@ -1,5 +1,6 @@
 package test.pages;
 
+import models.SurferDB;
 import org.fluentlenium.core.FluentPage;
 import org.openqa.selenium.WebDriver;
 // Although Eclipse marks the following two methods as deprecated, 
@@ -12,17 +13,19 @@ import static org.fest.assertions.Assertions.assertThat;
  * Illustration of the Page Object Pattern in Fluentlenium.  
  * @author Philip Johnson
  */
-public class ResultPage extends FluentPage {
+public class SurferPage extends FluentPage {
   private String url;
+  private String slug;
   
   /**
    * Create the IndexPage.
    * @param webDriver The driver.
    * @param port The port.
    */
-  public ResultPage(WebDriver webDriver, int port) {
+  public SurferPage(WebDriver webDriver, int port, String slug) {
     super(webDriver);
     this.url = "http://localhost:" + port;
+    this.slug = slug;
   }
   
   @Override
@@ -32,7 +35,7 @@ public class ResultPage extends FluentPage {
   
   @Override
   public void isAt() {
-    assertThat(title()).isEqualTo("Search");
+    assertThat(title()).isEqualTo(SurferDB.getSurfer(slug).getName());
   }
   
   /**
@@ -40,6 +43,6 @@ public class ResultPage extends FluentPage {
    * @param slug The slug of the Surfer.
    */
   public void goToSurfer(String slug) {
-    find("#Bethany").click();
+    find("#" + slug).click();
   }
 }

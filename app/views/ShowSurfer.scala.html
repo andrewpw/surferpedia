@@ -41,9 +41,9 @@
           <h1 id="intro">@surfer.getName()
                     @if(isLoggedIn) {
             @if(!FavoriteDB.isAFavorite(surfer, userInfo)) {
-              <a href="@routes.Application.addFavorite(surfer.getSlug())" type="button" class="btn btn-primary">Favorite</a>
+              <a id="addFav" href="@routes.Application.addFavorite(surfer.getSlug())" type="button" class="btn btn-primary">Favorite</a>
             } else {
-              <a href="@routes.Application.deleteFavorite(surfer.getSlug())" type="button" class="btn btn-primary">Remove Favorite</a>
+              <a id="removeFav" href="@routes.Application.deleteFavorite(surfer.getSlug())" type="button" class="btn btn-primary">Remove Favorite</a>
             }
           }   
           </h1>  

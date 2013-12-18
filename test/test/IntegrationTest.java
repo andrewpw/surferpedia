@@ -6,9 +6,12 @@ import org.openqa.selenium.By;
 import play.Play;
 import play.test.TestBrowser;
 import play.libs.F.Callback;
+import test.pages.ChangeLogPage;
 import test.pages.IndexPage;
 import test.pages.LoginPage;
+import test.pages.NewSurferPage;
 import test.pages.ResultPage;
+import test.pages.SurferPage;
 import test.pages.UserPage;
 import static play.test.Helpers.HTMLUNIT;
 import static play.test.Helpers.inMemoryDatabase;
@@ -137,13 +140,75 @@ public class IntegrationTest {
   }
 
   /**
-   * Test user control panel functions.
+   * Test search functions.
    */
   @Test
   public void testSearchWidget() {
     running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) {
-        
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.fillSearch("Bethany Hamilton", "Female", "United States");
+        ResultPage resultPage = new ResultPage(browser.getDriver(), PORT);
+        resultPage.isAt();
+        assertThat(browser.pageSource().contains("1 result(s)")).isTrue();
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.fillSearch("Bethany Hamilton", "Male", "United States");
+        resultPage.isAt();
+        assertThat(browser.pageSource().contains("0 result(s)")).isTrue();
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.fillSearch("Bethany Hamilton", "Female", "Australia");
+        resultPage.isAt();
+        assertThat(browser.pageSource().contains("0 result(s)")).isTrue();
+      }
+    });    
+  }
+  
+  /**
+   * Test favorite function.
+   */
+  @Test
+  public void testChangeLogLink() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) {
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
+        loginPage.login();
+        indexPage.isAt();
+        indexPage.isLoggedIn();
+        indexPage.goToChangeLog();
+        ChangeLogPage changeLogPage = new ChangeLogPage(browser.getDriver(), PORT);
+        changeLogPage.isAt();
+      }
+    });    
+  }
+  
+  /**
+   * Test favorite function.
+   */
+  @Test
+  public void testNewSurfer() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) {
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
+        loginPage.login();
+        indexPage.isAt();
+        indexPage.isLoggedIn();
+        indexPage.goToNewSurfer();
+        NewSurferPage newSurferPage = new NewSurferPage(browser.getDriver(), PORT);
+        newSurferPage.isAt();
       }
     });    
   }

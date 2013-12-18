@@ -39,8 +39,8 @@ Map[String, Boolean], countryType: Map[String, Boolean])(content: Html)
       <div class="collapse navbar-collapse">
         @if(isLoggedIn) {
         <ul class="nav navbar-nav navbar-left">
-          <li><a id="newContact" href="@routes.Application.newSurfer()">New Surfer</a></li>
-          <li><a id="newContact" href="@routes.Application.getUpdates()">Change Log</a></li>        
+          <li><a id="newSurfer" href="@routes.Application.newSurfer()">New Surfer</a></li>
+          <li><a id="changeLog" href="@routes.Application.getUpdates()">Change Log</a></li>        
         </ul>
         <ul class="nav navbar-nav navbar-right">
         
