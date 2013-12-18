@@ -9,7 +9,6 @@
   <div class="container">
    <div class="row">
    <div class="col-md-4">
-   @System.out.println("SurferRating " + surfer.getRating())
      <div class = "well" id = "rates">
        <h2>Rate This Surfer</h2>
        @form(routes.Application.postRating(surfer.getSlug()), 'class -> "form-horizontal"){
@@ -22,7 +21,7 @@
                 id="@buttonName"
                 value="@buttonName"
                 onclick = "this.form.submit();"
-                @if(Integer.parseInt(buttonName) == surfer.getRating()) {checked} />
+                @if(Integer.parseInt(buttonName) == surfer.getRatingVal()) {checked} />
               <label for="@buttonName">
               </label>
             } 
