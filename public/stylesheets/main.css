@@ -1,83 +1,100 @@
 body {
-  
+        padding-bottom: 50px;
 }
 
-.wrapper:hover label{
-  background-position:left bottom;
+.navbar-inverse {
+        border: none;
+        background-image: none;
+        background-color: black;
 }
 
-label{
-  background:url('http://img833.imageshack.us/img833/5959/stard.png') no-repeat left bottom;
-  float:right;
-  line-height:20px;   
-  padding-left:20px;
-  height:15px;
+.wrapper:hover label {
+        background-position: left bottom;
 }
 
-input:checked+label,.wrapper:hover label:hover,.wrapper:hover label:hover~label{
-  background-position:0px -1px;
+label {
+        background: url('http://img833.imageshack.us/img833/5959/stard.png')
+                no-repeat left bottom;
+        float: right;
+        line-height: 20px;
+        padding-left: 20px;
+        height: 15px;
 }
 
-input:checked~label{
-  background-position:0px -1px;
-}   
-
-input{
-  display:none;
+input:checked+label,.wrapper:hover label:hover,.wrapper:hover label:hover
+        ~label{
+        background-position: 0px -1px;
 }
 
-.wrapper{
-  float:left;
-  padding-left: 130px;
+input:checked ~label{
+        background-position: 0px -1px;
 }
 
-
-#rates.well{
-  padding-bottom: 40px;
-  margin-bottom:5px;
+input {
+        display: none;
 }
 
-#rates.well h2{
-  padding:0px;
-  text-align: center;
+.wrapper {
+        float: left;
+        padding-left: 130px;
 }
 
-.delete{
-  float: right;
+.form-group .rateSub {
+        padding-top: 30px;
+        margin-left: 165px;
 }
 
-.nav .caret{
-  border-top-color: #999 !important;
-  border-bottom-color: #999;
+#rates.well {
+        
 }
 
-.header-image{ 
-  background: url("../images/surfing.jpg");
-  background-size: cover;
-  height: 375px;
-}
-.img-one{
-  background-size: cover;
-  background-position: center;
-  height: 500px;
+#rates.well h2 {
+        padding: 0px;
+        text-align: center;
 }
 
-.pic-caption{
-  font-size: 30px;
+.delete {
+        float: right;
 }
 
-.page{
-  font-size: 15px;
+.nav .caret {
+        border-top-color: #999 !important;
+        border-bottom-color: #999;
 }
 
-.outer{
-  padding: 10px 150px 30px 150px;
+.header-image {
+        background: url("../images/surfing.jpg");
+        background-size: cover;
+        height: 375px;
 }
 
-.inner{
-  padding: 0;
+.img-one {
+        background-size: cover;
+        background-position: center;
+        height: 500px;
+}
+
+.pic-caption {
+        font-size: 30px;
+}
+
+.page {
+        font-size: 15px;
+}
+
+.outer {
+        padding: 10px 150px 30px 150px;
+}
+
+.inner {
+        padding: 0;
 }
 
 .searchForm {
-    padding-top: 7px;
-    height:25px;
+        padding-top: 7px;
+        height: 25px;
+}
+
+.formText {
+        text-align: center;
+}
