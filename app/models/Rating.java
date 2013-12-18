@@ -37,6 +37,16 @@ public class Rating extends Model{
     }
     
     /**
+     * 
+     * @param surfer
+     * @param userInfo
+     * @return
+     */
+    public boolean hasRated(UserInfo userInfo) {
+      return (userInfos.contains(userInfo));
+    }
+    
+    /**
      * @param rating the rating to set
      */
     public void setRating(int rating, UserInfo userInfo) {

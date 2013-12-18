@@ -252,13 +252,20 @@ public class Surfer extends Model {
   }
   
   /**
-   * @return the rating.
+   * @return the rating value.
    */
   public int getRatingVal() {
     if (rating != null){
       return rating.getRating();
     }
     else return 0;
+  }
+  
+  /**
+   * @return the rating.
+   */
+  public Rating getRating() {
+      return rating;
   }
   
   /**

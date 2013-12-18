@@ -31,7 +31,7 @@ input:checked ~label{
 }
 
 
-input {
+.wrapper input {
   display: none;
 }
 

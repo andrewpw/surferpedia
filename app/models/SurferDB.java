@@ -47,11 +47,19 @@ public class SurferDB {
     return surfer;
   }
   
+  /**
+   * Retrieve the footstyle list.
+   * @return footArray as a list 
+   */
   public static List<String> getFootstyleList() {
     String[] footArray = {"Goofy", "Regular"};
     return Arrays.asList(footArray);
   }
   
+  /**
+   * Retrieve the rating list.
+   * @return ratingArray as a list
+   */
   public static List<String> getRatingList() {
     String[] ratingArray = {"5", "4", "3", "2", "1"};
     return Arrays.asList(ratingArray);

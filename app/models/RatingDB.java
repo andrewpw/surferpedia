@@ -6,7 +6,9 @@ public class RatingDB {
   
   /**
    * Set a Rating.
-   * @param rating the Rating to set.
+   * @param surfer a surfer to add a rating too
+   * @param userInfo the user adding the rating
+   * @param ratingVal the Rating to set.
    */
   public static void addRating(Surfer surfer, UserInfo userInfo, int ratingVal) {
     if(userInfo != null || ratingVal == 100){

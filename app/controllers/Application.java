@@ -185,6 +185,10 @@ public class Application extends Controller {
               signupData, SurferTypes.getTypes(), CountryType.getSearchCountries()));
   }
   
+  /**
+   * Creates a new login session.
+   * @return A redirect to the index page on success or the login page on failure
+   */
   public static Result postLogin() {
     // Get the submitted form data from the request object, and run validation.
     Form<LoginFormData> formData = Form.form(LoginFormData.class).bindFromRequest();
