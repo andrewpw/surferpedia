@@ -1,33 +1,31 @@
 package models;
 
-import com.avaje.ebean.Ebean;
-
+/**
+ * A database of Ratings.
+ */
 public class RatingDB {
   
   /**
-   * Set a Rating.
+   * Add a Rating.
    * @param surfer a surfer to add a rating too
    * @param userInfo the user adding the rating
    * @param ratingVal the Rating to set.
    */
   public static void addRating(Surfer surfer, UserInfo userInfo, int ratingVal) {
-    if(userInfo != null || ratingVal == 100){
-      Rating rating = Rating.find().where().eq("surfer_id", surfer.getId()).findUnique();
-      if(rating == null){
-        rating = new Rating(surfer, userInfo);
-        rating.setRating(ratingVal, userInfo);
-        Ebean.save(rating);
-        surfer.update();
-      }
-      else{
-        if (!hasRated(surfer, userInfo)){
-          System.out.println("ratingDB else" + rating.getRating());
-            rating.setRating(ratingVal, userInfo);
-            Ebean.update(rating);
-            //rating.update();
-        }
-      }
+    if (surfer != null && userInfo != null && !hasRated(surfer, userInfo)) {
+      Rating rating = new Rating(surfer, userInfo, ratingVal);
+      rating.save();
     }
+  }
+  
+  /**
+   * Get a Rating.
+   * @param surfer A Surfer.
+   * @param userInfo An UserInfo.
+   * @return The Rating object corresponding between a Surfer and an UserInfo, otherwise null.
+   */
+  public static Rating getRating(Surfer surfer, UserInfo userInfo) {
+    return Rating.find().where().eq("surfer", surfer).eq("userInfo", userInfo).findUnique();
   }
   
   /**
@@ -37,7 +35,6 @@ public class RatingDB {
    * @return True if a Rating object exists, false otherwise.
    */
   public static boolean hasRated(Surfer surfer, UserInfo userInfo) {
-    Rating rating = Rating.find().where().eq("surfer", surfer).findUnique();
-    return (rating.getUserInfos().contains(userInfo));
+    return Rating.find().where().eq("surfer", surfer).eq("userInfo", userInfo).findUnique() != null;
   }
 }

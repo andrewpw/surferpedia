@@ -1,0 +1,46 @@
+ <div class = "well" id = "rates">
+       <h2>Rate This Surfer</h2>
+       @form(routes.Application.postRating(surfer.getSlug()), 'class -> "form-horizontal"){
+        @if(RatingDB.hasRated(surfer, userInfo) || userInfo == null){
+          <a data-toggle="modal" href="#myModal" class = "rating">
+        }
+        <div class="wrapper">
+          <div class = "form-group" >
+            @for(buttonName <- rating) {
+              <input
+                type="radio"
+                name="@ratingFD("rating").name"
+                id="@buttonName"
+                value="@buttonName"
+                onclick = "this.form.submit();"
+                @if(Integer.parseInt(buttonName) == surfer.getRatingVal()) {checked} />
+              <label for="@buttonName">
+              </label>
+            } 
+            
+          </div>
+        </div>
+              </a>
+              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Rating Error</h4>
+                  </div>
+                  <div class="modal-body">
+                    @if(RatingDB.hasRated(surfer, userInfo)){<p>You can only rate this surfer once</p>}
+                    @if(userInfo == null){<p>You must be logged in to rate a surfer</p>}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    @if(userInfo == null){
+                      <a href = @routes.Application.login() type="button" class="btn btn-primary">Login</a>
+                    }
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+            
+        }
+      </div>

@@ -1,67 +1,49 @@
 package models;
 
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
 
+/**
+ * Rating object between a Surfer and an UserInfo.
+ */
 @Entity
-public class Rating extends Model{
-
+public class Rating extends Model {
     private static final long serialVersionUID = 1L;
     
     @Id
     private long id;
-    private int rating;
-    private int ratingCount;
+    private int rating = 0;
     
-    @OneToOne
+    @ManyToOne
     private Surfer surfer;
-    @ManyToMany(cascade=CascadeType.ALL)
-    private List<UserInfo> userInfos = new ArrayList<>();
+    @ManyToOne
+    private UserInfo userInfo;
     
     /**
-     * The constructor.
+     * Constructor.
+     * @param surfer The Surfer.
+     * @param userInfo The UserInfo.
+     * @param rating The rating.
      */
-    public Rating(Surfer surfer, UserInfo userInfo){
+    public Rating(Surfer surfer, UserInfo userInfo, Integer rating) {
       this.surfer = surfer;
-      this.userInfos.add(userInfo);
-      this.rating = 0;
-      this.ratingCount = 0;
-    }
-    
-    /**
-     * 
-     * @param surfer
-     * @param userInfo
-     * @return
-     */
-    public boolean hasRated(UserInfo userInfo) {
-      return (userInfos.contains(userInfo));
+      this.userInfo = userInfo;
+      this.rating = rating;
     }
     
     /**
      * @param rating the rating to set
      */
-    public void setRating(int rating, UserInfo userInfo) {
-      ratingCount++;
-      this.rating += rating;
-      userInfos.add(userInfo);
+    public void setRating(int rating) {
+      this.rating = rating;
     }
     
     /**
      * @return the rating
      */
     public int getRating() {
-      if(ratingCount > 0){
-        return Math.round((float)rating / ratingCount);
-      }
       return rating;
     }
     
@@ -92,21 +74,21 @@ public class Rating extends Model{
     public void setSurfer(Surfer surfer) {
       this.surfer = surfer;
     }
-
+    
     /**
      * @return the userInfo
      */
-    public List<UserInfo> getUserInfos() {
-      return userInfos;
+    public UserInfo getUserInfo() {
+      return userInfo;
     }
 
     /**
      * @param userInfo the userInfo to set
      */
-    public void addUserInfo(UserInfo userInfo) {
-      userInfos.add(userInfo);
+    public void setUserInfo(UserInfo userInfo) {
+      this.userInfo = userInfo;
     }
-    
+
     /**
      * The EBean ORM finder method for database queries on ID.
      * @return The finder method for Favorites.

@@ -33,8 +33,8 @@ public class Surfer extends Model {
   
   @OneToMany(mappedBy = "surfer")
   private List<Favorite> favorites = new ArrayList<>();
-  @OneToOne(mappedBy = "surfer")
-  private Rating rating;
+  @OneToMany(mappedBy = "surfer")
+  private List<Rating> ratings = new ArrayList<>();
   
   /**
    * A Surfer Constructor.
@@ -247,25 +247,15 @@ public class Surfer extends Model {
    * Add a Rating.
    * @param rating the Rating to add.
    */
-  public Rating addRating(UserInfo userInfo) {
-    return rating = new Rating(this, userInfo);
-  }
-  
-  /**
-   * @return the rating value.
-   */
-  public int getRatingVal() {
-    if (rating != null){
-      return rating.getRating();
-    }
-    else return 0;
+  public void addRating(Rating rating) {
+    ratings.add(rating);
   }
   
   /**
    * @return the rating.
    */
-  public Rating getRating() {
-      return rating;
+  public List<Rating> getRatings() {
+      return ratings;
   }
   
   /**
@@ -280,7 +270,19 @@ public class Surfer extends Model {
       return this.bio.substring(0, MAX_BIO_LENGTH);
     }
   }
-
+  
+  /**
+   * Get Surfer's average numerical rating.
+   * @return An average rating for the Surfer.
+   */
+  public double getAverageRating() {
+    double average = 0.0;
+    for (Rating rating : ratings) {
+      average += rating.getRating();
+    }
+    return average / ratings.size();
+  }
+ 
   /**
    * The EBean ORM finder method for database queries on ID.
    * @return The finder method for products.

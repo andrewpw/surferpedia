@@ -25,7 +25,7 @@ public class UserInfo extends Model {
   
   @OneToMany(mappedBy = "userInfo")
   private List<Favorite> favorites = new ArrayList<>();
-  @ManyToMany(mappedBy = "userInfos", cascade=CascadeType.ALL)
+  @OneToMany(mappedBy = "userInfo", cascade=CascadeType.ALL)
   private List<Rating> ratings = new ArrayList<>();
 
   /**

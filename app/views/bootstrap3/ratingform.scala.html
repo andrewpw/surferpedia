@@ -1,0 +1,22 @@
+@(currentRating: Rating)
+
+@if(currentRating != null) { 
+  <a href="#"><span class="label label-default">No Rating</span></a>
+    @if(currentRating.getRating() == 1) { <a href="#"><span class="label label-success">1</span></a>
+    } else {<a href="#"><span class="label label-default">1</span></a>}
+    @if(currentRating.getRating() == 2) { <a id="rate1" href="#"><span class="label label-success">1</span></a>
+    } else {<a href="#"><span class="label label-default">1</span></a>}
+    @if(currentRating.getRating() == 3) { <a id="rate1" href="#"><span class="label label-success">1</span></a>
+    } else {<a href="#"><span class="label label-default">1</span></a>}
+    @if(currentRating.getRating() == 4) { <a id="rate1" href="#"><span class="label label-success">1</span></a>
+    } else {<a href="#"><span class="label label-default">1</span></a>}
+    @if(currentRating.getRating() == 5) { <a id="rate1" href="#"><span class="label label-success">1</span></a>
+    } else {<a href="#"><span class="label label-default">1</span></a>}
+} else {
+  <a href="#"><span class="label label-default">No Rating</span></a>
+  <a href="#"><span class="label label-default">1</span></a>
+  <a href="#"><span class="label label-default">2</span></a>
+  <a href="#"><span class="label label-default">3</span></a>
+  <a href="#"><span class="label label-default">4</span></a>
+  <a href="#"><span class="label label-default">5</span></a>          
+}
