@@ -3,6 +3,7 @@ package test;
 import java.util.concurrent.TimeUnit;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import play.Play;
 import play.test.TestBrowser;
 import play.libs.F.Callback;
 import test.pages.IndexPage;
@@ -57,7 +58,7 @@ public class IntegrationTest {
    * Check to see error message pops up when no login information is provided.
    */
   @Test
-  public void testEmptyLogin() {
+  public void testLoginErrorWithoutInput() {
     running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) throws InterruptedException {
         IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
@@ -67,12 +68,32 @@ public class IntegrationTest {
         LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
         loginPage.isAt();
         loginPage.emptyLogin();
+        assertThat(browser.pageSource().contains("Login credentials not valid.")).isTrue();
       }
     });
   }
   
   /**
-   * Check to see error message pops up when no login information is provided.
+   * Check to see error message pops up when wrong login information is provided.
+   */
+  @Test
+  public void testLoginErrorWithInput() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) throws InterruptedException {
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
+        loginPage.loginError();
+        assertThat(browser.pageSource().contains("Login credentials not valid.")).isTrue();
+      }
+    });
+  }
+  
+  /**
+   * Check that login works and brings user to index page once logged in.
    */
   @Test
   public void testLogin() {
@@ -84,8 +105,10 @@ public class IntegrationTest {
         indexPage.goToLogin();
         LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
         loginPage.isAt();
-        assertThat(browser.pageSource().contains("id=\"email\"")).isTrue();
-        browser.fill("#email").with("Test");
+        loginPage.login();
+        indexPage.isAt();
+        indexPage.isLoggedIn();
+        System.out.println(browser.pageSource());
       }
     });
   }

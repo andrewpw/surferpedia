@@ -30,9 +30,11 @@ input:checked ~label{
 	background-position: 0px -1px;
 }
 
+/*
 input {
-	display: none;
+  display: none;
 }
+*/
 
 .wrapper {
 	float: left;
