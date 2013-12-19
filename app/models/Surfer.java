@@ -245,7 +245,8 @@ public class Surfer extends Model {
   
   /**
    * Add a Rating.
-   * @param rating the Rating to add.
+   * @param userInfo the user adding a rating
+   * @return the new rating
    */
   public Rating addRating(UserInfo userInfo) {
     return rating = new Rating(this, userInfo);
@@ -255,10 +256,12 @@ public class Surfer extends Model {
    * @return the rating value.
    */
   public int getRatingVal() {
-    if (rating != null){
+    if (rating != null) {
       return rating.getRating();
     }
-    else return 0;
+    else {
+      return 0;
+    }
   }
   
   /**
