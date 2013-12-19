@@ -27,7 +27,16 @@
           </h1> 
           @if(isLoggedIn) {
             <p>
-              Rating: <span class="label label-default">@surfer.getRatingInText()</span>
+              Rating: <span class="label label-default">@surfer.getRatingInText()   </span>
+            </p>
+            <p>
+              Your Rating: 
+              @if(!RatingDB.hasRated(surfer, userInfo)) {
+              <span class="label label-default">No Rating</span>
+              <a href="@routes.Application.rate(surfer.getSlug())">Make A Rating</a>              
+              } else {
+              <span class="label label-default">@RatingDB.getRating(surfer, userInfo).getRating()</span>
+              <a href="@routes.Application.rate(surfer.getSlug())">Change Your Rating</a>}
             </p> 
           } else {
             <p>Rating: <span class="label label-default">@surfer.getRatingInText()</span>  </p>        

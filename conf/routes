@@ -20,6 +20,7 @@ GET     /favorite/add               controllers.Application.addFavorite(slug)
 GET     /favorite/remove            controllers.Application.deleteFavorite(slug)
 GET     /user/:id                   controllers.Application.showUser(id: Long)
 GET     /surfer/:slug/rate          controllers.Application.rate(slug)
+GET     /surfer/:slug/rate/delete   controllers.Application.deleteRating(slug, email)
 POST    /surfer/:slug/rate          controllers.Application.postRate(slug: String, email: String, rating: Integer)
  
 # Map static resources from the /public folder to the /assets URL path

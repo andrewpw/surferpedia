@@ -1,5 +1,6 @@
 package models;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
@@ -292,7 +293,8 @@ public class Surfer extends Model {
       return "None";
     }
     else {
-      return Double.toString(getAverageRating());
+      DecimalFormat decimalFormat = new DecimalFormat("#.#");
+      return decimalFormat.format(getAverageRating());
     }
   }
  

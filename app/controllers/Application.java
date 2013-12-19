@@ -328,12 +328,13 @@ public class Application extends Controller {
   
   @Security.Authenticated(Secured.class)  
   public static Result postRate(String slug, String email, int rating) {
-    SearchFormData searchFormData = new SearchFormData();
-    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
     Surfer surfer = SurferDB.getSurfer(slug);
     UserInfo userInfo = UserInfoDB.getUser(email);
     if (surfer != null && userInfo != null) {
-      if (RatingDB.getRating(surfer, userInfo) == null) {
+      if (rating == 0) {
+        return redirect(routes.Application.deleteRating(slug, email));
+      }
+      else if (RatingDB.getRating(surfer, userInfo) == null) {
         RatingDB.addRating(surfer, userInfo, rating);
       }
       else {
@@ -342,6 +343,18 @@ public class Application extends Controller {
         newRating.save();
       }
     }
-    return redirect(routes.Application.index());
+    return redirect(routes.Application.getSurfer(slug));
   }
+  
+  @Security.Authenticated(Secured.class)  
+  public static Result deleteRating(String slug, String email) {
+    Surfer surfer = SurferDB.getSurfer(slug);
+    UserInfo userInfo = UserInfoDB.getUser(email);
+    Rating rating = RatingDB.getRating(surfer, userInfo);
+    if (rating != null) {
+      rating.delete();
+    }
+    return redirect(routes.Application.getSurfer(slug));
+  }
+  
 }

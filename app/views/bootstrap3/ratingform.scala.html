@@ -1,25 +1,27 @@
 @(rating: Rating, surfer: Surfer, userInfo: UserInfo)
 
-<div class="container">
-  <div class="row">
+<label style="float:left">Rating: </label>
+@if(rating != null) {
+<form action ="@routes.Application.postRate(surfer.getSlug(), userInfo.getEmail(), 0)" method="post" style="float:left;">
+        <input id="deleteRate" type="submit" name="upvote" value="Delete Rating" />
+</form>
+}
 <form action ="@routes.Application.postRate(surfer.getSlug(), userInfo.getEmail(), 1)" method="post" style="float:left;">
-        <input type="submit" name="upvote" value="1" />
+        <input id="rate1" type="submit" name="upvote" value="1" />
 </form>
 
 <form action ="@routes.Application.postRate(surfer.getSlug(), userInfo.getEmail(), 2)" method="post" style="float:left;">
-        <input type="submit" name="upvote" value="1" />
+        <input id="rate2" type="submit" name="upvote" value="2" />
 </form>
 
 <form action ="@routes.Application.postRate(surfer.getSlug(), userInfo.getEmail(), 3)" method="post" style="float:left;">
-        <input type="submit" name="upvote" value="1" />
+        <input id="rate3" type="submit" name="upvote" value="3" />
 </form>
 
 <form action ="@routes.Application.postRate(surfer.getSlug(), userInfo.getEmail(), 4)" method="post" style="float:left;">
-        <input type="submit" name="upvote" value="1" />
+        <input id="rate4" type="submit" name="upvote" value="4" />
 </form>
 
 <form action ="@routes.Application.postRate(surfer.getSlug(), userInfo.getEmail(), 5)" method="post" style="float:left;">
-        <input type="submit" name="upvote" value="1" />
+        <input id="rate5" type="submit" name="upvote" value="5" />
 </form>
-</div>
-</div>
