@@ -30,6 +30,20 @@ public class RatingDB {
     }
   }
   
+  public static void deleteUserRating(Surfer surfer, UserInfo userInfo){
+    Rating rating = Rating.find().where().eq("surfer_id", surfer.getId()).findUnique();
+    System.out.println("old rating " + rating.getRating());
+    rating.deleteUserRating(userInfo);
+    Ebean.save(rating);
+    surfer.update();
+    System.out.println("new rating " + rating.getRating());
+  }
+  
+  public static int getUserRating(Surfer surfer, UserInfo userInfo){
+    Rating rating = Rating.find().where().eq("surfer_id", surfer.getId()).findUnique();
+    return rating.getUserRating(userInfo);
+  }
+  
   public static void deleteRating(Rating rating){
     Ebean.delete(rating);
   }
