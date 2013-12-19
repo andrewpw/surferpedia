@@ -20,6 +20,7 @@ public class Rating extends Model{
     private long id;
     private int rating;
     private int ratingCount;
+    private String userPlusRating = "";
     
     @OneToOne
     private Surfer surfer;
@@ -53,6 +54,7 @@ public class Rating extends Model{
       ratingCount++;
       this.rating += rating;
       userInfos.add(userInfo);
+      userPlusRating += "id" + String.valueOf(userInfo.getId()) + ";" + String.valueOf(rating) + ";";
     }
     
     /**
@@ -63,6 +65,39 @@ public class Rating extends Model{
         return Math.round((float)rating / ratingCount);
       }
       return rating;
+    }
+    
+    public int getUserRating(UserInfo userInfo) {
+      int rating = 0;
+      if (hasRated (userInfo)){
+        String[] ratingArray = userPlusRating.split(";");
+        for (int i = 0; i < ratingArray.length; i++){
+          if (ratingArray[i].equals("id" + userInfo.getId())){
+            rating = Integer.parseInt(ratingArray[i+1]);
+          }
+        }
+      }
+      return rating;
+    }
+    
+    public void deleteUserRating(UserInfo userInfo) {
+      int rating = 0;
+      if (hasRated (userInfo)){
+        String[] ratingArray = userPlusRating.split(";");
+        userPlusRating = "";
+        for (int i = 0; i < ratingArray.length; i++){
+          
+          if (ratingArray[i].equals("id" + userInfo.getId())){
+            rating = Integer.parseInt(ratingArray[++i]);
+          }
+          else {
+            userPlusRating += ratingArray[i];
+          }
+        }
+        userInfos.remove(userInfo);
+        this.rating -= rating;
+        this.ratingCount -= 1;
+      }
     }
     
     /**

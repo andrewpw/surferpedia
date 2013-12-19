@@ -14,6 +14,7 @@ create table rating (
   id                        bigint not null,
   rating                    integer,
   rating_count              integer,
+  user_plus_rating          varchar(255),
   surfer_id                 bigint,
   constraint pk_rating primary key (id))
 ;
