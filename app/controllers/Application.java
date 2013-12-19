@@ -88,7 +88,6 @@ public class Application extends Controller {
       SurferFormData data = formData.get();
       flash("success", String.format("Successfully added %s", data.name));
       SurferDB.add(data.slug, data);
-      RatingDB.addRating(SurferDB.getSurfer(data.slug), userInfo, 0);
       return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(data.slug),
           searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), ratingForm));
     }

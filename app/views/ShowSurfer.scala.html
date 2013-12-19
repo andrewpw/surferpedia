@@ -38,20 +38,16 @@
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title">Warning</h4>
+                      <h4 class="modal-title">Rating Error</h4>
                   </div>
                   <div class="modal-body">
                     @if(surfer.getRating() != null && surfer.getRating().hasRated(userInfo)){<p>You can only rate this surfer once</p>}
                     @if(userInfo == null){<p>You must be logged in to rate a surfer</p>}
-                    @if(userInfo != null && userInfo.isAdmin()) {<p>This cannot be undone.</p>}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                     @if(userInfo == null){
                       <a href = @routes.Application.login() type="button" class="btn btn-primary">Login</a>
-                    }
-                    @if(userInfo != null && userInfo.isAdmin()) {
-                      <a href = @routes.Application.deleteSurfer(surfer.getSlug()) type="button" class="btn btn-primary">Delete</a>
                     }
                   </div>
                 </div><!-- /.modal-content -->
@@ -95,10 +91,10 @@
           @if(isLoggedIn){
           <p><a href = @routes.Application.manageSurfer(surfer.getSlug())>
                <button type="button" class="btn btn-primary btn-sm">Edit</button></a>
-          <a data-toggle="modal" href="#myModal" class = "delete">
+          <a data-toggle="modal" href="#myModal2" class = "delete">
           @if(userInfo.isAdmin()) {
           <button type="button" class="btn btn-primary btn-sm">Delete</button></a></p>
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
