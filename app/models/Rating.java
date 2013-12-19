@@ -107,7 +107,7 @@ public class Rating extends Model {
             rating = Integer.parseInt(ratingArray[++i]);
           }
           else {
-            userPlusRating += ratingArray[i];
+            userPlusRating += ratingArray[i] + ";";
           }
         }
         userInfos.remove(userInfo);
