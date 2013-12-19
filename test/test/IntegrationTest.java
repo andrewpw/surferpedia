@@ -1,9 +1,6 @@
 package test;
 
-import java.util.concurrent.TimeUnit;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import play.Play;
 import play.test.TestBrowser;
 import play.libs.F.Callback;
 import test.pages.ChangeLogPage;
@@ -217,10 +214,10 @@ public class IntegrationTest {
   }
   
   /**
-   * Test new Surfers.
+   * Test Surfer edit function.
    */
   @Test
-  public void testEditSurferAndDelete() {
+  public void testEditSurfer() {
     running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
       public void invoke(TestBrowser browser) {
         IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
@@ -241,6 +238,8 @@ public class IntegrationTest {
         surferPage.isAt();
         surferPage.clickEdit();
         newSurferPage.isAt();
+        newSurferPage.editSurferName("AnotherUnique");
+        assertThat(browser.title().equals("AnotherUnique")).isTrue();
       }
     });    
   }
