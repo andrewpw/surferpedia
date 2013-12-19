@@ -342,7 +342,7 @@ public class Application extends Controller {
   public static Result deleteRating(Long userId, Long ratingId) {
     Rating rating = Rating.find().byId(ratingId);
     if (rating != null) {
-      RatingDB.deleteRating(rating);
+      rating.delete();
     } 
     return redirect(routes.Application.showUser(userId));
   }  

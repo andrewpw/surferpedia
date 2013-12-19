@@ -35,4 +35,40 @@ public class NewSurferPage extends FluentPage {
   public void isAt() {
     assertThat(title()).isEqualTo("Manage Surfer");
   }
+  
+  /**
+   * Create a new surfer.
+   * @param name Name.
+   * @param hometown Hometown.
+   * @param country Country.
+   * @param carouselURL CarouselURL.
+   * @param bioURL BioURL.
+   * @param bio Bio.
+   * @param slug Slug.
+   * @param type Type.
+   * @param footstyle Footstyle.
+   */
+  public void createSurfer(String name, String hometown, String country, String carouselURL, String bioURL, String bio,
+      String slug, String type, String footstyle) {
+    fill("#name").with(name);
+    fill("#hometown").with(hometown);
+    fill("#country").with(country);
+    fill("#carouselURL").with(carouselURL);
+    fill("#bioURL").with(bioURL);
+    fill("#bio").with(bio);
+    fill("#slug").with(slug);
+    find("select", withId().equalTo("type")).find("option", withText().equalTo(type)).click();
+    find("radio", withId().equalTo("footstyle")).find("option", withText().equalTo(footstyle)).click();
+    submit("#submit");
+  }  
+
+  /**
+   * Create a new surfer.
+   * @param newName New name.
+   */
+  public void editSurferName(String newName) {
+    fill("#name").with(newName);
+    submit("#submit");
+  }  
+
 }

@@ -168,7 +168,7 @@ public class IntegrationTest {
   }
   
   /**
-   * Test favorite function.
+   * Test change log link.
    */
   @Test
   public void testChangeLogLink() {
@@ -191,7 +191,7 @@ public class IntegrationTest {
   }
   
   /**
-   * Test favorite function.
+   * Test new surfer creation.
    */
   @Test
   public void testNewSurfer() {
@@ -209,6 +209,36 @@ public class IntegrationTest {
         indexPage.goToNewSurfer();
         NewSurferPage newSurferPage = new NewSurferPage(browser.getDriver(), PORT);
         newSurferPage.isAt();
+        newSurferPage.createSurfer("UniquePerson", "Mars", "United States", ".jpg", ".jpg", "Hey a bio", "UniqueSlug",
+            "Grom", "Regular");
+        assertThat(browser.title().equals("UniquePerson")).isTrue();
+      }
+    });    
+  }
+  
+  /**
+   * Test new Surfers.
+   */
+  @Test
+  public void testEditSurferAndDelete() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) {
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
+        loginPage.login();
+        indexPage.isAt();
+        indexPage.isLoggedIn();
+        indexPage.goToNewSurfer();
+        NewSurferPage newSurferPage = new NewSurferPage(browser.getDriver(), PORT);
+        newSurferPage.isAt();
+        newSurferPage.createSurfer("UniquePerson", "Mars", "United States", ".jpg", ".jpg", "Hey a bio", "UniqueSlug",
+            "Grom", "Regular");
+        SurferPage surferPage = new SurferPage(browser.getDriver(), PORT, "UniquePerson");
+        surferPage.isAt();
       }
     });    
   }
