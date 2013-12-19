@@ -209,8 +209,13 @@ public class IntegrationTest {
         indexPage.goToNewSurfer();
         NewSurferPage newSurferPage = new NewSurferPage(browser.getDriver(), PORT);
         newSurferPage.isAt();
+        newSurferPage.createSurfer("UniquePerson", "Mars", "United States", ".jpg", ".jpg", "Hey a bio", "UniqueSlug",
+            "Grom", "Regular");
+        assertThat(browser.title().equals("UniquePerson")).isTrue();
       }
     });    
   }
+  
+  
 
 }

@@ -23,14 +23,14 @@ surferType: Map[String, Boolean], countryType: Map[String, Boolean])
                <ul class="list-group">
               @if(FavoriteDB.getFavorite(user).size() > 0) {
                 @for(favorite <- FavoriteDB.getFavorite(user)) {
-                  <li>
+                  <li class="list-group-item">
                   <a href="/surfer/@favorite.getSurfer().getSlug()">@favorite.getSurfer().getName()</a>
                   @if(user.equals(userInfo)) {<a href="@routes.Application.deleteFavorite(favorite.getSurfer().getSlug())">
                   <button id="deleteFav" type="button" class="btn btn-info btn-xs pull-right">Delete</button></a>
                   </li>}
                 }
               } else {
-                <li>
+                <li class="list-group-item">
                 No Favorite Surfers
                 </li>
               }
@@ -47,13 +47,13 @@ surferType: Map[String, Boolean], countryType: Map[String, Boolean])
                <ul class="list-group">
               @if(user.getRatings().size() > 0) {
                 @for(rating <- user.getRatings()) {
-                  <li>
+                  <li class="list-group-item">
                   <a href="/surfer/@rating.getSurfer().getSlug()">@rating.getSurfer().getName()</a>
                   @if(user.equals(userInfo)) {<a href="@routes.Application.deleteRating(user.getId(), rating.getId())">
                   <button id="deleteRating" type="button" class="btn btn-info btn-xs pull-right">Delete</button></a></li>}
                   }
               } else {
-                <li>
+                <li class="list-group-item">
                 No Ratings
                 </li>
               }
