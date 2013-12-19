@@ -85,14 +85,22 @@ public class SurferFormData {
       errors.add(new ValidationError("hometown", "Hometown is required."));
     }
     
-    if (carouselURL == null || carouselURL.length() == 0) {
-      errors.add(new ValidationError("carouselURL", "Carousel URL is required."));
+    if (carouselURL == null || carouselURL.length() < 5) {
+      errors.add(new ValidationError("carouselURL", "Carousel URL is required and must end with an extension."));
     }
-    
-    if (bioURL == null || bioURL.length() == 0) {
-      errors.add(new ValidationError("bioURL", "Bio image URL is required."));
+    else if ((!carouselURL.substring(carouselURL.length()-4).equals(".jpg")) && 
+               (!carouselURL.substring(carouselURL.length()-4).equals(".png")) && 
+                 (!carouselURL.substring(carouselURL.length()-4).equals(".gif"))) {
+      errors.add(new ValidationError("carouselURL", "Carousel URL must end with .jpg, .png, or .gif"));
     }
-    
+    if (bioURL == null || bioURL.length() < 5) {
+      errors.add(new ValidationError("bioURL", "Bio image URL is required and must end with an extension."));
+    }
+    else if ((!bioURL.substring(bioURL.length()-4).equals(".jpg")) && 
+               (!bioURL.substring(bioURL.length()-4).equals(".png")) && 
+                 (!bioURL.substring(bioURL.length()-4).equals(".gif"))) {
+      errors.add(new ValidationError("bioURL", "Bio image URL must end with .jpg, .png, or .gif"));
+    }
     if (bio == null || bio.length() == 0) {
       errors.add(new ValidationError("bio", "A one paragraph bio is required."));
     }
