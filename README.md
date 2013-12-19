@@ -1,4 +1,4 @@
-![screenshot](https://raw.github.com/andrewpw/surferpedia/3e6646498f56902510a6e65d75f84cbbb9eaefcb/public/images/homepage_example.png)
+![screenshot](https://raw.github.com/andrewpw/surferpedia/master/public/images/homepage_example.png)
 
 Overview
 --------
