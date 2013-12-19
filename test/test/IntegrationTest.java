@@ -276,5 +276,42 @@ public class IntegrationTest {
       }
     });    
   }
-  
+ 
+  /**
+   * Test delete favorite function.
+   */
+  @Test
+  public void testDeleteFavoriteSurfer() {
+    running(testServer(PORT, fakeApplication(inMemoryDatabase())), HTMLUNIT, new Callback<TestBrowser>() {
+      public void invoke(TestBrowser browser) {
+        IndexPage indexPage = new IndexPage(browser.getDriver(), PORT);
+        browser.goTo(indexPage);
+        indexPage.isAt();
+        indexPage.goToLogin();
+        LoginPage loginPage = new LoginPage(browser.getDriver(), PORT);
+        loginPage.isAt();
+        loginPage.login();
+        indexPage.isAt();
+        indexPage.isLoggedIn();
+        indexPage.goToNewSurfer();
+        NewSurferPage newSurferPage = new NewSurferPage(browser.getDriver(), PORT);
+        newSurferPage.isAt();
+        newSurferPage.createSurfer("UniquePerson", "Mars", "United States", "hello.com/.jpg", "goodbye.com/.jpg", 
+            "Hey a bio", "UniqueSlug", "Grom", "Regular");
+        SurferPage surferPage = new SurferPage(browser.getDriver(), PORT, "UniquePerson");
+        surferPage.isAt();
+        surferPage.clickFavorite();
+        surferPage.isAt();
+        surferPage.goToUserPage();
+        UserPage userPage = new UserPage(browser.getDriver(), PORT);
+        userPage.isAt();
+        assertThat(browser.pageSource().contains("UniquePerson")).isTrue();
+        userPage.deleteFavorite("UniqueSlug");
+        browser.goTo(indexPage);
+        indexPage.goToUserPage();
+        userPage.isAt();
+        assertThat(browser.pageSource().contains("UniquePerson")).isFalse();
+      }
+    });    
+  }
 }
