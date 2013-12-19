@@ -24,6 +24,7 @@ import views.html.ManageSurfer;
 import views.html.Updates;
 import views.html.Search;
 import models.FavoriteDB;
+import models.Rating;
 import models.RatingDB;
 import models.Surfer;
 import models.SurferDB;
@@ -329,4 +330,18 @@ public class Application extends Controller {
          searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
    }
   }
+  
+  /**
+   * Delete Surfer rating in personal page.
+   * @param userId ID of the user.
+   * @param ratingId ID of the rating.
+   * @return The User personal page.
+   */
+  public static Result deleteRating(Long userId, Long ratingId) {
+    Rating rating = Rating.find().byId(ratingId);
+    if (rating != null) {
+      RatingDB.deleteRating(rating);
+    } 
+    return redirect(routes.Application.showUser(userId));
+  }  
 }

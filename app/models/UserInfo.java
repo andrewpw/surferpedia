@@ -122,6 +122,14 @@ public class UserInfo extends Model {
     }
   }
 
+  
+  /**
+   * @return the ratings
+   */
+  public List<Rating> getRatings() {
+    return ratings;
+  }
+
   /**
    * The EBean ORM finder method for database queries on UserInfo.
    * @return The finder method for UserInfo.

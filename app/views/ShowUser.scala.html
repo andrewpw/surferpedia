@@ -20,29 +20,44 @@ surferType: Map[String, Boolean], countryType: Map[String, Boolean])
                 <h3 class="panel-title" style="color:black;">Favorite Surfer <span class="badge pull-right">@FavoriteDB.getFavorite(user).size()</span></h3>
               </div>
               <div class="panel-body">
+               <ul class="list-group">
               @if(FavoriteDB.getFavorite(user).size() > 0) {
                 @for(favorite <- FavoriteDB.getFavorite(user)) {
+                  <li>
                   <a href="/surfer/@favorite.getSurfer().getSlug()">@favorite.getSurfer().getName()</a>
-                  @if(user.equals(userInfo)) {<button type="button" class="btn btn-info btn-xs pull-right">Delete</button>}
+                  @if(user.equals(userInfo)) {<a href="@routes.Application.deleteFavorite(favorite.getSurfer().getSlug())">
+                  <button id="deleteFav" type="button" class="btn btn-info btn-xs pull-right">Delete</button></a>
+                  </li>}
                 }
               } else {
+                <li>
                 No Favorite Surfers
+                </li>
               }
+              </ul>
               </div>
             </div>
           </div>
                     <div class="col-md-6">
             <div class="panel panel-info">
               <div class="panel-heading" style="background-color:white;">
-                <h3 class="panel-title" style="color:black;">Rating <span class="badge pull-right">TBA</span></h3>
+                <h3 class="panel-title" style="color:black;">Rating <span class="badge pull-right">@user.getRatings().size()</span></h3>
               </div>
               <div class="panel-body">
-                <span class="label label-default">No Rating</span> 
-                <span class="label label-danger">1</span> 
-                <span class="label label-default" style="background-color:#ff4300;">2</span> 
-                <span class="label label-warning" style="background-color:#ffe900; color:gray;">3</span> 
-                <span class="label label-success">4</span>
-                <span class="label label-success" style="background-color:green;">5</span>
+               <ul class="list-group">
+              @if(user.getRatings().size() > 0) {
+                @for(rating <- user.getRatings()) {
+                  <li>
+                  <a href="/surfer/@rating.getSurfer().getSlug()">@rating.getSurfer().getName()</a>
+                  @if(user.equals(userInfo)) {<a href="@routes.Application.deleteRating(user.getId(), rating.getId())">
+                  <button id="deleteRating" type="button" class="btn btn-info btn-xs pull-right">Delete</button></a></li>}
+                  }
+              } else {
+                <li>
+                No Ratings
+                </li>
+              }
+              </ul>
               </div>
             </div>
           </div>

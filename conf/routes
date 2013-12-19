@@ -20,6 +20,7 @@ POST    /newUser                    controllers.Application.newUser()
 GET     /favorite/add               controllers.Application.addFavorite(slug)
 GET     /favorite/remove            controllers.Application.deleteFavorite(slug)
 GET     /user/:id                   controllers.Application.showUser(id: Long)
+GET     /user/rate/delete           controllers.Application.deleteRating(userId: Long, ratingId: Long)
  
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
