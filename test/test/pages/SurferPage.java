@@ -15,17 +15,18 @@ import static org.fest.assertions.Assertions.assertThat;
  */
 public class SurferPage extends FluentPage {
   private String url;
-  private String slug;
+  private String title;
   
   /**
    * Create the IndexPage.
    * @param webDriver The driver.
    * @param port The port.
+   * @param title Title.
    */
-  public SurferPage(WebDriver webDriver, int port, String slug) {
+  public SurferPage(WebDriver webDriver, int port, String title) {
     super(webDriver);
     this.url = "http://localhost:" + port;
-    this.slug = slug;
+    this.title = title;
   }
   
   @Override
@@ -35,7 +36,7 @@ public class SurferPage extends FluentPage {
   
   @Override
   public void isAt() {
-    assertThat(title()).isEqualTo(SurferDB.getSurfer(slug).getName());
+    assertThat(title()).isEqualTo(title);
   }
   
   /**
