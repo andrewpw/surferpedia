@@ -20,17 +20,19 @@ To run Unit Tests, invoke the `test` command from the Play console.
 Usage
 -----
 
-Use the new tab to create a new entry for a surfer
-You must sign in  to create new surfers or edit their information.
-Delete functions are reserved for admin user only.
+Search through surfers with the search widget.
+Display all surfers by choosing all types and all countries, then press the magnifying glass icon.
+Surfers are displayed on multiple pages
+Click login to login to an existing account or create a new account
 For the sake of testing purposes, admin login is username: admin@example.com password: password
-Each surfer must have a unique slug and that slug can be used to retrieve their page by adding it to the end of the URL
-Surfers pages can be accessed by searching for them - if you do not specify any surfer attributes in the search bar,
-all surfers are displayed.
 Users can access their profile page by clicking on their login email that is displayed on the navigation bar. 
-Surfers can be rated by anyone.
+Surfers can be rated only by signed in users and only once per user.
+You can delete your previous surfer rating through your profile page and then re-rate the surfer.
 Surfers can be "Favorited" by Users. A Favorite Surfer will appear in the User's profile page.
-Once you choose a slug you cannot change it.
+Use the New Surfer tab to create a new entry for a surfer
+Only signed in users may create a new surfer or edit existing surfers
+Once you choose a slug for a surfer you cannot change it.
+Delete functions are reserved for admin user only.
 
 Modification
 ------------
