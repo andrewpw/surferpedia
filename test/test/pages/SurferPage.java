@@ -47,6 +47,20 @@ public class SurferPage extends FluentPage {
   }
   
   /**
+   * Click favorite.
+   */
+  public void clickFavorite() {
+    find("#addFav").click();
+  }
+  
+  /**
+   * Go the User control page.
+   */
+  public void goToUserPage() {
+    find("#userPage").click();
+  }
+  
+  /**
    * Go to a Surfer on the search page results.
    * @param slug The slug of the Surfer.
    */
