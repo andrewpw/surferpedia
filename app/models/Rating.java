@@ -31,7 +31,7 @@ public class Rating extends Model{
      */
     public Rating(Surfer surfer, UserInfo userInfo){
       this.surfer = surfer;
-      this.userInfos.add(userInfo);
+      //this.userInfos.add(userInfo);
       this.rating = 0;
       this.ratingCount = 0;
     }
