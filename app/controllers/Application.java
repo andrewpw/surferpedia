@@ -336,14 +336,15 @@ public class Application extends Controller {
   /**
    * Delete Surfer rating in personal page.
    * @param userId ID of the user.
-   * @param ratingId ID of the rating.
+   * @param surferId ID of Surfer.
    * @return The User personal page.
    */
-  public static Result deleteRating(Long userId, Long ratingId) {
-    Rating rating = Rating.find().byId(ratingId);
-    if (rating != null) {
-      rating.delete();
-    } 
+  public static Result deleteRating(Long userId, Long surferId) {
+    Surfer surfer = Surfer.find().byId(surferId);
+    UserInfo userInfo = UserInfo.find().byId(userId);
+    if (surfer != null && userInfo != null) {
+      RatingDB.deleteUserRating(surfer, userInfo);
+    }
     return redirect(routes.Application.showUser(userId));
   }  
 }

@@ -1,4 +1,3 @@
-import models.RatingDB;
 import models.Surfer;
 import models.SurferDB;
 import models.UserInfoDB;

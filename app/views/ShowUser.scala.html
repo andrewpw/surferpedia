@@ -48,8 +48,8 @@ surferType: Map[String, Boolean], countryType: Map[String, Boolean])
               @if(user.getRatings().size() > 0) {
                 @for(rating <- user.getRatings()) {
                   <li class="list-group-item">
-                  <a href="/surfer/@rating.getSurfer().getSlug()">@rating.getSurfer().getName()</a>
-                  @if(user.equals(userInfo)) {<a href="@routes.Application.deleteRating(user.getId(), rating.getId())">
+                  <a href="/surfer/@rating.getSurfer().getSlug()">@rating.getSurfer().getName() <span class="badge">@rating.getUserRating(userInfo)</span></a>
+                  @if(user.equals(userInfo)) {<a href="@routes.Application.deleteRating(user.getId(), rating.getSurfer().getId())">
                   <button id="deleteRating" type="button" class="btn btn-info btn-xs pull-right">Delete</button></a></li>}
                   }
               } else {
