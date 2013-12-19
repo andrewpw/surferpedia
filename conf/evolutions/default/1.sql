@@ -4,14 +4,14 @@
 # --- !Ups
 
 create table favorite (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   surfer_id                 bigint,
   user_info_id              bigint,
   constraint pk_favorite primary key (id))
 ;
 
 create table rating (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   rating                    integer,
   rating_count              integer,
   user_plus_rating          varchar(255),
@@ -20,23 +20,23 @@ create table rating (
 ;
 
 create table surfer (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   hometown                  varchar(255),
   awards                    varchar(255),
   carousel_url              varchar(255),
   bio_url                   varchar(255),
-  bio                       clob,
+  bio                       longtext,
   slug                      varchar(255),
   type                      varchar(255),
-  slug_defined              boolean,
+  slug_defined              tinyint(1) default 0,
   footstyle                 varchar(255),
   country                   varchar(255),
   constraint pk_surfer primary key (id))
 ;
 
 create table surfer_update (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   date                      varchar(255),
   type                      varchar(255),
   target                    varchar(255),
@@ -44,11 +44,11 @@ create table surfer_update (
 ;
 
 create table user_info (
-  id                        bigint not null,
+  id                        bigint auto_increment not null,
   name                      varchar(255),
   email                     varchar(255),
   password                  varchar(255),
-  admin                     boolean,
+  admin                     tinyint(1) default 0,
   constraint pk_user_info primary key (id))
 ;
 
@@ -58,16 +58,6 @@ create table rating_user_info (
   user_info_id                   bigint not null,
   constraint pk_rating_user_info primary key (rating_id, user_info_id))
 ;
-create sequence favorite_seq;
-
-create sequence rating_seq;
-
-create sequence surfer_seq;
-
-create sequence surfer_update_seq;
-
-create sequence user_info_seq;
-
 alter table favorite add constraint fk_favorite_surfer_1 foreign key (surfer_id) references surfer (id) on delete restrict on update restrict;
 create index ix_favorite_surfer_1 on favorite (surfer_id);
 alter table favorite add constraint fk_favorite_userInfo_2 foreign key (user_info_id) references user_info (id) on delete restrict on update restrict;
@@ -83,29 +73,19 @@ alter table rating_user_info add constraint fk_rating_user_info_user_info_02 for
 
 # --- !Downs
 
-SET REFERENTIAL_INTEGRITY FALSE;
+SET FOREIGN_KEY_CHECKS=0;
 
-drop table if exists favorite;
+drop table favorite;
 
-drop table if exists rating;
+drop table rating;
 
-drop table if exists rating_user_info;
+drop table rating_user_info;
 
-drop table if exists surfer;
+drop table surfer;
 
-drop table if exists surfer_update;
+drop table surfer_update;
 
-drop table if exists user_info;
+drop table user_info;
 
-SET REFERENTIAL_INTEGRITY TRUE;
-
-drop sequence if exists favorite_seq;
-
-drop sequence if exists rating_seq;
-
-drop sequence if exists surfer_seq;
-
-drop sequence if exists surfer_update_seq;
-
-drop sequence if exists user_info_seq;
+SET FOREIGN_KEY_CHECKS=1;
 

@@ -34,7 +34,12 @@ public class RatingDB {
     Rating rating = Rating.find().where().eq("surfer_id", surfer.getId()).findUnique();
     System.out.println("old rating " + rating.getRating());
     rating.deleteUserRating(userInfo);
-    Ebean.save(rating);
+    if (rating.getRating() != 0) {
+      Ebean.save(rating);
+    }
+    else {
+      Ebean.delete(rating);
+    }
     surfer.update();
     System.out.println("new rating " + rating.getRating());
   }
