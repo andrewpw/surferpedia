@@ -61,4 +61,14 @@ public class NewSurferPage extends FluentPage {
     find("radio", withId().equalTo("footstyle")).find("option", withText().equalTo(footstyle)).click();
     submit("#submit");
   }  
+
+  /**
+   * Create a new surfer.
+   * @param newName New name.
+   */
+  public void editSurferName(String newName) {
+    fill("#name").with(newName);
+    submit("#submit");
+  }  
+
 }
