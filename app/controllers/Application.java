@@ -103,6 +103,7 @@ public class Application extends Controller {
   public static Result deleteSurfer(String slug){
     UserInfo userInfo = UserInfoDB.getUser(request().username());
     String user = userInfo.getEmail();
+    RatingDB.deleteRating(SurferDB.getSurfer(slug).getRating());
     SurferDB.deleteSurfer(slug);
     SearchFormData searchFormData = new SearchFormData();
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);

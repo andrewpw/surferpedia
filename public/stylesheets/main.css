@@ -12,7 +12,7 @@ body {
 	background-position: left bottom;
 }
 
-label {
+.wrapper label {
     background: url('http://img833.imageshack.us/img833/5959/stard.png')
         no-repeat left bottom;
     float: right;

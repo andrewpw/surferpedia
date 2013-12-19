@@ -30,6 +30,10 @@ public class RatingDB {
     }
   }
   
+  public static void deleteRating(Rating rating){
+    Ebean.delete(rating);
+  }
+  
   /**
    * Check if a User has already rated a surfer.
    * @param surfer A Surfer.
