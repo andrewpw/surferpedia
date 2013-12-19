@@ -43,4 +43,12 @@ public class UserPage extends FluentPage {
     return !find("#logout").isEmpty();
   }
   
+  /**
+   * Click on delete button.
+   * @param slug Slug.
+   */
+  public void deleteFavorite(String slug) {
+    find("#deleteFav-" + slug).click();
+  }
+  
 }
