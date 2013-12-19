@@ -209,8 +209,8 @@ public class IntegrationTest {
         indexPage.goToNewSurfer();
         NewSurferPage newSurferPage = new NewSurferPage(browser.getDriver(), PORT);
         newSurferPage.isAt();
-        newSurferPage.createSurfer("UniquePerson", "Mars", "United States", ".jpg", ".jpg", "Hey a bio", "UniqueSlug",
-            "Grom", "Regular");
+        newSurferPage.createSurfer("UniquePerson", "Mars", "United States", "hello.com/.jpg", "goodbye.com/.jpg", 
+            "Hey a bio", "UniqueSlug", "Grom", "Regular");
         assertThat(browser.title().equals("UniquePerson")).isTrue();
       }
     });    
@@ -235,12 +235,15 @@ public class IntegrationTest {
         indexPage.goToNewSurfer();
         NewSurferPage newSurferPage = new NewSurferPage(browser.getDriver(), PORT);
         newSurferPage.isAt();
-        newSurferPage.createSurfer("UniquePerson", "Mars", "United States", ".jpg", ".jpg", "Hey a bio", "UniqueSlug",
-            "Grom", "Regular");
+        newSurferPage.createSurfer("UniquePerson", "Mars", "United States", "hello.com/.jpg", "goodbye.com/.jpg", 
+            "Hey a bio", "UniqueSlug", "Grom", "Regular");
         SurferPage surferPage = new SurferPage(browser.getDriver(), PORT, "UniquePerson");
         surferPage.isAt();
+        surferPage.clickEdit();
+        newSurferPage.isAt();
       }
     });    
   }
+ 
 
 }
