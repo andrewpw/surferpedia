@@ -3,9 +3,7 @@ package models;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import play.data.Form;
 import com.avaje.ebean.Page;
-import views.formdata.RatingFormData;
 import views.formdata.SurferFormData;
 
 /**
