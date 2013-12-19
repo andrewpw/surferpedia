@@ -12,7 +12,7 @@
      <div class = "well" id = "rates">
        <h2>Rate This Surfer</h2>
        @form(routes.Application.postRating(surfer.getSlug()), 'class -> "form-horizontal"){
-        @if(surfer.getRating().hasRated(userInfo) || userInfo == null){
+        @if((surfer.getRating() != null && surfer.getRating().hasRated(userInfo)) || userInfo == null){
           <a data-toggle="modal" href="#myModal" class = "rating">
         }
         <div class="wrapper">
@@ -40,7 +40,7 @@
                     <h4 class="modal-title">Rating Error</h4>
                   </div>
                   <div class="modal-body">
-                    @if(surfer.getRating().hasRated(userInfo)){<p>You can only rate this surfer once</p>}
+                    @if(surfer.getRating() != null && surfer.getRating().hasRated(userInfo)){<p>You can only rate this surfer once</p>}
                     @if(userInfo == null){<p>You must be logged in to rate a surfer</p>}
                   </div>
                   <div class="modal-footer">
