@@ -70,7 +70,7 @@ public class Application extends Controller {
    * @return The Surfer that was created/edited if the request was valid. The form page with error messages otherwise.
    */
   @Security.Authenticated(Secured.class)
-  public static Result postSurfer(){
+  public static Result postSurfer() {
     UserInfo userInfo = UserInfoDB.getUser(request().username());
     String user = userInfo.getEmail();
     Form<SurferFormData> formData = Form.form(SurferFormData.class).bindFromRequest();
@@ -99,7 +99,7 @@ public class Application extends Controller {
    * @return The Index page.
    */
   @Security.Authenticated(Secured.class)
-  public static Result deleteSurfer(String slug){
+  public static Result deleteSurfer(String slug) {
     UserInfo userInfo = UserInfoDB.getUser(request().username());
     String user = userInfo.getEmail();
     RatingDB.deleteRating(SurferDB.getSurfer(slug).getRating());
@@ -138,7 +138,7 @@ public class Application extends Controller {
     Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
     RatingFormData ratingFormData = new RatingFormData();
     Form<RatingFormData> ratingForm = Form.form(RatingFormData.class).fill(ratingFormData);
-    if (SurferDB.getSurfer(slug) != null){
+    if (SurferDB.getSurfer(slug) != null) {
       return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
                 searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), 
                 ratingForm));
@@ -149,6 +149,11 @@ public class Application extends Controller {
     }
   }
   
+  /**
+   * Posts a rating to a specified surfer.
+   * @param slug the slug of the surfer to post the rating too
+   * @return ShowSurfer page
+   */
   public static Result postRating(String slug) {
     Form<RatingFormData> formData = Form.form(RatingFormData.class).bindFromRequest();
     SearchFormData searchFormData = new SearchFormData();
@@ -164,7 +169,7 @@ public class Application extends Controller {
    * Return the update page.
    * @return The update page. 
    */
-  public static Result getUpdates(){
+  public static Result getUpdates() {
       SearchFormData searchFormData = new SearchFormData();
       Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
       return ok(Updates.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferUpdateDB.getUpdates(),
