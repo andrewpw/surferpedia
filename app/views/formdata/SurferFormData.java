@@ -1,7 +1,6 @@
 package views.formdata;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import models.Surfer;
 import models.SurferDB;
@@ -11,6 +10,9 @@ import play.data.validation.ValidationError;
  * Holds the data when a New Contact form is filled in.
  */
 public class SurferFormData {
+  
+  private static final int MIN_URL_SIZE = 5;
+  private static final int EXTENSION = 4;
   
   /** Surfer name.*/
   public String name = "";
@@ -85,20 +87,20 @@ public class SurferFormData {
       errors.add(new ValidationError("hometown", "Hometown is required."));
     }
     
-    if (carouselURL == null || carouselURL.length() < 5) {
+    if (carouselURL == null || carouselURL.length() < MIN_URL_SIZE) {
       errors.add(new ValidationError("carouselURL", "Carousel URL is required and must end with an extension."));
     }
-    else if ((!carouselURL.substring(carouselURL.length()-4).equals(".jpg")) && 
-               (!carouselURL.substring(carouselURL.length()-4).equals(".png")) && 
-                 (!carouselURL.substring(carouselURL.length()-4).equals(".gif"))) {
+    else if ((!carouselURL.substring(carouselURL.length() - EXTENSION).equals(".jpg")) 
+                && (!carouselURL.substring(carouselURL.length() - EXTENSION).equals(".png")) 
+                  && (!carouselURL.substring(carouselURL.length() - EXTENSION).equals(".gif"))) {
       errors.add(new ValidationError("carouselURL", "Carousel URL must end with .jpg, .png, or .gif"));
     }
-    if (bioURL == null || bioURL.length() < 5) {
+    if (bioURL == null || bioURL.length() < MIN_URL_SIZE) {
       errors.add(new ValidationError("bioURL", "Bio image URL is required and must end with an extension."));
     }
-    else if ((!bioURL.substring(bioURL.length()-4).equals(".jpg")) && 
-               (!bioURL.substring(bioURL.length()-4).equals(".png")) && 
-                 (!bioURL.substring(bioURL.length()-4).equals(".gif"))) {
+    else if ((!bioURL.substring(bioURL.length() - EXTENSION).equals(".jpg")) 
+                && (!bioURL.substring(bioURL.length() - EXTENSION).equals(".png")) 
+                  && (!bioURL.substring(bioURL.length() - EXTENSION).equals(".gif"))) {
       errors.add(new ValidationError("bioURL", "Bio image URL must end with .jpg, .png, or .gif"));
     }
     if (bio == null || bio.length() == 0) {

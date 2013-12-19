@@ -21,36 +21,41 @@ public class SurferTypes {
    * 
    * No arguments constructor.
    */
-  public SurferTypes(){
+  public SurferTypes() {
   }
   
-  public SurferTypes(Surfer surfer){
+  /**
+   * adds a type to a surfer.
+   * @param surfer the surfer to add
+   */
+  public SurferTypes(Surfer surfer) {
     genderMap.put(surfer.getType(), true);
   }
   
   /**
-   * returns a map of all acceptable telephone types and a boolean to tell if they are selected
-   * @return telMap the telephone map
+   * returns a map of all gender types.
+   * @return genderMap the map of the genderst
    */
-  public static Map<String, Boolean> getTypes(){
+  public static Map<String, Boolean> getTypes() {
     return genderMap;
   }
   
   /**
-   * returns a map of all acceptable telephone types and a boolean to tell if they are selected
-   * @param telType the type of telephone to be added
-   * @return telMap the telephone map
+   * gets the specific type wanted.
+   * @param type the type wanted.
+   * @return genderMap the map of all genders
    */
-  public static Map<String, Boolean> getTypes(String type){
+  public static Map<String, Boolean> getTypes(String type) {
     genderMap.put(type, true);
     return genderMap;
   }
   
   /**
-   * returns boolean indicating if the provided telephone type is legal.
-   * @return isLegal a boolean to indicate if the telephone type is legal
+   * returns boolean indicating if the provided type is legal.
+   * @param type the type to check
+   * @return a boolean to indicate if the type is legal
    */
-  public static Boolean isTypes(String type){
+  public static Boolean isTypes(String type) {
     return genderMap.containsKey(type);
   }
 }
