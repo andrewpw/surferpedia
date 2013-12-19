@@ -1,0 +1,23 @@
+@(isLoggedIn: Boolean, surfer: Surfer, userInfo: UserInfo, rateFD: Form[views.formdata.RatingFormData], 
+surferTypeMap: Map[String, Boolean], searchFormData: Form[views.formdata.SearchFormData],
+countryType: Map[String, Boolean], ratingOption: List[String])
+
+@import helper.form
+@import bootstrap3._
+
+@Main("Manage Surfer", isLoggedIn, userInfo, searchFormData, surferTypeMap, countryType) {
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Rate @surfer.getName()</h3>
+      </div>
+      <div class="panel-body">
+        Average Rating: @surfer.getRatingInText() <br/>
+        @ratingform(RatingDB.getRating(surfer, userInfo), surfer, userInfo)
+      </div>
+    </div>
+    </div>
+    </div>
+}

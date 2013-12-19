@@ -12,6 +12,7 @@ import play.mvc.Security;
 import views.formdata.CountryType;
 import views.formdata.LoginFormData;
 import views.formdata.RatingFormData;
+import views.formdata.RatingType;
 import views.formdata.SearchFormData;
 import views.formdata.SignupFormData;
 import views.formdata.SurferFormData;
@@ -23,7 +24,9 @@ import views.html.ShowUser;
 import views.html.ManageSurfer;
 import views.html.Updates;
 import views.html.Search;
+import views.html.RateSurfer;
 import models.FavoriteDB;
+import models.Rating;
 import models.RatingDB;
 import models.Surfer;
 import models.SurferDB;
@@ -147,17 +150,6 @@ public class Application extends Controller {
       return ok(Index.render("", Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), searchForm,
                 SurferTypes.getTypes(), CountryType.getSearchCountries()));
     }
-  }
-  
-  public static Result postRating(String slug) {
-    Form<RatingFormData> formData = Form.form(RatingFormData.class).bindFromRequest();
-    SearchFormData searchFormData = new SearchFormData();
-    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
-    RatingFormData data = formData.get();
-    Surfer surfer = SurferDB.getSurfer(slug);
-    RatingDB.addRating(surfer, Secured.getUserInfo(ctx()), data.rating);
-    return ok(ShowSurfer.render(Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()), SurferDB.getSurfer(slug),
-        searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries(), SurferDB.getRatingList(), formData));
   }
   
   /**
@@ -323,5 +315,33 @@ public class Application extends Controller {
      return ok(ShowUser.render(user, Secured.isLoggedIn(ctx()), Secured.getUserInfo(ctx()),
          searchForm, SurferTypes.getTypes(), CountryType.getSearchCountries()));
    }
+  }
+  
+  @Security.Authenticated(Secured.class)  
+  public static Result rate(String slug) {
+    Form<RatingFormData> formData = Form.form(RatingFormData.class).bindFromRequest();
+    SearchFormData searchFormData = new SearchFormData();
+    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    return ok(RateSurfer.render(Secured.isLoggedIn(ctx()), SurferDB.getSurfer(slug), Secured.getUserInfo(ctx()), formData,
+        SurferTypes.getTypes(), searchForm, CountryType.getTypes(), RatingType.getTypes()));
+  }
+  
+  @Security.Authenticated(Secured.class)  
+  public static Result postRate(String slug, String email, int rating) {
+    SearchFormData searchFormData = new SearchFormData();
+    Form<SearchFormData> searchForm = Form.form(SearchFormData.class).fill(searchFormData);
+    Surfer surfer = SurferDB.getSurfer(slug);
+    UserInfo userInfo = UserInfoDB.getUser(email);
+    if (surfer != null && userInfo != null) {
+      if (RatingDB.getRating(surfer, userInfo) == null) {
+        RatingDB.addRating(surfer, userInfo, rating);
+      }
+      else {
+        Rating newRating = RatingDB.getRating(surfer, userInfo);
+        newRating.setRating(rating);
+        newRating.save();
+      }
+    }
+    return redirect(routes.Application.index());
   }
 }

@@ -282,6 +282,19 @@ public class Surfer extends Model {
     }
     return average / ratings.size();
   }
+  
+  /**
+   * Get the numerical rating in text form.
+   * @return The numerical rating or "No Rating" if the SUrfer has no ratings.
+   */
+  public String getRatingInText() {
+    if (ratings.isEmpty()) {
+      return "None";
+    }
+    else {
+      return Double.toString(getAverageRating());
+    }
+  }
  
   /**
    * The EBean ORM finder method for database queries on ID.

@@ -19,15 +19,19 @@
           <h1 id="intro">@surfer.getName()
                     @if(isLoggedIn) {
             @if(!FavoriteDB.isAFavorite(surfer, userInfo)) {
-              <a id="addFav" href="@routes.Application.addFavorite(surfer.getSlug())" type="button" class="btn btn-primary">Favorite</a>
+              <a id="addFav" href="@routes.Application.addFavorite(surfer.getSlug())" type="button" class="btn btn-primary pull-right">Favorite</a>
             } else {
-              <a id="removeFav" href="@routes.Application.deleteFavorite(surfer.getSlug())" type="button" class="btn btn-primary">Remove Favorite</a>
+              <a id="removeFav" href="@routes.Application.deleteFavorite(surfer.getSlug())" type="button" class="btn btn-primary pull-right">Remove Favorite</a>
             }
           }   
           </h1> 
           @if(isLoggedIn) {
-            @ratingform(RatingDB.getRating(surfer, userInfo))
-          } 
+            <p>
+              Rating: <span class="label label-default">@surfer.getRatingInText()</span>
+            </p> 
+          } else {
+            <p>Rating: <span class="label label-default">@surfer.getRatingInText()</span>  </p>        
+          }
           <hr/>
         <p>
           <b>Home Town:</b> @surfer.getHometown()
