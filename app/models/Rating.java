@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import play.db.ebean.Model;
-import play.db.ebean.Model.Finder;
 
 /**
  * A rating object so that a user can rate a surfer.

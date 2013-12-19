@@ -310,7 +310,7 @@ public class IntegrationTest {
         browser.goTo(indexPage);
         indexPage.goToUserPage();
         userPage.isAt();
-        assertThat(browser.pageSource().contains("UniquePerson")).isFalse();
+        assertThat(browser.pageSource().contains("UniquePerson")).isFalse(); 
       }
     });    
   }
