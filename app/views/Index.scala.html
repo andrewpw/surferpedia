@@ -15,11 +15,11 @@
      <div class="carousel-inner">
        @for((surfer, index) <- SurferDB.getRandomSurferList().zipWithIndex){
          @if(index == 0){
-           <div class="item active">
+           <div class="item active img-one" style = "background-image: url('@surfer.getCarouselURL()');">
          } else {
-           <div class="item">
+           <div class="item img-one" style = "background-image: url('@surfer.getCarouselURL()');">
          }
-         <div class ="img-one" style = "background-image: url('@surfer.getCarouselURL()');"></div>
+         <div class =></div>
          <div class="carousel-caption">
 
            <p class="pic-caption">@surfer.getName()</p>
